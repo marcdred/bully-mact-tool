@@ -19,3 +19,5 @@ Instructions for MACT_TO_CAT.py:
         python3 MACT_TO_CAT.py YourMactFile.mact
 
 Extra thanks to vegasfest for helping me test and debug this tool.
+
+TEST
