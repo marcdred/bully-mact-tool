@@ -1,0 +1,1096 @@
+AIConditionGroup	0x88EE6637
+	1	param00001	bytes
+	2	param00002	cg
+AIIsPlaying	0xC8C82A04
+	1	param00001	bytes
+	2	param00002	bytes
+	3	param00003	int
+AcquireAuthorityFocus	0xFBEBBE69
+	1	param00001	bytes
+AcquireFactionFocus	0x4A61E13E
+	1	param00001	bytes
+AcquireFocus	0x0AD77F23
+	1	param00001	bytes
+AcquirePOI	0xD8A5F500
+	1	param00001	bytes
+	2	param00002	float
+AcquirePunishableTarget	0x1A416E2D
+	1	param00001	bytes
+AcquireTarget	0xBB0CE677
+	1	param00001	bytes
+ActionNodePlayTime	0x51A3432E
+	1	param00001	bytes
+	2	param00002	float
+	3	param00003	int
+ActionNodePlayTimePast	0x27B3E818
+	1	param00001	bytes
+ActionNodeRequest	0xD3787F49
+	1	param00001	bytes
+ActionRequest	0xED2BB800
+	1	param00001	bytes
+	2	param00002	int
+	3	param00003	int
+	4	param00004	bytes
+	5	param00005	int
+	6	param00006	bytes
+ActionRequestButton	0xFB550005
+	1	param00001	bytes
+	2	param00002	int
+	3	param00003	int
+	4	param00004	bytes
+	5	param00005	int
+	6	param00006	bytes
+AllyFollowerConditionGroup	0x3EC92B68
+	1	param00001	bytes
+	2	param00002	cg
+AllyIsInCombat	0x336E8D1F
+	1	param00001	bytes
+AllyLeaderConditionGroup	0xF159B677
+	1	param00001	bytes
+	2	param00002	cg
+AltWeaponCollisionType	0x9B145244
+	1	param00001	bytes
+AnimationGroupLoaded	0x14401215
+	1	param00001	bytes
+	2	param00002	string
+	3	param00003	int
+	4	param00004	float
+AnimationParametric	0x8453E87F
+	1	param00001	bytes
+	2	param00002	float
+	3	param00003	int
+AttackPhase	0x6F716829
+	1	param00001	bytes
+	2	param00002	int
+	3	param00003	bytes
+AttackTimer	0x9DB5C46F
+	1	param00001	bytes
+	2	param00002	float
+	3	param00003	bytes
+	4	param00004	int
+Attacked	0x1309E320
+	1	param00001	bytes
+	2	param00002	bytes
+AttackerConditionGroup	0xF5E30651
+	1	param00001	bytes
+	2	param00002	cg
+AttacksDisabled	0x8FB0BA09
+	1	param00001	bytes
+AttemptAnchorToVehicle	0xCB73F17A
+	1	param00001	bytes
+BalanceMeterPosition	0x52D18405
+	1	param00001	bytes
+	2	param00002	float
+	3	param00003	int
+BikeIsUpright	0xAE258B48
+	1	param00001	bytes
+BikeSprintAmount	0xDBD33774
+	1	param00001	bytes
+	2	param00002	float
+	3	param00003	int
+BlockTimer	0x50B0B92D
+	1	param00001	bytes
+	2	param00002	float
+	3	param00003	int
+	4	param00004	int
+ButtonState	0x8BE0D161
+	1	param00001	bytes
+	2	param00002	int
+	3	param00003	bytes
+CameraActive	0xFF23A343
+	1	param00001	bytes
+	2	param00002	int
+CameraAllowScriptedChange	0x22D58D2E
+	1	param00001	bytes
+CameraBlending	0xEA1E717D
+	1	param00001	bytes
+CameraDesired	0xBD130D20
+	1	param00001	bytes
+	2	param00002	bytes
+CameraDesiredReset	0x2E6DD55F
+	1	param00001	bytes
+CameraFading	0xD652F807
+	1	param00001	bytes
+CameraInWidescreen	0xD1A33016
+	1	param00001	bytes
+CameraLocked	0xCF43B062
+	1	param00001	bytes
+CanGetOffVehicleHere	0xDF35DF65
+	1	param00001	bytes
+CanGetOffVehicleHereLeft	0x26D50071
+	1	param00001	bytes
+CanGetOnVehicleHere	0xAFF60652
+	1	param00001	bytes
+CanGetOnVehicleLeftSide	0xC906DB0A
+	1	param00001	bytes
+CanGetOnVehicleRightSide	0x903A787F
+	1	param00001	bytes
+CanPathToEntity	0x4B04E062
+	1	param00001	bytes
+	2	param00002	bytes
+CanPropSetUsageState	0x131CE90F
+	1	param00001	bytes
+	2	param00002	int
+CatchProjectile	0xF4051D34
+	1	param00001	bytes
+	2	param00002	int
+	3	param00003	float
+	4	param00004	float
+	5	param00005	float
+	6	param00006	float
+	7	param00007	float
+	8	param00008	bytes
+	9	param00009	int
+CharacterSize	0x56F70E67
+	1	param00001	bytes
+	2	param00002	int
+CheckActionTimer	0xEB96600F
+	1	param00001	bytes
+CheckWeather	0x183F2251
+	1	param00001	bytes
+	2	param00002	int
+Clothing	0xB8BBB34E
+	1	param00001	bytes
+	2	param00002	int
+	3	param00003	bytes
+	4	param00004	bytes
+ClothingSpecialKiss	0x4F035D53
+	1	param00001	bytes
+ClothingStyle	0x1144E771
+	1	param00001	bytes
+	2	param00002	int
+	3	param00003	int
+	4	param00004	int
+ClothingWarmthFactor	0xFC3BAA56
+	1	param00001	bytes
+	2	param00002	int
+	3	param00003	int
+CollisionStart	0x0CCB901B
+	1	param00001	bytes
+CollisionWeaponType	0x70F59A2C
+	1	param00001	bytes
+	2	param00002	int
+	3	param00003	int
+	4	param00004	bytes
+	5	param00005	bytes
+ConditionFlag	0xFBF36F5F
+	1	param00001	bytes
+	2	param00002	bytes
+ConditionGroup	0x5C13A968
+	1	param00001	bytes
+	2	param00002	cg
+Controller	0x4CE27A5E
+	1	param00001	bytes
+	2	param00002	int
+ConversationActive	0x3584A139
+	1	param00001	bytes
+	2	param00002	bytes
+Damage	0x9FD6814E
+	1	param00001	bytes
+	2	param00002	float
+	3	param00003	bytes
+DamageFromBurningFire	0xEC740E32
+	1	param00001	bytes
+DamagePending	0x40F21C7B
+	1	param00001	bytes
+	2	param00002	float
+	3	param00003	int
+DayCond	0x86175C7F
+	1	param00001	bytes
+	2	param00002	int
+	3	param00003	int
+DetectGrenade	0x7BEBE47E
+	1	param00001	bytes
+DetectProjectile	0x4898181E
+	1	param00001	bytes
+DistToGround	0x34596A44
+	1	param00001	bytes
+	2	param00002	float
+	3	param00003	int
+DistToTarget	0x724C1C60
+	1	param00001	bytes
+	2	param00002	float
+DodgeballBallCount	0x42FC5331
+	1	param00001	bytes
+	2	param00002	int
+	3	param00003	int
+DodgeballBallLocation	0x720CA540
+	1	param00001	bytes
+	2	param00002	bytes
+	3	param00003	float
+	4	param00004	float
+	5	param00005	float
+	6	param00006	int
+DodgeballBallState	0xA8ABD54A
+	1	param00001	bytes
+	2	param00002	bytes
+	3	param00003	int
+DodgeballCanPathTo	0x5E5A687F
+	1	param00001	bytes
+	2	param00002	bytes
+DodgeballCanPickup	0x3AAF8F09
+	1	param00001	bytes
+	2	param00002	float
+DodgeballGameFlag	0xE0F9D46E
+	1	param00001	bytes
+	2	param00002	int
+	3	param00003	bytes
+DodgeballGameOver	0xC4540C70
+	1	param00001	bytes
+DodgeballMessage	0x3D924C6B
+	1	param00001	bytes
+	2	param00002	string
+DodgeballPedFlag	0x7DA45B00
+	1	param00001	bytes
+	2	param00002	int
+	3	param00003	int
+DodgeballPedInArea	0x53D3F014
+	1	param00001	bytes
+	2	param00002	bytes
+	3	param00003	int
+DodgeballPedLocation	0x824B4E2D
+	1	param00001	bytes
+	2	param00002	float
+	3	param00003	float
+	4	param00004	float
+	5	param00005	float
+	6	param00006	int
+EngageDistance	0xFE2B075F
+	1	param00001	bytes
+	2	param00002	bytes
+EntitySpeed	0x900EB67F
+	1	param00001	bytes
+	2	param00002	bytes
+	3	param00003	int
+EvaluatedEntityType	0x24A69061
+	1	param00001	bytes
+	2	param00002	string
+	3	param00003	bytes
+FactionNear	0x6041FD2C
+	1	param00001	bytes
+	2	param00002	float
+FactionScan	0x513FA82D
+	1	param00001	bytes
+	2	param00002	bytes
+	3	param00003	bytes
+	4	param00004	bytes
+False	0xEB9F8955
+	1	param00001	bytes
+FightClass	0x18C7D02B
+	1	param00001	bytes
+	2	param00002	int
+FightToken	0x7562A356
+	1	param00001	bytes
+FindSnow	0x341DE803
+	1	param00001	bytes
+	2	param00002	float
+FindSurface	0x20864B22
+	1	param00001	bytes
+	2	param00002	float
+	3	param00003	int
+	4	param00004	int
+FindTandemHelper	0x22B1FC49
+	1	param00001	bytes
+FireInRange	0x8A1BB60D
+	1	param00001	bytes
+	2	param00002	float
+FocusConditionGroup	0x448A5A60
+	1	param00001	bytes
+	2	param00002	cg
+FrontEndActive	0x50960C32
+	1	param00001	bytes
+	2	param00002	int
+	3	param00003	float
+GrapplingHookAnchord	0x70AFA344
+	1	param00001	bytes
+	2	param00002	float
+	3	param00003	int
+	4	param00004	bytes
+HasAllyMorale	0x20BA9E71
+	1	param00001	bytes
+	2	param00002	int
+HasAllyState	0xCF51DB14
+	1	param00001	bytes
+	2	param00002	int
+HasEnoughCash	0x45528624
+	1	param00001	bytes
+	2	param00002	float
+HasGiftItemOfType	0x22561211
+	1	param00001	bytes
+	2	param00002	int
+HasGrappleTarget	0xF6C1B243
+	1	param00001	bytes
+HasLineOfSightToPlayer	0x0C6B6733
+	1	param00001	bytes
+HasNewAudibleStimulus	0xF6EF8E12
+	1	param00001	bytes
+	2	param00002	int
+HasNodeCooldown	0xB7986A5D
+	1	param00001	bytes
+	2	param00002	float
+HasPlayerMaxItems	0xF302683E
+	1	param00001	bytes
+	2	param00002	bytes
+	3	param00003	bytes
+HasRangedWeapon	0xC91B6C3D
+	1	param00001	bytes
+HasSpeechEvent	0x36861E5A
+	1	param00001	bytes
+	2	param00002	int
+HasSweptSphereCollision	0x72389138
+	1	param00001	bytes
+	2	param00002	float
+	3	param00003	bytes
+	4	param00004	bytes
+	5	param00005	float
+	6	param00006	bytes
+	7	param00007	float
+	8	param00008	float
+	9	param00009	bytes
+	10	param00010	int
+	11	param00011	float
+HaveDynamicPOI	0xE7F19314
+	1	param00001	bytes
+HaveIAssaultedTargetPed	0x73603834
+	1	param00001	bytes
+HaveIAttacked	0x740A456A
+	1	param00001	bytes
+HaveIDismissedTargetPed	0x9698BC7F
+	1	param00001	bytes
+HavePOI	0xBE42C21D
+	1	param00001	bytes
+HavePOIOfType	0xE3AD1B4E
+	1	param00001	bytes
+	2	param00002	int
+Health	0x78223101
+	1	param00001	bytes
+	2	param00002	float
+	3	param00003	int
+HearPlayerFootsteps	0xF6C6FD0C
+	1	param00001	bytes
+	2	param00002	bytes
+HitByPed	0xDD478035
+	1	param00001	bytes
+	2	param00002	bytes
+HitFlagClear	0xC62CC60F
+	1	param00001	bytes
+HitLocation	0xA4D7EB16
+	1	param00001	bytes
+	2	param00002	int
+	3	param00003	int
+HitTime	0x80E7C958
+	1	param00001	bytes
+	2	param00002	float
+	3	param00003	int
+	4	param00004	bytes
+HudComponentVisible	0x9876A50B
+	1	param00001	bytes
+	2	param00002	int
+HumiliationGroupIs	0xE6E84070
+	1	param00001	bytes
+	2	param00002	int
+IgnoreAttacks	0x3D638916
+	1	param00001	bytes
+InAttackCone	0x98F2112F
+	1	param00001	bytes
+InBikeRace	0x0372A350
+	1	param00001	bytes
+InCar	0x434FEE0B
+	1	param00001	bytes
+InCombatZone	0xA5FF5A74
+	1	param00001	bytes
+	2	param00002	int
+	3	param00003	float
+InTriggerVolume	0x59291B5A
+	1	param00001	bytes
+	2	param00002	string
+Interval	0x0DA71D68
+	1	param00001	bytes
+	2	param00002	int
+IsAllyFollower	0x40EFBA7D
+	1	param00001	bytes
+IsAllyLeader	0xDB2D4C0C
+	1	param00001	bytes
+IsAuthority	0xE934FC00
+	1	param00001	bytes
+IsAvoiding	0xA3DE0F36
+	1	param00001	bytes
+	2	param00002	int
+	3	param00003	int
+IsDayTime	0x93CA8B5D
+	1	param00001	bytes
+IsElderly	0x857E4D6E
+	1	param00001	bytes
+IsEmotionTowardsPlayer	0x3C94460A
+	1	param00001	bytes
+	2	param00002	int
+IsEmotionTowardsTarget	0x385D8339
+	1	param00001	bytes
+	2	param00002	int
+IsFemale	0xD693AD2D
+	1	param00001	bytes
+IsGuarding	0x9B0B7F2A
+	1	param00001	bytes
+IsHangingOut	0x3066E829
+	1	param00001	bytes
+IsHealthAtHumiliationLevel	0xB665227C
+	1	param00001	bytes
+IsHungUp	0x4374B53D
+	1	param00001	bytes
+IsIgnoreTruants	0x2BAD0E3D
+	1	param00001	bytes
+IsInFactionWithStimulusObject	0x748A3F0A
+	1	param00001	bytes
+IsInFight	0x6944C25B
+	1	param00001	bytes
+IsInsideTether	0x6035975F
+	1	param00001	bytes
+IsMissionActive	0x6448AC6D
+	1	param00001	bytes
+IsMissionSpecific	0x74E8695C
+	1	param00001	bytes
+IsNISorCutsceneRunning	0xA0CEAE17
+	1	param00001	bytes
+	2	param00002	int
+IsObjectiveVehicleOwner	0x76B23B4F
+	1	param00001	bytes
+IsOnSnow	0x6CDE2024
+	1	param00001	bytes
+IsPatrolPed	0xD5366B77
+	1	param00001	bytes
+IsPlayer	0x9724237A
+	1	param00001	bytes
+IsPlayerFacingMirror	0x040D6B24
+	1	param00001	bytes
+	2	param00002	float
+IsPlayerFatigued	0x7475950F
+	1	param00001	bytes
+IsPlayerNearby	0x3AE13B52
+	1	param00001	bytes
+	2	param00002	float
+IsPlayerTired	0x113DBB60
+	1	param00001	bytes
+IsPowerSliding	0x7B42425A
+	1	param00001	bytes
+IsReadyToBeKissed	0x80D00218
+	1	param00001	bytes
+IsRegisteredAsGirlfriend	0x88611B75
+	1	param00001	bytes
+IsRumbleModeAmbient	0x6ED01B09
+	1	param00001	bytes
+IsRumbleModeMission	0xDE202B3F
+	1	param00001	bytes
+IsScenarioPed	0x4D2E7F52
+	1	param00001	bytes
+IsScriptedAmbient	0x00B7E825
+	1	param00001	bytes
+IsSocialInitialAction	0x23105401
+	1	param00001	bytes
+IsSocialInitialReaction	0xCE30DB4F
+	1	param00001	bytes
+IsSocialStateAct	0x10A4F507
+	1	param00001	bytes
+IsSocialStateWait	0x2314A515
+	1	param00001	bytes
+IsSocialTarget	0xF4D60C01
+	1	param00001	bytes
+IsSocializing	0xCE33CD55
+	1	param00001	bytes
+	2	param00002	bytes
+IsSocializingWithPlayer	0x497FE909
+	1	param00001	bytes
+IsSoundBankLoaded	0xBEDD1179
+	1	param00001	bytes
+	2	param00002	string
+	3	param00003	bytes
+IsSpeechBusy	0x61741551
+	1	param00001	bytes
+	2	param00002	int
+IsSpeechPreloaded	0xDCCF8617
+	1	param00001	bytes
+	2	param00002	int
+	3	param00003	int
+	4	param00004	int
+IsSpeechStreamFree	0x94B99B68
+	1	param00001	bytes
+IsStationary	0x66D3CA4F
+	1	param00001	bytes
+IsStealthMissionChar	0x99B62060
+	1	param00001	bytes
+IsStimulusObject	0x0750016C
+	1	param00001	bytes
+IsStimulusPriority	0x98CC911C
+	1	param00001	bytes
+	2	param00002	int
+	3	param00003	int
+IsStrafing	0xBEF23518
+	1	param00001	bytes
+IsTakingPictureFreeze	0x3F545641
+	1	param00001	bytes
+IsTandemHelper	0xDF45992A
+	1	param00001	bytes
+IsTargetAttackRightsTaken	0xC1076716
+	1	param00001	bytes
+IsTargetBusySocializing	0xCC51E204
+	1	param00001	bytes
+IsTargetInRange	0xE18EB81A
+	1	param00001	bytes
+	2	param00002	int
+	3	param00003	int
+IsTargetOnBike	0xF37D4A33
+	1	param00001	bytes
+IsTargetOutOfReach	0xA586B006
+	1	param00001	bytes
+	2	param00002	float
+	3	param00003	float
+IsTargetProp	0x928F0572
+	1	param00001	bytes
+IsTethered	0x472DED6A
+	1	param00001	bytes
+IsUsingDoor	0x64D6AA1A
+	1	param00001	bytes
+IsWantingToSocialize	0x10808E63
+	1	param00001	bytes
+IsWeaponFiredWhenDropped	0x1A50C13A
+	1	param00001	bytes
+JoinCombatZone	0x02E9F63B
+	1	param00001	bytes
+	2	param00002	bytes
+	3	param00003	int
+LastSurfaceOn	0x268AE945
+	1	param00001	bytes
+	2	param00002	int
+LineOfFireClear	0x48BAA62C
+	1	param00001	bytes
+	2	param00002	bytes
+LiquidLevel	0xE06D0A18
+	1	param00001	bytes
+	2	param00002	float
+	3	param00003	int
+LiquidType	0x5626DB3D
+	1	param00001	bytes
+	2	param00002	bytes
+LuaCond	0xB2C3FD25
+	1	param00001	bytes
+	2	param00002	bytes
+	3	param00003	bytes
+	4	param00004	string
+	5	param00005	string
+MePlaying	0x8E59B15C
+	1	param00001	bytes
+	2	param00002	bytes
+	3	param00003	int
+MePlayingDefaultNeutralState	0x696FC523
+	1	param00001	bytes
+	2	param00002	bytes
+MissionAvailable	0xF92EF848
+	1	param00001	bytes
+	2	param00002	bytes
+MissionCanLaunch	0x2720FB10
+	1	param00001	bytes
+MissionCond	0x664DBA33
+	1	param00001	bytes
+	2	param00002	bytes
+	3	param00003	bytes
+MissionInClass	0xD7AD5823
+	1	param00001	bytes
+MissionSuccessCount	0xC8A4046E
+	1	param00001	bytes
+	2	param00002	bytes
+	3	param00003	int
+	4	param00004	bytes
+	5	param00005	bytes
+MissionUnlocked	0x8F3BB83B
+	1	param00001	bytes
+	2	param00002	float
+	3	param00003	bytes
+MotionCycle	0xF4E65D1C
+	1	param00001	bytes
+	2	param00002	float
+	3	param00003	int
+MotionIntention	0xC65BE261
+	1	param00001	bytes
+	2	param00002	bytes
+	3	param00003	float
+MotionIntentionSpeed	0xA5CD6679
+	1	param00001	bytes
+	2	param00002	float
+	3	param00003	int
+NOT	0x7F951400
+	1	param00001	bytes
+NearbyDockLocation	0x7FDFEE01
+	1	param00001	bytes
+NearbyFleeDockLocation	0x7191FE34
+	1	param00001	bytes
+	2	param00002	float
+NeedsToDive	0x98538A77
+	1	param00001	bytes
+	2	param00002	int
+NumAuthorityInPursuit	0xF8A5B619
+	1	param00001	bytes
+	2	param00002	int
+	3	param00003	int
+OR	0xBF280000
+	1	param00001	bytes
+Objective	0x25DA442E
+	1	param00001	bytes
+	2	param00002	int
+ObjectiveOfType	0x32611710
+	1	param00001	bytes
+	2	param00002	int
+OnBike	0x581BEC7F
+	1	param00001	bytes
+OnMission	0xE9EFEB6B
+	1	param00001	bytes
+	2	param00002	bytes
+OnVehicleOfClass	0x6428E31F
+	1	param00001	bytes
+	2	param00002	int
+OpeningBranchChildHasChild	0xD0A8622E
+	1	param00001	bytes
+	2	param00002	bytes
+	3	param00003	bytes
+POIClearOfPeds	0x5256453E
+	1	param00001	bytes
+	2	param00002	float
+ParametricTime	0xD1CAD513
+	1	param00001	bytes
+	2	param00002	bytes
+	3	param00003	bytes
+PedConditionGroup	0x27284C51
+	1	param00001	bytes
+	2	param00002	cg
+PedFightingSystem	0x0C7E5F29
+	1	param00001	bytes
+	2	param00002	bytes
+PedFlags	0x941D142A
+	1	param00001	bytes
+	2	param00002	int
+PedInConversation	0xF7189138
+	1	param00001	bytes
+PedIsDriver	0x1948327E
+	1	param00001	bytes
+PedIsInOutfit	0x6D006170
+	1	param00001	bytes
+	2	param00002	bytes
+PedIsTrigger	0x0396E25C
+	1	param00001	bytes
+PedModelID	0x99C34456
+	1	param00001	bytes
+	2	param00002	string
+PedSphereHit	0xE3FDFD50
+	1	param00001	bytes
+	2	param00002	int
+PedType	0x85657677
+	1	param00001	bytes
+	2	param00002	int
+PedVelocity	0x0C8A4053
+	1	param00001	bytes
+	2	param00002	bytes
+	3	param00003	int
+	4	param00004	int
+PercentageHealth	0xBA7B8058
+	1	param00001	bytes
+	2	param00002	float
+	3	param00003	int
+PlayerHasPunishmentOfType	0x1963374E
+	1	param00001	bytes
+	2	param00002	int
+PlayerHasPunishmentPoints	0x73E23A66
+	1	param00001	bytes
+	2	param00002	int
+	3	param00003	int
+PlayerHasRequiredGift	0xC848E274
+	1	param00001	bytes
+	2	param00002	bytes
+	3	param00003	int
+PlayerInTriggerVolume	0x4CD37C1C
+	1	param00001	bytes
+	2	param00002	string
+PlayerIsInStealthProp	0x06031248
+	1	param00001	bytes
+PlayerUseSocialOverride	0x0B4E1759
+	1	param00001	bytes
+	2	param00002	int
+Print	0xC51A5907
+	1	param00001	bytes
+	2	param00002	string
+PropAttached	0x67764A64
+	1	param00001	bytes
+	2	param00002	string
+	3	param00003	bytes
+PropDisplayUseText	0x7546D91E
+	1	param00001	bytes
+PropFlags	0xD8FF7247
+	1	param00001	bytes
+	2	param00002	int
+PropLifeTime	0xF42B3F49
+	1	param00001	bytes
+	2	param00002	bytes
+	3	param00003	int
+PropModelID	0xFD83D233
+	1	param00001	bytes
+	2	param00002	bytes
+PropPedIsUsingMe	0xB6C3D852
+	1	param00001	bytes
+PropTargetHeight	0xF7506E44
+	1	param00001	bytes
+	2	param00002	int
+	3	param00003	float
+	4	param00004	bytes
+PropTargetInteractive	0xC6708901
+	1	param00001	bytes
+	2	param00002	float
+	3	param00003	bytes
+	4	param00004	bytes
+	5	param00005	float
+	6	param00006	bytes
+PropTargetIsTwoHanded	0xF0BE7D28
+	1	param00001	bytes
+Random	0xBF11E10F
+	1	param00001	bytes
+	2	param00002	float
+	3	param00003	int
+	4	param00004	bytes
+	5	param00005	bytes
+RangeToFocus	0xF00FAC65
+	1	param00001	bytes
+	2	param00002	float
+	3	param00003	int
+RangeToObjectiveVehicle	0x137C1241
+	1	param00001	bytes
+	2	param00002	float
+	3	param00003	int
+RangeToTarget	0x6D2A8754
+	1	param00001	bytes
+	2	param00002	float
+	3	param00003	int
+RelativePosition	0xDD61AF3D
+	1	param00001	bytes
+	2	param00002	int
+	3	param00003	bytes
+	4	param00004	int
+RunningAttack	0xA3EF541C
+	1	param00001	bytes
+	2	param00002	float
+	3	param00003	float
+ScriptSaveData	0x2AFD396B
+	1	param00001	bytes
+	2	param00002	int
+	3	param00003	bytes
+	4	param00004	int
+Season	0x1F33E24F
+	1	param00001	bytes
+	2	param00002	int
+	3	param00003	int
+SensePlayer	0xAF5B6155
+	1	param00001	bytes
+SensePlayerDuration	0x97C89464
+	1	param00001	bytes
+	2	param00002	bytes
+SenseTargetNow	0x0B38923B
+	1	param00001	bytes
+SetPedFlags	0xE2FB8453
+	1	param00001	bytes
+	2	param00002	bytes
+	3	param00003	int
+ShouldAllowApology	0x1346651A
+	1	param00001	bytes
+ShouldSocialize	0xE85E7573
+	1	param00001	bytes
+SizeOfGroup	0xB3C94930
+	1	param00001	bytes
+	2	param00002	int
+	3	param00003	int
+SocialActionInterrupted	0xBFE9C352
+	1	param00001	bytes
+SocialAnimIs	0x88EA3803
+	1	param00001	bytes
+	2	param00002	int
+SocialEmotionIs	0x0C524941
+	1	param00001	bytes
+	2	param00002	int
+SocialScriptCallback	0x05E7FF45
+	1	param00001	bytes
+SocialTypeAUTH	0x076CBA75
+	1	param00001	bytes
+SocialTypeBULLY	0x03E8F04F
+	1	param00001	bytes
+SocialTypeFAT	0x0690DD57
+	1	param00001	bytes
+SocialTypeGEN	0x15D5DD57
+	1	param00001	bytes
+SocialTypeGIRL	0x3B188576
+	1	param00001	bytes
+SocialTypeNERD	0x4C2B7477
+	1	param00001	bytes
+SocialTypeNERDGIRL	0xDC88FC50
+	1	param00001	bytes
+SocialTypeOLD	0xE8F0DF57
+	1	param00001	bytes
+SpecialPoints	0x58913466
+	1	param00001	bytes
+	2	param00002	bytes
+	3	param00003	int
+Spotted	0xADF75225
+	1	param00001	bytes
+	2	param00002	int
+Sprint	0x0E913D13
+	1	param00001	bytes
+	2	param00002	float
+	3	param00003	int
+Stat	0xCC49350B
+	1	param00001	bytes
+	2	param00002	bytes
+	3	param00003	int
+	4	param00004	int
+	5	param00005	int
+	6	param00006	bytes
+StealthBehavior	0x35682B00
+	1	param00001	bytes
+	2	param00002	int
+Steering	0x01028311
+	1	param00001	bytes
+	2	param00002	float
+	3	param00003	int
+Stimulus	0xE297690C
+	1	param00001	bytes
+	2	param00002	int
+	3	param00003	bytes
+	4	param00004	bytes
+StimulusRepeated	0xCC826B3C
+	1	param00001	bytes
+	2	param00002	int
+SurfaceGrade	0xC65AAF24
+	1	param00001	bytes
+	2	param00002	float
+	3	param00003	int
+TargetAttacker	0x5642F65C
+	1	param00001	bytes
+TargetByType	0xCEB7157B
+	1	param00001	bytes
+	2	param00002	int
+	3	param00003	bytes
+TargetClothing	0xEDF4C60A
+	1	param00001	bytes
+	2	param00002	bytes
+	3	param00003	int
+TargetConditionGroup	0x49A87103
+	1	param00001	bytes
+	2	param00002	cg
+	3	param00003	bytes
+TargetFaction	0xCBFB690F
+	1	param00001	bytes
+	2	param00002	int
+TargetFriendsAttacker	0xF13C3561
+	1	param00001	bytes
+TargetHealth	0x45168E7E
+	1	param00001	bytes
+	2	param00002	bytes
+	3	param00003	int
+TargetIsVisible	0x3BF04541
+	1	param00001	bytes
+TargetMyTargetsProp	0xD07A3C5D
+	1	param00001	bytes
+TargetMyTargetsVehicle	0x3F55E86E
+	1	param00001	bytes
+TargetPed	0x1A25F073
+	1	param00001	bytes
+	2	param00002	string
+	3	param00003	float
+	4	param00004	bytes
+TargetPlayersGF	0xC8B80D1E
+	1	param00001	bytes
+TargetPlaying	0x1167A34A
+	1	param00001	bytes
+	2	param00002	bytes
+	3	param00003	int
+TargetProjectile	0x46B75B61
+	1	param00001	bytes
+	2	param00002	float
+	3	param00003	bytes
+	4	param00004	bytes
+	5	param00005	float
+TargetProp	0xB469E653
+	1	param00001	bytes
+	2	param00002	float
+	3	param00003	bytes
+	4	param00004	int
+	5	param00005	bytes
+	6	param00006	bytes
+	7	param00007	float
+	8	param00008	bytes
+	9	param00009	bytes
+	10	param00010	float
+	11	param00011	bytes
+TargetPropClearOfPeds	0x6CAC464E
+	1	param00001	bytes
+	2	param00002	bytes
+	3	param00003	float
+TargetProxyProp	0xACD77D2F
+	1	param00001	bytes
+	2	param00002	float
+	3	param00003	int
+	4	param00004	float
+TargetRelativeCharacterSize	0x891ABF08
+	1	param00001	bytes
+	2	param00002	bytes
+	3	param00003	bytes
+TargetRelativeHeight	0x8414D037
+	1	param00001	bytes
+	2	param00002	bytes
+	3	param00003	float
+	4	param00004	float
+TargetRelativeOrientation	0xAB5BF667
+	1	param00001	bytes
+	2	param00002	bytes
+	3	param00003	float
+	4	param00004	float
+TargetRelativePedCollisionSpheres	0xE6558C4D
+	1	param00001	bytes
+	2	param00002	float
+	3	param00003	bytes
+	4	param00004	float
+TargetRelativePosition	0x32A5B62D
+	1	param00001	bytes
+	2	param00002	float
+	3	param00003	bytes
+	4	param00004	float
+	5	param00005	bytes
+	6	param00006	int
+TargetStimulusEntityObject	0xF5E25859
+	1	param00001	bytes
+TargetStimulusEntitySubject	0x7E7B562A
+	1	param00001	bytes
+TargetStimulusObject	0xB615BD40
+	1	param00001	bytes
+TargetStimulusSubject	0x41749C12
+	1	param00001	bytes
+TargetVehicle	0x4B8DEE1E
+	1	param00001	bytes
+	2	param00002	float
+	3	param00003	bytes
+	4	param00004	bytes
+TargetVehicleBike	0xE84C2838
+	1	param00001	bytes
+	2	param00002	float
+	3	param00003	int
+	4	param00004	bytes
+TargetVehicleCar	0x59C8F63E
+	1	param00001	bytes
+	2	param00002	float
+	3	param00003	int
+TargetVehicleIs	0x51BE5D05
+	1	param00001	bytes
+	2	param00002	int
+TargetVehicleIsAlreadyOccupied	0x019C6708
+	1	param00001	bytes
+TargetVehicleIsLastVehicleUsed	0x72A44B53
+	1	param00001	bytes
+TargetVehicleIsPlaying	0xA592CB6A
+	1	param00001	bytes
+	2	param00002	bytes
+TargetVehicleOwnerDifferentFaction	0xC74DA664
+	1	param00001	bytes
+TargetedByPlayer	0xB06BA058
+	1	param00001	bytes
+TargetedByTarget	0xAC34DD07
+	1	param00001	bytes
+TargetsPunishPoints	0x5A26CD14
+	1	param00001	bytes
+	2	param00002	float
+	3	param00003	int
+TestRequiredGiftType	0x8F9ABD4F
+	1	param00001	bytes
+	2	param00002	int
+ThisNodeIsNotPlaying	0x01D4027E
+	1	param00001	bytes
+	2	param00002	float
+ThisNodeIsPlaying	0x7023D343
+	1	param00001	bytes
+	2	param00002	float
+TimeCond	0x6F715D1F
+	1	param00001	bytes
+	2	param00002	int
+	3	param00003	int
+	4	param00004	bytes
+	5	param00005	int
+TimeSincePedalling	0xC71BC252
+	1	param00001	bytes
+	2	param00002	int
+	3	param00003	int
+UseSocialOverride	0x80BB2D74
+	1	param00001	bytes
+	2	param00002	int
+VehicleWheelsOnGround	0xE6F4DE29
+	1	param00001	bytes
+	2	param00002	bytes
+VisibleArea	0x0FAB8B25
+	1	param00001	bytes
+	2	param00002	int
+WallHitDirection	0xCE21CD6C
+	1	param00001	bytes
+	2	param00002	int
+WeaponAmmo	0x96EE0908
+	1	param00001	bytes
+	2	param00002	bytes
+	3	param00003	int
+	4	param00004	bytes
+WeaponCanBeUsedOnBike	0x643FA35D
+	1	param00001	bytes
+WeaponCount	0xB3367740
+	1	param00001	bytes
+	2	param00002	string
+	3	param00003	bytes
+	4	param00004	int
+	5	param00005	bytes
+WeaponDamaged	0x9159C95C
+	1	param00001	bytes
+WeaponDesired	0x7E1B4235
+	1	param00001	bytes
+	2	param00002	bytes
+	3	param00003	bytes
+	4	param00004	bytes
+WeaponDesiredIsEquiped	0x8F9F0304
+	1	param00001	bytes
+WeaponDesiredIsFocusWeapon	0x2C3CCB35
+	1	param00001	bytes
+	2	param00002	int
+WeaponEquiped	0x4B274357
+	1	param00001	bytes
+	2	param00002	string
+	3	param00003	int
+	4	param00004	bytes
+WeaponEquipedSocket	0xB2878A2E
+	1	param00001	bytes
+	2	param00002	bytes
+	3	param00003	bytes
+	4	param00004	bytes
+WeaponEquipedType	0xEDAED604
+	1	param00001	bytes
+	2	param00002	bytes
+	3	param00003	bytes
+WeaponFlags	0x8B30B474
+	1	param00001	bytes
+	2	param00002	bytes
+	3	param00003	int
+WeaponHudLocked	0xED03502E
+	1	param00001	bytes
+WeaponIsInventory	0x02EEB95B
+	1	param00001	bytes
+WeaponIsThrowable	0x822AE23E
+	1	param00001	bytes
+WeaponLastHitBy	0x2CC62B37
+	1	param00001	bytes
+	2	param00002	bytes
+WeaponModelRequest	0xBE37BB42
+	1	param00001	bytes
+	2	param00002	string
+	3	param00003	bytes
+WeaponNeedInit	0xCA859A50
+	1	param00001	bytes
+WeightedRandom	0x2265601F
+	1	param00001	bytes
+	2	param00002	float
+	3	param00003	float
+	4	param00004	bytes

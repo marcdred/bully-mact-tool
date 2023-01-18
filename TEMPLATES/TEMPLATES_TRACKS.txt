@@ -1,0 +1,3145 @@
+AIButes	0xD3FD152C
+	24	param00024	int
+	28	param00028	int
+	32	param00032	int
+	36	param00036	int
+	40	param00040	float
+	44	param00044	float
+	48	param00048	float
+	52	param00052	float
+	56	param00056	float
+	60	param00060	int
+	64	param00064	int
+	68	param00068	int
+	72	param00072	int
+	76	param00076	float
+	80	param00080	float
+	84	param00084	float
+	88	param00088	float
+	92	param00092	float
+	96	param00096	float
+	100	param00100	float
+	104	param00104	float
+	108	param00108	int
+	112	param00112	float
+	116	param00116	float
+	120	param00120	float
+	124	param00124	float
+	128	param00128	float
+	132	param00132	int
+	136	param00136	int
+	140	param00140	int
+	144	param00144	int
+	148	param00148	int
+	152	param00152	int
+	156	param00156	float
+	160	param00160	float
+	164	param00164	float
+AISocialSpeechEvent	0x135F3748
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+	24	param00024	int
+	28	param00028	bool
+	32	param00032	int
+	40	param00040	bytes
+	44	param00044	bytes
+AcceptGift	0xDCA53732
+ActionMapButes	0x958C936F
+	24	param00024	bytes
+	28	param00028	bytes
+	32	param00032	int
+	36	param00036	int
+	40	param00040	bytes
+	44	param00044	bytes
+	48	param00048	int
+	52	param00052	int
+	56	param00056	int
+	60	param00060	int
+	64	param00064	int
+	68	param00068	bytes
+	72	param00072	int
+	76	param00076	int
+	80	param00080	int
+	84	param00084	int
+	88	param00088	int
+	92	param00092	int
+	96	param00096	int
+	100	param00100	int
+ActionNodeRequest	0xD3787F49
+	8	param00008	bool
+	12	param00012	bytes
+	24	param00024	bytes
+	28	param00028	bool
+	29	param00029	bool
+	30	param00030	bool
+ActionRegisterButtonHistory	0xF9B77E04
+	8	param00008	bool
+	12	param00012	bytes
+	24	param00024	bool
+	28	param00028	int
+	32	param00032	int
+	36	param00036	bytes
+ActionRequest	0xED2BB800
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+	24	param00024	int
+	28	param00028	int
+	32	param00032	bool
+ActivateDoor	0xE95F3F2C
+AddForce	0x669BD676
+	8	param00008	bool
+	12	param00012	float
+	24	param00024	bytes
+	28	param00028	float
+	32	param00032	bytes
+	36	param00036	bool
+AllowSwitchGoofyFoot	0xB747524E
+	12	param00012	float
+AmmoChange	0x6A12AF4C
+	12	param00012	float
+	24	param00024	int
+Animation	0x6C5B6C6C
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+	24	param00024	bytes
+	28	param00028	string
+	32	param00032	int
+	36	param00036	int
+	40	param00040	bytes
+	44	param00044	float
+	48	param00048	float
+	52	param00052	float
+	56	param00056	float
+	60	param00060	bool
+	61	param00061	bool
+AnimationDoorControl	0xF70E5C35
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+	24	param00024	int
+	28	param00028	float
+	32	param00032	bytes
+AnimationDriverRotation	0x5604016C
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+	24	param00024	bool
+	25	param00025	bool
+	28	param00028	int
+	32	param00032	bytes
+	36	param00036	float
+	40	param00040	bytes
+	44	param00044	float
+	48	param00048	float
+AnimationDriverSteer	0x998EC22B
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+	24	param00024	float
+	28	param00028	bytes
+	32	param00032	bytes
+	36	param00036	float
+AnimationDriverStruggle	0x89FE2E51
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+	24	param00024	bytes
+	28	param00028	float
+	32	param00032	bool
+	36	param00036	bytes
+	40	param00040	int
+	44	param00044	float
+	48	param00048	float
+	52	param00052	float
+	56	param00056	float
+	60	param00060	bytes
+AnimationDriverTargetSync	0xB8ED2D2B
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+AnimationGroupRelease	0xB89D9372
+	12	param00012	bytes
+	24	param00024	string
+AnimationLocoSync	0xCE57DA01
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+	24	param00024	bytes
+	32	param00032	float
+	36	param00036	float
+	40	param00040	float
+	44	param00044	float
+	52	param00052	string
+	56	param00056	int
+	60	param00060	float
+	64	param00064	float
+AnimationParametric	0x8453E87F
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+	24	param00024	bytes
+	28	param00028	string
+	36	param00036	int
+	40	param00040	bytes
+	44	param00044	float
+	52	param00052	float
+	56	param00056	float
+	88	param00088	bytes
+	92	param00092	float
+AnimationReverseParametric	0x4AE31758
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+	24	param00024	bytes
+	32	param00032	bytes
+	36	param00036	bytes
+	40	param00040	bytes
+	44	param00044	float
+	48	param00048	float
+	52	param00052	float
+	56	param00056	bytes
+	88	param00088	bytes
+	92	param00092	float
+	96	param00096	float
+	100	param00100	float
+ArcadeRaceCameraButes	0x25A49839
+	24	param00024	float
+	28	param00028	float
+	32	param00032	bytes
+AreaTransitionButes	0x11F5A80E
+	24	param00024	float
+	28	param00028	float
+	32	param00032	float
+	36	param00036	float
+AttachedEffect	0xC9FDCE57
+	8	param00008	bool
+	12	param00012	float
+	16	param00016	float
+	24	param00024	string
+	28	param00028	string
+	32	param00032	int
+AttackObjective	0xA5B6A44F
+	8	param00008	bool
+	12	param00012	bytes
+	24	param00024	bool
+	25	param00025	bool
+	26	param00026	bool
+	27	param00027	bool
+	28	param00028	bool
+AttackOnBike	0xD8B85F1E
+	8	param00008	bool
+	12	param00012	bytes
+AttackProp	0x8F73D814
+	8	param00008	bool
+AttackPropObjective	0x72793055
+	8	param00008	bool
+	12	param00012	bytes
+	24	param00024	bool
+AttackTimerReset	0xCEC43F13
+	12	param00012	bytes
+	16	param00016	float
+	24	param00024	float
+AttackVehicle	0xE463870D
+	8	param00008	bool
+	24	param00024	float
+	28	param00028	bytes
+AttackVehicleObjective	0x51DF0A7C
+	8	param00008	bool
+	12	param00012	bytes
+BalanceMeter	0xC1A72714
+	8	param00008	bool
+	12	param00012	bytes
+	24	param00024	float
+	28	param00028	bytes
+	32	param00032	bytes
+	36	param00036	bytes
+	40	param00040	bytes
+	44	param00044	bytes
+	48	param00048	int
+	52	param00052	bool
+	53	param00053	bool
+BikeButes	0x269D764F
+	24	param00024	float
+	28	param00028	float
+	32	param00032	float
+	36	param00036	bytes
+	40	param00040	float
+	44	param00044	float
+	48	param00048	float
+	52	param00052	float
+	56	param00056	bytes
+	60	param00060	float
+	64	param00064	float
+	68	param00068	float
+	72	param00072	bytes
+	76	param00076	float
+	80	param00080	float
+	84	param00084	float
+	88	param00088	bytes
+	92	param00092	float
+	96	param00096	float
+	100	param00100	float
+	104	param00104	bytes
+	108	param00108	bytes
+	112	param00112	bytes
+	116	param00116	bytes
+	120	param00120	float
+	124	param00124	bytes
+	128	param00128	float
+	132	param00132	float
+	136	param00136	float
+BikeSoundStateTrack	0x8CEEFD36
+	8	param00008	bool
+	12	param00012	bytes
+	24	param00024	int
+BlendBikeToPos	0x1335C254
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+	24	param00024	int
+	28	param00028	float
+	32	param00032	float
+	36	param00036	float
+	40	param00040	bytes
+Block	0x41DDCC10
+	8	param00008	bool
+	12	param00012	bytes
+	24	param00024	bool
+	28	param00028	float
+BodyMotionBlur	0xC378893B
+	8	param00008	bool
+	12	param00012	float
+	16	param00016	float
+	24	param00024	int
+	28	param00028	int
+	32	param00032	int
+	36	param00036	int
+	40	param00040	int
+	44	param00044	bytes
+	48	param00048	float
+	52	param00052	bytes
+	56	param00056	bytes
+Brake	0x77089711
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+	24	param00024	float
+ButtonTriggerButes	0x65668A3F
+	24	param00024	int
+	28	param00028	int
+	32	param00032	int
+	36	param00036	int
+CameraFade	0xB9851B7B
+	8	param00008	bool
+	12	param00012	bytes
+	24	param00024	bool
+	28	param00028	float
+CameraGetParametric	0x81DB545C
+	8	param00008	bool
+	24	param00024	bool
+CameraIrisControl	0xAD8B3247
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+	24	param00024	bool
+	25	param00025	bool
+	28	param00028	bytes
+	32	param00032	float
+	36	param00036	float
+CameraLock	0x5C01ED7B
+	12	param00012	bytes
+	24	param00024	bool
+CameraSet	0x0D2CEC2C
+	8	param00008	bool
+	12	param00012	bytes
+	24	param00024	int
+	28	param00028	bytes
+	32	param00032	bool
+CameraSetDesiredActive	0xAF71B73E
+CameraSetLimit	0x7A29A214
+	12	param00012	bytes
+	24	param00024	float
+	28	param00028	float
+	32	param00032	float
+	36	param00036	float
+	40	param00040	bytes
+	44	param00044	bytes
+	48	param00048	bytes
+	52	param00052	bool
+CameraShake	0x41093764
+	8	param00008	bool
+	12	param00012	float
+	16	param00016	float
+	24	param00024	bool
+	28	param00028	float
+	32	param00032	bytes
+	36	param00036	float
+	40	param00040	float
+	44	param00044	bytes
+	48	param00048	float
+	52	param00052	float
+	56	param00056	bytes
+	60	param00060	bytes
+	64	param00064	bytes
+	68	param00068	bytes
+	72	param00072	bytes
+CameraShot	0x8751DB7C
+	12	param00012	bytes
+	24	param00024	string
+	28	param00028	bool
+CameraXYZ	0x7C85ED2C
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+	24	param00024	bool
+	25	param00025	bool
+	26	param00026	bool
+	28	param00028	float
+	32	param00032	float
+	36	param00036	float
+	40	param00040	float
+	44	param00044	float
+	48	param00048	float
+	52	param00052	bool
+	53	param00053	bool
+	56	param00056	int
+	60	param00060	bool
+	61	param00061	bool
+	64	param00064	float
+	68	param00068	float
+	72	param00072	float
+	76	param00076	float
+	80	param00080	bool
+CameraZoomControl	0x41B9D169
+	24	param00024	float
+	28	param00028	float
+	32	param00032	float
+	36	param00036	bool
+	40	param00040	float
+	44	param00044	int
+	48	param00048	float
+	52	param00052	int
+	56	param00056	bytes
+	60	param00060	int
+	64	param00064	bool
+CancelConversation	0x4DD7160C
+CheerFight	0x7F799347
+	8	param00008	bool
+	12	param00012	bytes
+	24	param00024	float
+	28	param00028	float
+	32	param00032	float
+	36	param00036	float
+Cinematic	0xAD7D0845
+	12	param00012	bytes
+	24	param00024	bool
+	25	param00025	bool
+	26	param00026	bool
+	27	param00027	bool
+	28	param00028	string
+	36	param00036	bytes
+	40	param00040	int
+	44	param00044	bytes
+CinematicButes	0xA60BD97D
+	24	param00024	int
+	28	param00028	int
+	32	param00032	int
+	36	param00036	int
+	40	param00040	float
+	44	param00044	float
+	48	param00048	int
+	52	param00052	int
+	56	param00056	int
+	60	param00060	int
+	64	param00064	float
+	68	param00068	float
+	72	param00072	float
+	76	param00076	float
+	80	param00080	float
+	84	param00084	float
+	88	param00088	float
+CinematicShotButes	0xD4BEB140
+	24	param00024	bytes
+	28	param00028	float
+	32	param00032	float
+	36	param00036	float
+	40	param00040	float
+	44	param00044	bytes
+	48	param00048	bytes
+	52	param00052	float
+	56	param00056	float
+	60	param00060	float
+	64	param00064	float
+	68	param00068	bytes
+	72	param00072	bytes
+	76	param00076	bytes
+	80	param00080	bytes
+CinematicShotGroupButes	0x372EB151
+	24	param00024	string
+	28	param00028	string
+	32	param00032	string
+	36	param00036	string
+	40	param00040	string
+	44	param00044	string
+CleanupDeadSoundLoops	0x70FC4C2A
+ClearCurrentObjective	0x357E8517
+	8	param00008	bool
+	24	param00024	int
+ClearCurrentStimulus	0x9206C220
+	12	param00012	bytes
+ClearObjectives	0xE307A57F
+	8	param00008	bool
+ClearPOI	0x091F5D2F
+	8	param00008	bool
+	12	param00012	bytes
+ClearStimulus	0xBB8C5623
+	12	param00012	bytes
+Coast	0x1EDABD22
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+	24	param00024	bytes
+	28	param00028	float
+CoasterCamButes	0x8FAF4A7E
+	24	param00024	int
+	28	param00028	float
+	32	param00032	float
+	36	param00036	float
+	40	param00040	bytes
+	44	param00044	bytes
+	48	param00048	int
+	52	param00052	bool
+	56	param00056	int
+	60	param00060	bool
+	64	param00064	int
+	68	param00068	int
+	72	param00072	int
+	76	param00076	int
+	80	param00080	int
+	84	param00084	int
+	88	param00088	int
+	92	param00092	bool
+	96	param00096	float
+	100	param00100	float
+	104	param00104	float
+	108	param00108	float
+	112	param00112	float
+	116	param00116	float
+	120	param00120	float
+	124	param00124	float
+	128	param00128	float
+	132	param00132	float
+Collision	0xBE93D344
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+	24	param00024	float
+	28	param00028	float
+	32	param00032	string
+	36	param00036	int
+	40	param00040	string
+	44	param00044	string
+	48	param00048	float
+	52	param00052	float
+	56	param00056	float
+	60	param00060	bytes
+	64	param00064	float
+	68	param00068	float
+	72	param00072	bytes
+	76	param00076	bytes
+	80	param00080	float
+	84	param00084	bytes
+	88	param00088	bool
+	89	param00089	bool
+	92	param00092	float
+	104	param00104	string
+	120	param00120	string
+	528	param00528	int
+	532	param00532	bool
+	533	param00533	bool
+	534	param00534	bool
+	535	param00535	bool
+	536	param00536	bool
+	537	param00537	bool
+CombatLoco	0x03828256
+	8	param00008	bool
+	12	param00012	bytes
+	24	param00024	bool
+	25	param00025	bool
+ComboCounterAddTrack	0x54E7ED5A
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+	24	param00024	float
+ComboCounterSetTrack	0x23BB0C2D
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+	24	param00024	bytes
+CompletionDisplay	0xB274FB45
+	24	param00024	string
+	28	param00028	bool
+	32	param00032	bytes
+	40	param00040	bool
+Controller	0x4CE27A5E
+	8	param00008	bool
+	12	param00012	bytes
+	24	param00024	int
+	28	param00028	bool
+CreateStimulus	0xBEDDDA34
+	8	param00008	bool
+	12	param00012	bytes
+	24	param00024	int
+	28	param00028	bool
+CrosshairButes	0x7D18BE08
+	24	param00024	string
+	28	param00028	float
+	32	param00032	int
+	36	param00036	bytes
+	40	param00040	bytes
+	44	param00044	int
+	48	param00048	int
+	52	param00052	int
+	56	param00056	int
+	60	param00060	int
+Damage	0x9FD6814E
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+	24	param00024	float
+	28	param00028	float
+	32	param00032	int
+DamageFalling	0x30AE085C
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+	24	param00024	bool
+	28	param00028	float
+	32	param00032	float
+	36	param00036	float
+	40	param00040	bytes
+DamageFallingHandle	0x60D4E85E
+	24	param00024	bytes
+DamageHandle	0x774F456C
+	24	param00024	float
+	28	param00028	bool
+	29	param00029	bool
+DamageTarget	0xDCD40237
+	8	param00008	bool
+	12	param00012	float
+	16	param00016	float
+	24	param00024	float
+	28	param00028	float
+	32	param00032	int
+Death	0xD888F432
+	8	param00008	bool
+	12	param00012	bytes
+	24	param00024	bool
+DebugPlayerButes	0xBB065C7A
+	24	param00024	bool
+	25	param00025	bool
+	26	param00026	bool
+	27	param00027	bool
+	28	param00028	bool
+	29	param00029	bool
+	30	param00030	bool
+	31	param00031	bool
+	32	param00032	bool
+	33	param00033	bool
+	34	param00034	bool
+	35	param00035	bool
+	36	param00036	bool
+	37	param00037	bool
+	38	param00038	bool
+	39	param00039	bool
+	40	param00040	bool
+	41	param00041	bool
+	42	param00042	bool
+	43	param00043	bool
+	44	param00044	bool
+DetachEffect	0x10621C77
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+	24	param00024	string
+	28	param00028	string
+	32	param00032	float
+	36	param00036	bool
+DeteriorateAttitudeToAttacker	0xE4ADE30C
+	8	param00008	bool
+	12	param00012	bytes
+DeteriorateAttitudeToTarget	0x80433B7E
+	8	param00008	bool
+	12	param00012	bytes
+DialogAnimation	0x8C612431
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+	24	param00024	bytes
+	28	param00028	string
+	32	param00032	bytes
+	36	param00036	int
+	40	param00040	bytes
+	44	param00044	float
+	48	param00048	float
+	52	param00052	bytes
+	56	param00056	float
+	60	param00060	bool
+	88	param00088	int
+	92	param00092	bool
+	93	param00093	bool
+DialogJointDriver	0x5663B176
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+	24	param00024	bytes
+	32	param00032	bytes
+	36	param00036	bytes
+	40	param00040	bytes
+	44	param00044	float
+	48	param00048	float
+	52	param00052	bytes
+	56	param00056	bytes
+	88	param00088	int
+	92	param00092	string
+	96	param00096	bytes
+	100	param00100	string
+	124	param00124	bool
+DialogLine	0x24E92E67
+	8	param00008	bool
+	24	param00024	bytes
+	28	param00028	bytes
+	32	param00032	string
+	36	param00036	string
+	40	param00040	bytes
+	44	param00044	bool
+	45	param00045	bool
+	48	param00048	bytes
+	52	param00052	bool
+	53	param00053	bool
+	54	param00054	bool
+	56	param00056	string
+	60	param00060	bool
+	64	param00064	bytes
+	68	param00068	bool
+	69	param00069	bool
+	70	param00070	bool
+DialogShot	0xEAC51E68
+	12	param00012	bytes
+	24	param00024	string
+	28	param00028	string
+	32	param00032	bytes
+	36	param00036	bool
+	37	param00037	bool
+	38	param00038	bool
+	39	param00039	bool
+	40	param00040	bool
+	41	param00041	bool
+DisableFightTokens	0x8A7EA73C
+	8	param00008	bool
+	12	param00012	bytes
+	24	param00024	float
+DismissAlly	0x52E26E0F
+	8	param00008	bool
+DismissAllySelf	0xCA49575B
+	8	param00008	bool
+Dock	0x876F3109
+	8	param00008	bool
+	12	param00012	bytes
+	24	param00024	bool
+DodgeballAIButes	0x65EADE36
+	24	param00024	float
+	28	param00028	float
+	32	param00032	float
+	36	param00036	float
+	40	param00040	float
+	44	param00044	bytes
+	48	param00048	int
+	52	param00052	float
+	56	param00056	bytes
+	60	param00060	bytes
+	64	param00064	bytes
+	68	param00068	float
+	72	param00072	float
+	76	param00076	float
+	80	param00080	float
+	84	param00084	float
+	88	param00088	float
+	92	param00092	float
+	96	param00096	int
+	100	param00100	int
+	104	param00104	int
+	108	param00108	float
+	112	param00112	float
+	116	param00116	float
+	120	param00120	float
+	124	param00124	float
+	128	param00128	float
+	132	param00132	float
+	136	param00136	float
+	140	param00140	float
+	144	param00144	float
+	148	param00148	float
+	152	param00152	float
+	156	param00156	bytes
+	160	param00160	bytes
+	164	param00164	float
+	168	param00168	float
+	172	param00172	int
+	176	param00176	float
+	180	param00180	float
+	184	param00184	float
+DodgeballAIRampButes	0xD717CC21
+	24	param00024	float
+	28	param00028	float
+	32	param00032	bytes
+	36	param00036	float
+DodgeballArenaButes	0x52BDAC5E
+	24	param00024	string
+	28	param00028	string
+	32	param00032	string
+	36	param00036	float
+	40	param00040	float
+	44	param00044	float
+	48	param00048	float
+DodgeballCamButes	0x367D995E
+	24	param00024	float
+	28	param00028	float
+	32	param00032	float
+	36	param00036	float
+	40	param00040	float
+	44	param00044	float
+	48	param00048	float
+	52	param00052	float
+	56	param00056	float
+	60	param00060	float
+DodgeballCameraView	0xAC9E755F
+	24	param00024	bool
+	25	param00025	bool
+	26	param00026	bool
+	27	param00027	bool
+	28	param00028	bool
+	29	param00029	bool
+	30	param00030	bool
+	31	param00031	bool
+DodgeballCatchBall	0x94DA546E
+	8	param00008	bool
+	12	param00012	bytes
+	44	param00044	bool
+	48	param00048	float
+	52	param00052	float
+	56	param00056	bytes
+	60	param00060	int
+DodgeballChangePlayer	0x23927767
+	24	param00024	bool
+	25	param00025	bool
+	26	param00026	bool
+	27	param00027	bool
+DodgeballFollowPath	0xD8BA3842
+	8	param00008	bool
+	24	param00024	float
+	28	param00028	bool
+DodgeballGameButes	0xC7B7FE71
+	24	param00024	bool
+	28	param00028	bytes
+	32	param00032	bool
+	33	param00033	bool
+	34	param00034	bool
+	35	param00035	bool
+	36	param00036	float
+	40	param00040	bool
+	44	param00044	bytes
+	48	param00048	bytes
+	52	param00052	bytes
+	56	param00056	float
+	60	param00060	float
+	64	param00064	float
+	68	param00068	bytes
+	72	param00072	float
+	76	param00076	float
+	80	param00080	float
+	84	param00084	bytes
+	88	param00088	bool
+	89	param00089	bool
+DodgeballGameIdle	0x08D0396F
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+	24	param00024	bool
+DodgeballGameTimer	0xF510582C
+	8	param00008	bool
+	12	param00012	float
+	24	param00024	string
+	28	param00028	float
+	32	param00032	bool
+	33	param00033	bool
+	34	param00034	bool
+DodgeballGetBallAI	0x678D263B
+	8	param00008	bool
+	12	param00012	bytes
+DodgeballGotoAI	0x99B0A66A
+	8	param00008	bool
+	12	param00012	bytes
+	44	param00044	bool
+DodgeballIdleAI	0xD266831F
+	8	param00008	bool
+	12	param00012	bytes
+DodgeballLeadAI	0xCA662422
+	8	param00008	bool
+	12	param00012	bytes
+DodgeballLocationCollision	0x2752F63C
+	24	param00024	float
+	28	param00028	float
+	32	param00032	float
+	36	param00036	float
+	40	param00040	bool
+	41	param00041	bool
+	42	param00042	bool
+DodgeballPedMarker	0x1F111521
+	24	param00024	int
+	28	param00028	int
+	32	param00032	int
+	36	param00036	int
+	40	param00040	float
+	44	param00044	float
+	48	param00048	float
+DodgeballPedSetDuck	0x520E383A
+	12	param00012	float
+	24	param00024	float
+DodgeballPhysicsButes	0x5273331C
+	24	param00024	bytes
+	28	param00028	bytes
+	32	param00032	float
+	36	param00036	float
+	40	param00040	float
+	44	param00044	float
+	48	param00048	float
+	52	param00052	bytes
+	56	param00056	float
+	60	param00060	bytes
+	64	param00064	float
+	68	param00068	float
+	72	param00072	bytes
+	76	param00076	float
+	80	param00080	float
+DodgeballPickupBall	0xA1904673
+	12	param00012	bytes
+	16	param00016	float
+	24	param00024	int
+	28	param00028	float
+	32	param00032	float
+	36	param00036	float
+	40	param00040	float
+	44	param00044	float
+	48	param00048	float
+	52	param00052	float
+	56	param00056	float
+	60	param00060	float
+	64	param00064	bool
+	65	param00065	bool
+DodgeballReset	0xC982F759
+	24	param00024	bool
+DodgeballSetGameFlag	0xAA6FA153
+	24	param00024	int
+	28	param00028	bool
+DodgeballSetMessage	0x2BE75760
+	24	param00024	string
+DodgeballSetPath	0x7D0DA338
+	24	param00024	bytes
+	28	param00028	int
+DodgeballSetPedFlag	0x6BF96675
+	12	param00012	bytes
+	16	param00016	float
+	24	param00024	int
+	28	param00028	bool
+	29	param00029	bool
+	30	param00030	bool
+DodgeballSetTurn	0x9D7F3139
+	24	param00024	int
+DodgeballSidelineAI	0x41941659
+	8	param00008	bool
+	12	param00012	bytes
+	44	param00044	float
+	48	param00048	float
+DodgeballSidelineLeadAI	0x89279847
+	8	param00008	bool
+	12	param00012	bytes
+DodgeballSupportAI	0xE1645343
+	8	param00008	bool
+	12	param00012	bytes
+DodgeballTarget	0x9BDB573A
+	24	param00024	bytes
+	29	param00029	bool
+	30	param00030	bool
+DodgeballTargetSetPedFlag	0x58036158
+	12	param00012	bytes
+	16	param00016	float
+	24	param00024	int
+	28	param00028	bool
+	29	param00029	bool
+	30	param00030	bool
+EquipRangedWeapon	0x938EDC68
+	8	param00008	bool
+EvadeGrenade	0x39229D6B
+	8	param00008	bool
+	24	param00024	bool
+EvadeProjectile	0x52E3541F
+	8	param00008	bool
+	24	param00024	bool
+Execute	0xA9D1E06D
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+	32	param00032	string
+ExecuteOnTarget	0xE1CA640E
+	8	param00008	bool
+	32	param00032	string
+ExtinguisherFire	0xBD995171
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+	24	param00024	float
+	28	param00028	float
+	32	param00032	bool
+FPPassengerGetOff	0x699AAA3E
+FPPassengerGetOn	0xE98D7656
+FaceDiveEntity	0x7493231E
+	8	param00008	bool
+	12	param00012	bytes
+FaceHitDirection	0xB10E8623
+	8	param00008	bool
+	12	param00012	bytes
+FaceObjective	0x30E9A92E
+	8	param00008	bool
+	12	param00012	bytes
+FaceStimulus	0xBB781046
+	8	param00008	bool
+	12	param00012	bytes
+FaceTarget	0x66B64B45
+	8	param00008	bool
+	12	param00012	bytes
+	28	param00028	bool
+	32	param00032	int
+	36	param00036	bool
+	40	param00040	bytes
+	44	param00044	float
+	48	param00048	bool
+FacialEye	0x39AE432E
+	12	param00012	float
+	16	param00016	float
+	24	param00024	int
+	28	param00028	float
+	32	param00032	bytes
+	36	param00036	bytes
+	40	param00040	int
+FacialEyeBrow	0xA5499908
+	12	param00012	float
+	16	param00016	float
+	24	param00024	int
+	28	param00028	float
+	32	param00032	int
+FacialEyeLid	0xCEAD0702
+	12	param00012	float
+	16	param00016	float
+	24	param00024	int
+	28	param00028	float
+	32	param00032	bytes
+FacialMouth	0x4F111562
+	12	param00012	float
+	16	param00016	float
+	24	param00024	int
+	28	param00028	float
+	32	param00032	bytes
+FightCamButes	0x043DF320
+	24	param00024	bytes
+	28	param00028	float
+	32	param00032	float
+	36	param00036	bytes
+	40	param00040	bool
+	44	param00044	float
+	48	param00048	float
+	52	param00052	bool
+	56	param00056	float
+	60	param00060	float
+	64	param00064	float
+	68	param00068	float
+	72	param00072	bytes
+	76	param00076	float
+	80	param00080	bytes
+	84	param00084	float
+	88	param00088	float
+	92	param00092	float
+	96	param00096	float
+	100	param00100	float
+	104	param00104	float
+	108	param00108	float
+	112	param00112	float
+	116	param00116	float
+	120	param00120	float
+	124	param00124	bool
+	125	param00125	bool
+	126	param00126	bool
+	128	param00128	float
+	132	param00132	float
+	136	param00136	float
+	140	param00140	bytes
+	144	param00144	float
+	148	param00148	bytes
+	152	param00152	float
+	156	param00156	float
+	160	param00160	bytes
+	164	param00164	float
+	168	param00168	float
+	172	param00172	float
+	176	param00176	float
+	180	param00180	float
+	184	param00184	float
+	188	param00188	float
+	192	param00192	float
+	196	param00196	float
+	200	param00200	float
+	204	param00204	float
+FightCollisionButes	0x2DEA6917
+	24	param00024	int
+	28	param00028	float
+	32	param00032	int
+	36	param00036	float
+	40	param00040	int
+	44	param00044	float
+	48	param00048	int
+	52	param00052	float
+	56	param00056	int
+	60	param00060	float
+	64	param00064	int
+	68	param00068	float
+FirstPersonCamButes	0xF9B0A121
+	24	param00024	float
+	28	param00028	float
+	32	param00032	float
+	36	param00036	float
+	40	param00040	float
+	44	param00044	float
+	48	param00048	float
+	52	param00052	float
+	56	param00056	float
+Flee	0xA2427509
+	8	param00008	bool
+	12	param00012	bytes
+	24	param00024	float
+	28	param00028	float
+	32	param00032	bool
+	33	param00033	bool
+FleeObjective	0xCB80F14E
+	8	param00008	bool
+	24	param00024	bool
+	25	param00025	bool
+FleeOnPathOnBike	0xC29F603D
+	8	param00008	bool
+	12	param00012	bytes
+FleeOnRoadOnBike	0x2101A814
+	8	param00008	bool
+	12	param00012	bytes
+FollowCam3Butes	0x9A002D4F
+	24	param00024	float
+	28	param00028	float
+	32	param00032	float
+	36	param00036	float
+	40	param00040	float
+	44	param00044	float
+	48	param00048	float
+	52	param00052	bytes
+	56	param00056	bytes
+	60	param00060	float
+	64	param00064	float
+	68	param00068	float
+	72	param00072	float
+	76	param00076	float
+	80	param00080	float
+	84	param00084	float
+	88	param00088	float
+	92	param00092	float
+	96	param00096	float
+	100	param00100	bytes
+	104	param00104	bytes
+	108	param00108	float
+	112	param00112	float
+	116	param00116	float
+	120	param00120	float
+	124	param00124	bytes
+	128	param00128	float
+	132	param00132	float
+	136	param00136	float
+	140	param00140	float
+	144	param00144	float
+	148	param00148	float
+	152	param00152	float
+	156	param00156	float
+	160	param00160	float
+	164	param00164	float
+	168	param00168	float
+	172	param00172	float
+	176	param00176	bytes
+	180	param00180	float
+	184	param00184	bytes
+	188	param00188	bool
+	189	param00189	bool
+	190	param00190	bool
+	191	param00191	bool
+	192	param00192	bool
+	193	param00193	bool
+	194	param00194	bool
+	195	param00195	bool
+	196	param00196	bool
+	200	param00200	float
+	204	param00204	float
+	208	param00208	float
+	212	param00212	bytes
+	216	param00216	float
+	220	param00220	float
+	224	param00224	float
+	228	param00228	float
+	232	param00232	bytes
+	236	param00236	bool
+	240	param00240	float
+	244	param00244	float
+FollowFocus	0x07A92D75
+	8	param00008	bool
+	12	param00012	bytes
+	24	param00024	float
+	28	param00028	float
+FollowFocusOnBike	0x479FD56B
+	8	param00008	bool
+	12	param00012	bytes
+	24	param00024	float
+	28	param00028	float
+	32	param00032	float
+FollowPath	0x72940560
+	8	param00008	bool
+	12	param00012	bytes
+	96	param00096	bool
+FollowTargetOnBike	0xBAE46E15
+	8	param00008	bool
+	12	param00012	bytes
+	24	param00024	bytes
+	28	param00028	bytes
+	32	param00032	float
+ForceFeedback	0x20F4F826
+	8	param00008	bool
+	12	param00012	float
+	16	param00016	float
+	24	param00024	int
+	28	param00028	bool
+	32	param00032	int
+FreezeBike	0x88236907
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+FrisbeeButes	0x732AC93C
+	24	param00024	float
+	28	param00028	float
+	32	param00032	bytes
+	36	param00036	float
+	40	param00040	float
+	44	param00044	float
+	48	param00048	float
+	52	param00052	float
+	56	param00056	bytes
+	60	param00060	float
+GameTimer	0xD3895D35
+	8	param00008	bool
+	12	param00012	bytes
+	24	param00024	string
+	28	param00028	float
+	32	param00032	bool
+	33	param00033	bool
+	34	param00034	bool
+GetOffVehicle	0x6B79954F
+	8	param00008	bool
+	12	param00012	bytes
+	24	param00024	bool
+	25	param00025	bool
+	26	param00026	bool
+	27	param00027	bool
+	28	param00028	bool
+	29	param00029	bool
+	32	param00032	bytes
+	36	param00036	bool
+GetOnVehicle	0x938B0D59
+	8	param00008	bool
+	12	param00012	bytes
+	24	param00024	bytes
+GiveArmorBonus	0xB5063E35
+	8	param00008	bool
+GiveItemToPlayer	0xD4CA9F7F
+	12	param00012	float
+	24	param00024	bytes
+	28	param00028	int
+GivePunishmentPointsToPlayer	0x13B26A10
+	8	param00008	bool
+	12	param00012	bytes
+	24	param00024	int
+	28	param00028	string
+GivePunishmentPointsToTarget	0x0F7BA73F
+	8	param00008	bool
+	12	param00012	bytes
+	24	param00024	int
+	28	param00028	string
+GiveTargetToFocus	0xCFED7407
+	8	param00008	bool
+	12	param00012	bytes
+GlobalSpineControlButes	0xDEFAA377
+	24	param00024	float
+	28	param00028	float
+	32	param00032	float
+	36	param00036	float
+	40	param00040	float
+	44	param00044	float
+	48	param00048	float
+	52	param00052	float
+	56	param00056	float
+	60	param00060	float
+	64	param00064	float
+	68	param00068	float
+	72	param00072	float
+	76	param00076	float
+	80	param00080	float
+	84	param00084	float
+	88	param00088	float
+	92	param00092	float
+	96	param00096	float
+	100	param00100	float
+	104	param00104	float
+	108	param00108	float
+	112	param00112	float
+	116	param00116	float
+	120	param00120	float
+Gravity	0x8E097E2E
+	12	param00012	bytes
+	24	param00024	bool
+	28	param00028	bytes
+Greet	0x2DA15C69
+	8	param00008	bool
+	12	param00012	bytes
+GroundImpact	0xBDFC4517
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+	24	param00024	string
+	28	param00028	string
+GuardLoco	0x241A353E
+	8	param00008	bool
+	24	param00024	float
+	28	param00028	float
+	32	param00032	float
+	36	param00036	float
+	40	param00040	float
+	44	param00044	float
+HUDFlashBlip	0xC204F644
+	24	param00024	int
+HaltVehicle	0x778C2A4C
+	8	param00008	bool
+	12	param00012	bytes
+HangOut	0x80EB9811
+	8	param00008	bool
+	12	param00012	bytes
+	24	param00024	float
+	28	param00028	float
+HitAnimation	0xB107E269
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+	24	param00024	bytes
+	28	param00028	string
+	32	param00032	bytes
+	36	param00036	bytes
+	40	param00040	bytes
+	44	param00044	float
+	52	param00052	bytes
+	56	param00056	float
+	88	param00088	bytes
+	92	param00092	bool
+	93	param00093	bool
+	96	param00096	float
+	100	param00100	bytes
+	104	param00104	float
+HitReact	0x54AEA94B
+	24	param00024	string
+	28	param00028	bytes
+	32	param00032	float
+	36	param00036	float
+	40	param00040	float
+	44	param00044	float
+	48	param00048	bool
+	52	param00052	int
+HoldState	0x4EEBB015
+Hop	0x45031300
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	bytes
+	24	param00024	float
+HudComponentFlashing	0x2061701E
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+	24	param00024	int
+	28	param00028	bool
+	29	param00029	bool
+HudComponentVisibility	0x38CB645E
+	8	param00008	bool
+	12	param00012	bytes
+	24	param00024	int
+	28	param00028	bool
+Idle	0xC016DA09
+	8	param00008	bool
+	12	param00012	bytes
+IkDetach	0xCD380012
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+	24	param00024	string
+IncKissCount	0xAFB1C735
+InvestigateArea	0x9C716E0A
+	8	param00008	bool
+	12	param00012	bytes
+	28	param00028	float
+	32	param00032	float
+	36	param00036	bytes
+	40	param00040	bytes
+JointDriver	0x36CC9E62
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+	24	param00024	bytes
+	32	param00032	bytes
+	36	param00036	bytes
+	40	param00040	bytes
+	44	param00044	float
+	48	param00048	float
+	52	param00052	float
+	56	param00056	bytes
+	88	param00088	int
+	92	param00092	string
+	96	param00096	bytes
+	100	param00100	string
+	104	param00104	bool
+JointDriverParametric	0xDE5A2246
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+	24	param00024	bytes
+	32	param00032	bytes
+	36	param00036	bytes
+	40	param00040	float
+	44	param00044	float
+	52	param00052	bytes
+	56	param00056	bytes
+	88	param00088	int
+	92	param00092	string
+	96	param00096	bytes
+	100	param00100	string
+	124	param00124	bytes
+	128	param00128	float
+JumpLoco	0x85C90E30
+	8	param00008	bool
+KeepDistanceLoco	0x29FC7972
+	8	param00008	bool
+	24	param00024	float
+	28	param00028	float
+Locomotion	0xA972A63F
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+	24	param00024	float
+	28	param00028	float
+	32	param00032	float
+	36	param00036	float
+	40	param00040	bool
+	44	param00044	float
+	48	param00048	float
+	52	param00052	float
+	56	param00056	bool
+	57	param00057	bool
+	58	param00058	bool
+	60	param00060	bytes
+	64	param00064	int
+	68	param00068	float
+	72	param00072	float
+	76	param00076	bool
+	77	param00077	bool
+	80	param00080	float
+	84	param00084	float
+	88	param00088	float
+	92	param00092	float
+	96	param00096	float
+	100	param00100	float
+	104	param00104	float
+	108	param00108	float
+	112	param00112	float
+	116	param00116	float
+	120	param00120	bytes
+LocomotionAnimationNew	0xE1DC7947
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+	24	param00024	bytes
+	28	param00028	float
+	32	param00032	float
+	36	param00036	float
+	40	param00040	bytes
+	44	param00044	bytes
+LocomotionCycle	0x85699651
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+	24	param00024	float
+LocomotionEvent	0x7D744B74
+	24	param00024	string
+	28	param00028	float
+	32	param00032	int
+	36	param00036	string
+	40	param00040	float
+	44	param00044	int
+LocomotionJump	0xFB454463
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+	24	param00024	float
+	28	param00028	float
+	32	param00032	bytes
+	36	param00036	bytes
+	40	param00040	float
+	44	param00044	bool
+LocomotionLiquid	0x25DDA500
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+	24	param00024	float
+	28	param00028	float
+	32	param00032	float
+	36	param00036	float
+LocomotionRetard	0x4B79EA1F
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+	24	param00024	float
+	28	param00028	bool
+	29	param00029	bool
+LookAround	0x303D6E6F
+	8	param00008	bool
+	12	param00012	bytes
+ManageTargets	0x09F00F53
+	8	param00008	bool
+	24	param00024	bool
+Menu	0x4B91630A
+	24	param00024	string
+MenuButes	0xA025FA5B
+	24	param00024	int
+	28	param00028	int
+	32	param00032	int
+	36	param00036	int
+	40	param00040	int
+	44	param00044	int
+	48	param00048	int
+	52	param00052	int
+	56	param00056	bytes
+	60	param00060	bytes
+	64	param00064	bytes
+	68	param00068	int
+	72	param00072	int
+	76	param00076	int
+	80	param00080	int
+	84	param00084	int
+	88	param00088	int
+	92	param00092	int
+	96	param00096	int
+	100	param00100	int
+	104	param00104	int
+	108	param00108	int
+	112	param00112	int
+	116	param00116	int
+	120	param00120	float
+	124	param00124	float
+	128	param00128	bytes
+	132	param00132	int
+	136	param00136	bool
+	137	param00137	bool
+	138	param00138	bool
+MiscGameButes	0xE974C97B
+	24	param00024	float
+Mission	0xE0EF964E
+	8	param00008	bool
+	24	param00024	bytes
+	28	param00028	bool
+MissionButtonTrigger	0xD23BC112
+	24	param00024	string
+	28	param00028	float
+	32	param00032	int
+	36	param00036	bool
+	40	param00040	int
+	44	param00044	bool
+	45	param00045	bool
+	48	param00048	string
+	52	param00052	float
+	56	param00056	int
+	60	param00060	int
+MissionCharTriggerTrack	0x85D33E14
+	24	param00024	string
+	28	param00028	string
+	32	param00032	string
+	36	param00036	string
+	40	param00040	float
+	44	param00044	bool
+	45	param00045	bool
+	48	param00048	bytes
+	52	param00052	int
+	56	param00056	bytes
+	60	param00060	bool
+	61	param00061	bool
+	72	param00072	bytes
+	76	param00076	int
+MissionData	0x92F3D833
+	24	param00024	string
+	28	param00028	string
+	32	param00032	string
+	36	param00036	bool
+	37	param00037	bool
+	38	param00038	bool
+	40	param00040	bytes
+	44	param00044	bool
+	45	param00045	bool
+	46	param00046	bool
+	47	param00047	bool
+	48	param00048	bool
+	49	param00049	bool
+	50	param00050	bool
+	51	param00051	bool
+	52	param00052	bool
+	53	param00053	bool
+	54	param00054	bool
+	56	param00056	bytes
+	60	param00060	bool
+	64	param00064	bytes
+	68	param00068	string
+	72	param00072	bool
+	73	param00073	bool
+	74	param00074	bool
+MissionDoorLockTrack	0x3AA5C83F
+	24	param00024	bool
+	25	param00025	bool
+	28	param00028	bytes
+	32	param00032	bool
+	33	param00033	bool
+	36	param00036	int
+	40	param00040	bytes
+MissionDoorTriggerTrack	0x49555E49
+	24	param00024	bytes
+	28	param00028	bytes
+	32	param00032	bool
+	33	param00033	bool
+	34	param00034	bool
+	36	param00036	bytes
+MotionBlur	0x91652128
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+	24	param00024	int
+	28	param00028	int
+	32	param00032	float
+	36	param00036	float
+	40	param00040	float
+	44	param00044	float
+	48	param00048	float
+	52	param00052	float
+	56	param00056	bool
+	60	param00060	string
+MoveAwayFromStimulus	0x33BA4327
+	8	param00008	bool
+	12	param00012	bytes
+	24	param00024	float
+	28	param00028	float
+MoveObjective	0x0CA3E843
+	8	param00008	bool
+	12	param00012	bytes
+MoveToPOI	0xA6C66B2E
+	8	param00008	bool
+	12	param00012	bytes
+	24	param00024	bool
+MoveToStimulus	0x42D7FA5D
+	8	param00008	bool
+	12	param00012	bytes
+	24	param00024	float
+	28	param00028	float
+	32	param00032	bool
+MoveToVehicle	0x84B01220
+	8	param00008	bool
+	12	param00012	bytes
+NISobject	0xC36D8873
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+	32	param00032	string
+	40	param00040	string
+NeverOffscreen	0x07E25675
+	8	param00008	bool
+	24	param00024	bool
+NotifyOnHear	0x3E17B53D
+	8	param00008	bool
+NotifyOnMissionCritical	0x8B01C50C
+	8	param00008	bool
+	24	param00024	bool
+NotifyOnSightPlayer	0x1E92693F
+	8	param00008	bool
+ObjectButes	0xA421852A
+	24	param00024	bytes
+	28	param00028	string
+	32	param00032	int
+	36	param00036	bool
+	37	param00037	bool
+	38	param00038	bool
+	39	param00039	bool
+	40	param00040	bool
+	41	param00041	bool
+	42	param00042	bool
+	43	param00043	bool
+	44	param00044	float
+	48	param00048	float
+	52	param00052	int
+	56	param00056	bytes
+	60	param00060	bytes
+	64	param00064	int
+	68	param00068	float
+	72	param00072	string
+	76	param00076	string
+	80	param00080	string
+	84	param00084	string
+	88	param00088	string
+	92	param00092	string
+	96	param00096	bytes
+	100	param00100	bytes
+	104	param00104	bool
+	105	param00105	bool
+	106	param00106	bool
+	108	param00108	float
+	112	param00112	bytes
+	116	param00116	string
+	120	param00120	string
+	124	param00124	int
+	140	param00140	string
+	144	param00144	bytes
+	148	param00148	bytes
+	152	param00152	bytes
+	156	param00156	bytes
+	160	param00160	bytes
+OffsetCamButes	0xF3E3C354
+	24	param00024	float
+	28	param00028	float
+	32	param00032	float
+	36	param00036	float
+	40	param00040	float
+	44	param00044	float
+	48	param00048	bytes
+	52	param00052	bytes
+	56	param00056	bytes
+	60	param00060	float
+	64	param00064	float
+	68	param00068	float
+	72	param00072	float
+	76	param00076	float
+	80	param00080	float
+	84	param00084	float
+	88	param00088	string
+	92	param00092	string
+	96	param00096	bool
+	100	param00100	string
+	104	param00104	bool
+	108	param00108	float
+	112	param00112	bool
+	116	param00116	float
+	120	param00120	bool
+	121	param00121	bool
+	122	param00122	bool
+	123	param00123	bool
+	124	param00124	int
+	128	param00128	string
+	132	param00132	float
+	136	param00136	float
+	140	param00140	float
+	144	param00144	float
+	148	param00148	bytes
+	152	param00152	float
+Opportunity	0x0FC8AB63
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+	32	param00032	string
+	40	param00040	float
+	44	param00044	bytes
+	48	param00048	bool
+	52	param00052	bytes
+	56	param00056	bytes
+	60	param00060	bytes
+OpportunityElseAction	0xFED96162
+	8	param00008	bool
+	12	param00012	bytes
+	32	param00032	string
+	40	param00040	float
+	44	param00044	bytes
+	52	param00052	bytes
+	60	param00060	cg
+	76	param00076	int
+	80	param00080	int
+OpportunityRandomLatch	0xEEBD5929
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+	32	param00032	string
+	40	param00040	float
+	48	param00048	bool
+	52	param00052	bytes
+	56	param00056	bytes
+	60	param00060	bytes
+	76	param00076	float
+	80	param00080	float
+OpportunityStruggle	0x943B902A
+	8	param00008	bool
+	12	param00012	bytes
+	32	param00032	string
+	40	param00040	float
+	44	param00044	bytes
+	48	param00048	bool
+	52	param00052	bytes
+	80	param00080	int
+	84	param00084	int
+OrientOffSet	0xD8BB7F39
+	8	param00008	bool
+	12	param00012	bytes
+	24	param00024	float
+PassBall	0x8456E576
+	24	param00024	float
+PedReset	0xC03FCD7B
+	12	param00012	bytes
+PhotoButes	0x3D9BC512
+	24	param00024	int
+	28	param00028	int
+	32	param00032	int
+	36	param00036	int
+	40	param00040	int
+	44	param00044	int
+	48	param00048	int
+	52	param00052	int
+	56	param00056	int
+	60	param00060	int
+	64	param00064	int
+	68	param00068	int
+	72	param00072	int
+	76	param00076	int
+	80	param00080	int
+	84	param00084	int
+	88	param00088	int
+	92	param00092	int
+	96	param00096	int
+	100	param00100	int
+	104	param00104	int
+	108	param00108	int
+	112	param00112	int
+	116	param00116	int
+	120	param00120	int
+	124	param00124	int
+	128	param00128	int
+	132	param00132	int
+PickUpBike	0xF9811511
+	8	param00008	bool
+	12	param00012	float
+	16	param00016	float
+PickupButes	0x53819F3F
+	24	param00024	bool
+	28	param00028	float
+	32	param00032	bool
+	36	param00036	float
+	40	param00040	int
+	44	param00044	bool
+	45	param00045	bool
+PickupListButes	0x99402610
+	24	param00024	string
+	28	param00028	bytes
+	32	param00032	string
+	36	param00036	float
+	40	param00040	string
+	44	param00044	bytes
+	48	param00048	string
+	52	param00052	bytes
+	56	param00056	string
+	60	param00060	bytes
+	64	param00064	string
+	68	param00068	bytes
+	72	param00072	string
+	76	param00076	bytes
+Play	0xB848CC0A
+	8	param00008	bool
+	32	param00032	string
+	41	param00041	bool
+PlayCatchObjective	0x76BAF61E
+	8	param00008	bool
+	24	param00024	int
+PlayOnProp	0x32C3EF48
+	8	param00008	bool
+	12	param00012	bytes
+	32	param00032	string
+PlayOnTarget	0x50B69014
+	8	param00008	bool
+	12	param00012	bytes
+	32	param00032	string
+	40	param00040	bool
+	41	param00041	bool
+PlayerAwarenessButes	0x6FAD1676
+	24	param00024	float
+	28	param00028	float
+	32	param00032	float
+	36	param00036	int
+	40	param00040	float
+	44	param00044	float
+	48	param00048	float
+	52	param00052	float
+PlayerButes	0x2A34703C
+	24	param00024	int
+	28	param00028	int
+	32	param00032	float
+	36	param00036	float
+	40	param00040	int
+	44	param00044	bytes
+	48	param00048	float
+	52	param00052	float
+	56	param00056	float
+	60	param00060	float
+	64	param00064	float
+	68	param00068	float
+	72	param00072	float
+	76	param00076	float
+	80	param00080	float
+	84	param00084	float
+	88	param00088	float
+	92	param00092	bytes
+	96	param00096	float
+	100	param00100	float
+	104	param00104	int
+	108	param00108	int
+	112	param00112	int
+	116	param00116	float
+	120	param00120	float
+	124	param00124	float
+	128	param00128	float
+	132	param00132	float
+	136	param00136	float
+	140	param00140	float
+	144	param00144	float
+	148	param00148	float
+	152	param00152	bytes
+	156	param00156	float
+	160	param00160	bytes
+	164	param00164	float
+	168	param00168	float
+	172	param00172	float
+	176	param00176	float
+	180	param00180	float
+	184	param00184	float
+	188	param00188	float
+	192	param00192	float
+	196	param00196	float
+	200	param00200	int
+	204	param00204	int
+	208	param00208	int
+	212	param00212	float
+	216	param00216	float
+	220	param00220	float
+	224	param00224	float
+	228	param00228	float
+	232	param00232	float
+	236	param00236	float
+	240	param00240	float
+	244	param00244	float
+	248	param00248	float
+	252	param00252	string
+	256	param00256	float
+	260	param00260	float
+	264	param00264	float
+	268	param00268	bytes
+	272	param00272	float
+	276	param00276	bytes
+	280	param00280	float
+	284	param00284	bytes
+	288	param00288	float
+PlayerSocialSpeechEvent	0xFA016949
+	8	param00008	bool
+	12	param00012	float
+	16	param00016	float
+	24	param00024	int
+	28	param00028	bool
+	32	param00032	int
+	40	param00040	bytes
+	44	param00044	int
+PlayerSocializing	0x372AB00C
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+	24	param00024	bool
+	28	param00028	int
+Print	0xC51A5907
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+	24	param00024	bool
+	28	param00028	string
+ProjectileButes	0x1A895B1A
+	24	param00024	float
+	28	param00028	bytes
+	32	param00032	int
+	36	param00036	bytes
+	40	param00040	int
+	44	param00044	float
+	48	param00048	int
+	52	param00052	bool
+	56	param00056	float
+	60	param00060	float
+	64	param00064	bool
+	68	param00068	bytes
+	72	param00072	int
+	76	param00076	bytes
+	80	param00080	float
+	84	param00084	string
+	88	param00088	string
+	92	param00092	float
+	96	param00096	float
+	100	param00100	float
+	104	param00104	float
+	108	param00108	float
+	112	param00112	float
+	116	param00116	float
+	120	param00120	float
+	124	param00124	bool
+	128	param00128	float
+	132	param00132	float
+	136	param00136	bytes
+	140	param00140	bool
+	141	param00141	bool
+	142	param00142	bool
+	143	param00143	bool
+	144	param00144	bool
+	148	param00148	float
+	152	param00152	float
+	156	param00156	float
+	160	param00160	float
+	164	param00164	string
+	172	param00172	string
+	176	param00176	int
+	180	param00180	string
+	184	param00184	string
+	188	param00188	int
+	192	param00192	string
+	196	param00196	int
+	200	param00200	int
+	204	param00204	bytes
+	208	param00208	bytes
+	212	param00212	bool
+	216	param00216	float
+	220	param00220	bool
+	221	param00221	bool
+	224	param00224	bytes
+	228	param00228	bool
+	232	param00232	float
+	236	param00236	float
+	240	param00240	bytes
+	244	param00244	float
+	248	param00248	bytes
+	252	param00252	bytes
+	256	param00256	float
+	260	param00260	bytes
+	264	param00264	float
+	268	param00268	bytes
+	272	param00272	bytes
+	276	param00276	float
+	280	param00280	float
+	284	param00284	float
+	288	param00288	bytes
+	292	param00292	bool
+	296	param00296	float
+	300	param00300	string
+	304	param00304	bool
+	312	param00312	float
+	320	param00320	bytes
+	324	param00324	bool
+	325	param00325	bool
+ProjectileCover	0xDAF31B2B
+	8	param00008	bool
+	24	param00024	int
+	28	param00028	bool
+ProjectilePickup	0x0D292969
+	12	param00012	bytes
+PropAlterObstacle	0x5A5D1067
+	8	param00008	bool
+	12	param00012	bytes
+	24	param00024	bool
+PropAnimAttachToPropAnim	0xB0D43035
+	8	param00008	bool
+	12	param00012	bytes
+	24	param00024	bytes
+	28	param00028	bytes
+	32	param00032	bytes
+PropAnimRemoveAttachment	0x6F1B8708
+	8	param00008	bool
+	12	param00012	bytes
+	24	param00024	bytes
+PropAnimation	0x3936C06A
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+	24	param00024	bytes
+	32	param00032	bytes
+	36	param00036	bytes
+	40	param00040	bytes
+	44	param00044	float
+	48	param00048	float
+	52	param00052	float
+	56	param00056	float
+	60	param00060	bool
+	88	param00088	string
+	92	param00092	bool
+PropAnimationParametric	0xD9156113
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+	24	param00024	bytes
+	36	param00036	bytes
+	40	param00040	bytes
+	44	param00044	float
+	52	param00052	bytes
+	56	param00056	bytes
+	88	param00088	bytes
+	92	param00092	float
+PropAttach	0x344D3B35
+	8	param00008	bool
+	12	param00012	float
+	24	param00024	bytes
+	28	param00028	bytes
+	32	param00032	bool
+	33	param00033	bool
+	34	param00034	bool
+PropAttachEx	0x7B764A64
+	8	param00008	bool
+	12	param00012	bytes
+	24	param00024	bytes
+	28	param00028	bytes
+	32	param00032	bytes
+	36	param00036	bool
+	37	param00037	bool
+	38	param00038	bool
+PropAttachToProp	0xDED31C42
+	8	param00008	bool
+	12	param00012	bytes
+	24	param00024	bytes
+	28	param00028	bytes
+	32	param00032	bytes
+	36	param00036	bytes
+PropButes	0xACD97502
+	24	param00024	bytes
+	28	param00028	int
+	32	param00032	int
+	36	param00036	bool
+	40	param00040	float
+	44	param00044	bool
+	48	param00048	bytes
+	52	param00052	bytes
+	56	param00056	bytes
+	60	param00060	bytes
+	64	param00064	bytes
+	68	param00068	bytes
+	72	param00072	bytes
+	76	param00076	bytes
+	80	param00080	bytes
+	84	param00084	string
+	88	param00088	bytes
+	96	param00096	bytes
+	100	param00100	bool
+	104	param00104	string
+	108	param00108	string
+	112	param00112	string
+	116	param00116	bool
+	117	param00117	bool
+	118	param00118	bool
+	119	param00119	bool
+	120	param00120	float
+	124	param00124	bool
+	125	param00125	bool
+	126	param00126	bool
+	128	param00128	bytes
+	132	param00132	bool
+	133	param00133	bool
+	134	param00134	bool
+	136	param00136	int
+	140	param00140	bool
+	141	param00141	bool
+	142	param00142	bool
+PropDetach	0xCE807A20
+	8	param00008	bool
+	12	param00012	float
+	24	param00024	bytes
+	28	param00028	bool
+PropDetachEx	0xE5940434
+	8	param00008	bool
+	12	param00012	bytes
+	24	param00024	bytes
+PropEntityFlagsTrack	0x4E12D346
+	8	param00008	bool
+	12	param00012	bytes
+	24	param00024	bool
+	28	param00028	int
+PropExtraButes	0x2E65E558
+	24	param00024	int
+	28	param00028	int
+	32	param00032	int
+	36	param00036	int
+	40	param00040	int
+	44	param00044	int
+	48	param00048	int
+	52	param00052	int
+	56	param00056	int
+	60	param00060	int
+PropFlags	0xD8FF7247
+	8	param00008	bool
+	12	param00012	bytes
+	24	param00024	bool
+	28	param00028	int
+PropGeometry	0xDDAD8C03
+	8	param00008	bool
+	12	param00012	float
+	40	param00040	bool
+	41	param00041	bool
+	44	param00044	bytes
+	48	param00048	bytes
+	52	param00052	bool
+PropGetDesired	0xEB166459
+	8	param00008	bool
+	12	param00012	bytes
+PropInteract	0xCD5E802B
+	8	param00008	bool
+	12	param00012	bytes
+PropPickup	0xC363A02E
+	8	param00008	bool
+	12	param00012	float
+PropReleaseUsageState	0xB429CB18
+	8	param00008	bool
+	12	param00012	bytes
+PropRemoveAttachment	0xBE6A2535
+	8	param00008	bool
+	12	param00012	bytes
+	24	param00024	bytes
+PropRotateProxy	0xD4DCA859
+	8	param00008	bool
+	12	param00012	bytes
+	24	param00024	float
+	28	param00028	bool
+PropScatterAttachment	0xAA913518
+	8	param00008	bool
+	12	param00012	bytes
+	24	param00024	bool
+	28	param00028	bytes
+	32	param00032	float
+	36	param00036	float
+	40	param00040	float
+	44	param00044	bytes
+PropSetDesired	0x8FA77347
+	8	param00008	bool
+	12	param00012	bytes
+	24	param00024	bytes
+	28	param00028	bool
+	29	param00029	bool
+	30	param00030	bool
+PropSetInTransition	0x854CA138
+	8	param00008	bool
+	12	param00012	float
+	24	param00024	bytes
+PropSetPedAction	0x826CD77C
+	8	param00008	bool
+	32	param00032	string
+PropSetSocket	0x4A24A317
+	8	param00008	bool
+	12	param00012	bytes
+	24	param00024	bytes
+	28	param00028	bytes
+	32	param00032	bool
+PropSetUsageState	0x4F724E21
+	8	param00008	bool
+	24	param00024	int
+	28	param00028	bool
+PropSpawn	0x8C802E2C
+	8	param00008	bool
+	12	param00012	float
+	24	param00024	bytes
+PropStartLife	0xCB4CCC0A
+	12	param00012	float
+PropUseText	0x7505075B
+	24	param00024	string
+PunishableTargetThreatened	0xCA33C64B
+	8	param00008	bool
+	12	param00012	bytes
+PunishmentButes	0xB0DE5A53
+	24	param00024	int
+	28	param00028	int
+	32	param00032	bool
+	33	param00033	bool
+	36	param00036	bytes
+	40	param00040	int
+	44	param00044	string
+PurchaseItem	0x78C57574
+	8	param00008	bool
+	12	param00012	bytes
+PursuitLoco	0xA1DD023B
+	8	param00008	bool
+	12	param00012	bytes
+	24	param00024	bool
+	28	param00028	float
+	32	param00032	float
+Race	0x7D030E0B
+	8	param00008	bool
+	12	param00012	bytes
+RadarButes	0x6107E672
+	24	param00024	bytes
+	28	param00028	bytes
+	32	param00032	float
+	36	param00036	int
+	40	param00040	float
+	44	param00044	float
+RailDriver	0x7EA19361
+	24	param00024	float
+RandomDiceRoll	0x77ADDC52
+	24	param00024	bytes
+RangedWeaponFire	0x29AB6740
+	8	param00008	bool
+	24	param00024	bytes
+	28	param00028	bytes
+	32	param00032	int
+	36	param00036	bytes
+	40	param00040	bool
+	41	param00041	bool
+	42	param00042	bool
+	44	param00044	int
+RatLoco	0xACC2900A
+	8	param00008	bool
+	24	param00024	float
+	28	param00028	float
+	32	param00032	float
+	36	param00036	float
+RecruitAllySelf	0x228F5945
+	8	param00008	bool
+	24	param00024	bool
+RegisterAsGirlfriend	0xEF20684B
+	8	param00008	bool
+	12	param00012	bytes
+	24	param00024	bool
+RemoveAllQueuedSpeech	0xD6E30729
+	12	param00012	bytes
+	24	param00024	bool
+RemoveObjective	0x2D9AE834
+	8	param00008	bool
+	12	param00012	bytes
+	24	param00024	int
+RenderFirstPerson	0x47C72E3F
+	8	param00008	bool
+	12	param00012	bytes
+	24	param00024	float
+	28	param00028	float
+	32	param00032	float
+RideAround	0x2D7C7F72
+	8	param00008	bool
+	12	param00012	bytes
+ScreenFxDizzyTrack	0x956D280B
+	8	param00008	bool
+	12	param00012	float
+	16	param00016	float
+	24	param00024	int
+	28	param00028	int
+	32	param00032	int
+	36	param00036	float
+	40	param00040	int
+	44	param00044	int
+	48	param00048	int
+	52	param00052	int
+Script	0xF74F0B2F
+	12	param00012	bytes
+	24	param00024	bool
+	28	param00028	bytes
+	32	param00032	bool
+	33	param00033	bool
+	36	param00036	string
+	40	param00040	string
+	44	param00044	bool
+ScriptedAmbient	0x46AA5A4D
+	8	param00008	bool
+	12	param00012	bytes
+SeekEntityPosition	0xC8EE6C76
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+	24	param00024	bool
+	25	param00025	bool
+	28	param00028	int
+	32	param00032	float
+	36	param00036	float
+	40	param00040	float
+	44	param00044	float
+	48	param00048	bytes
+SeekToSnow	0x8646560C
+	8	param00008	bool
+	24	param00024	int
+SeekToSurface	0xC634505C
+	8	param00008	bool
+SelectBestDirTossTarget	0x79E83746
+	12	param00012	bytes
+	24	param00024	bool
+Sequence	0x69275E5C
+	8	param00008	bool
+	32	param00032	string
+SetActionTimer	0x213E2E15
+	8	param00008	bool
+	24	param00024	float
+SetAllyMorale	0x100FA71A
+	24	param00024	int
+SetAllyState	0x1FB6A256
+	24	param00024	int
+SetDesiredSpeed	0x2B256B30
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+	24	param00024	float
+SetEmotionTowardsPlayer	0x1CBC9940
+	8	param00008	bool
+	24	param00024	int
+SetEmotionTowardsTarget	0x1885D66F
+	8	param00008	bool
+	24	param00024	int
+SetEntityFlags	0x329A892B
+	8	param00008	bool
+	12	param00012	bytes
+	24	param00024	bool
+	28	param00028	int
+SetHealth	0xD69BD21A
+	8	param00008	bool
+	24	param00024	bool
+	25	param00025	bool
+	26	param00026	bool
+	28	param00028	float
+SetInStealthProp	0xB35C012C
+	8	param00008	bool
+	24	param00024	bool
+SetMotionIntention	0x20693C47
+	12	param00012	bytes
+	24	param00024	bytes
+SetOverheadIcon	0x3F6F417E
+	24	param00024	bytes
+	28	param00028	bool
+SetPedFlags	0xE2FB8453
+	8	param00008	bool
+	12	param00012	bytes
+	24	param00024	bool
+	28	param00028	int
+SetPosRot	0x311BE928
+	24	param00024	float
+	28	param00028	float
+	32	param00032	float
+	36	param00036	float
+SetSocialWaitTime	0x05F3E675
+	24	param00024	int
+SetTarget	0x731C1521
+	8	param00008	bool
+	12	param00012	bytes
+SetTargetAsGrappleTarget	0x6F5C885D
+	8	param00008	bool
+	12	param00012	bytes
+	24	param00024	bool
+	25	param00025	bool
+	26	param00026	bool
+	36	param00036	string
+	52	param00052	string
+SetWantsToSocializeWithTarget	0x0AF5F577
+	8	param00008	bool
+	24	param00024	bool
+	28	param00028	int
+	32	param00032	bool
+SetWeaponFlags	0xC53F4405
+	8	param00008	bool
+	12	param00012	bytes
+	24	param00024	bool
+	28	param00028	bytes
+SetWeaponInfo	0xA0D54208
+	12	param00012	bytes
+	24	param00024	float
+	28	param00028	float
+	32	param00032	bytes
+	36	param00036	float
+	40	param00040	float
+	44	param00044	float
+	48	param00048	float
+	52	param00052	float
+	56	param00056	float
+	60	param00060	float
+	64	param00064	float
+	68	param00068	string
+	72	param00072	bool
+	73	param00073	bool
+ShopSetState	0xB9E84249
+	8	param00008	bool
+	12	param00012	bytes
+	24	param00024	int
+SitDown	0x8057531A
+	8	param00008	bool
+	12	param00012	bytes
+	24	param00024	float
+	28	param00028	float
+SlingerObjective	0xBB076A2A
+	8	param00008	bool
+	24	param00024	int
+SoccerPButes	0x6C465172
+	24	param00024	float
+	28	param00028	float
+	32	param00032	float
+	36	param00036	float
+	40	param00040	float
+	44	param00044	float
+	48	param00048	float
+	52	param00052	float
+	56	param00056	float
+	60	param00060	float
+	64	param00064	float
+	68	param00068	float
+	72	param00072	float
+	76	param00076	float
+	80	param00080	float
+	84	param00084	float
+	88	param00088	float
+Socialize	0xA7C4B57B
+	8	param00008	bool
+SocializeActionComplete	0xAE7A8876
+	8	param00008	bool
+SoundFX	0x85F04E12
+	8	param00008	bool
+	12	param00012	bytes
+	24	param00024	float
+	28	param00028	string
+	32	param00032	int
+	36	param00036	bool
+	37	param00037	bool
+SoundFX2D	0x875DB94D
+	8	param00008	bool
+	12	param00012	float
+	24	param00024	string
+SoundFXRecycle	0xD2BB3405
+	24	param00024	float
+	28	param00028	string
+	32	param00032	int
+	36	param00036	bool
+	37	param00037	bool
+	44	param00044	bytes
+	48	param00048	bytes
+SoundLoop	0xBBE2844E
+	8	param00008	bool
+	12	param00012	bytes
+	24	param00024	float
+	28	param00028	bytes
+	32	param00032	int
+	36	param00036	bool
+	37	param00037	bool
+	38	param00038	bool
+	40	param00040	string
+SoundTimedBankLoad	0x2E731E21
+	24	param00024	string
+	28	param00028	int
+Spawn	0xCF8EBB3B
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+	32	param00032	string
+	40	param00040	bool
+	41	param00041	bool
+	42	param00042	bool
+SpecialIncreaseTrack	0x88590765
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+	24	param00024	int
+SpecialIncrementCharge	0x1E2F3F79
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+	24	param00024	bytes
+SpecialPointsAddTrack	0x6A290D1E
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+	24	param00024	int
+Spectator	0xDB057543
+	8	param00008	bool
+	12	param00012	bytes
+	24	param00024	float
+	28	param00028	float
+SpeechStartTrack	0x1B24847E
+	8	param00008	bool
+	12	param00012	float
+SpeechTrack	0x5154954F
+	8	param00008	bool
+	12	param00012	bytes
+	24	param00024	int
+	28	param00028	bool
+	32	param00032	int
+	36	param00036	int
+	40	param00040	bytes
+	44	param00044	float
+	48	param00048	bool
+	52	param00052	float
+	56	param00056	float
+	60	param00060	float
+	64	param00064	bool
+	68	param00068	string
+SpeedUp	0x1A24C373
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+	24	param00024	bytes
+	28	param00028	float
+SpineControl	0x5EF27124
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+	24	param00024	bytes
+	28	param00028	bool
+	29	param00029	bool
+	30	param00030	bool
+	31	param00031	bool
+	32	param00032	bytes
+SpineControlDisable	0x9213A649
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+	24	param00024	bytes
+SpineControlSetTarget	0xCDF42677
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+	24	param00024	int
+	28	param00028	bool
+SpineControlWeightButes	0xF121256C
+	24	param00024	float
+	28	param00028	float
+	32	param00032	float
+	36	param00036	float
+	40	param00040	float
+	44	param00044	bytes
+	48	param00048	bytes
+	52	param00052	bytes
+	56	param00056	bytes
+	60	param00060	int
+	64	param00064	float
+	68	param00068	float
+SprintIncreaseTrack	0x4FD0FA02
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+	24	param00024	int
+	28	param00028	bool
+SprintIncrementCharge	0x1D71E43E
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+	24	param00024	float
+StatAddToInt	0x7FA38728
+	8	param00008	bool
+	24	param00024	bool
+	25	param00025	bool
+	32	param00032	int
+	36	param00036	int
+Steer	0x2DC8453C
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+	24	param00024	float
+	28	param00028	float
+	32	param00032	float
+StimulusButes	0x7558797B
+	24	param00024	int
+	28	param00028	int
+	32	param00032	float
+	36	param00036	float
+	40	param00040	float
+	44	param00044	float
+	48	param00048	float
+	52	param00052	bool
+	53	param00053	bool
+	54	param00054	bool
+StopSocializing	0x7A91A76F
+	8	param00008	bool
+StoreCamButes	0x41F5EF40
+	24	param00024	bool
+	28	param00028	bytes
+	32	param00032	bytes
+	36	param00036	float
+	40	param00040	bool
+	44	param00044	int
+	48	param00048	float
+StruggleButtonOff	0x8068C108
+	8	param00008	bool
+	12	param00012	bytes
+	24	param00024	bool
+StruggleButtonOn	0xC62D8E40
+	8	param00008	bool
+	12	param00012	bytes
+	24	param00024	bool
+	25	param00025	bool
+	26	param00026	bool
+	28	param00028	string
+	32	param00032	int
+	36	param00036	bytes
+SurfaceSoundRangeButes	0x704B2B69
+	24	param00024	float
+	28	param00028	float
+	32	param00032	float
+	36	param00036	float
+	40	param00040	float
+	44	param00044	float
+	48	param00048	float
+	52	param00052	float
+	56	param00056	float
+	60	param00060	float
+	64	param00064	float
+	68	param00068	float
+	72	param00072	float
+	76	param00076	float
+	80	param00080	float
+	84	param00084	float
+	88	param00088	float
+	92	param00092	float
+	96	param00096	float
+	100	param00100	float
+	104	param00104	float
+	108	param00108	float
+	112	param00112	float
+	116	param00116	float
+	120	param00120	float
+	124	param00124	float
+	128	param00128	float
+	132	param00132	float
+	136	param00136	float
+	140	param00140	float
+	144	param00144	float
+	148	param00148	float
+	152	param00152	float
+	156	param00156	float
+	160	param00160	float
+	164	param00164	float
+	168	param00168	float
+	172	param00172	float
+	176	param00176	float
+	180	param00180	float
+	184	param00184	float
+	188	param00188	float
+	192	param00192	float
+	196	param00196	float
+	200	param00200	float
+	204	param00204	float
+	208	param00208	float
+	212	param00212	float
+	216	param00216	float
+	220	param00220	float
+	224	param00224	float
+	228	param00228	float
+	232	param00232	float
+	236	param00236	float
+	240	param00240	float
+	244	param00244	float
+	248	param00248	float
+	252	param00252	float
+	256	param00256	float
+	260	param00260	float
+	264	param00264	float
+	268	param00268	float
+	272	param00272	float
+	276	param00276	float
+	280	param00280	float
+	284	param00284	float
+Sync	0x8F9F360B
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+	24	param00024	bytes
+	28	param00028	bytes
+	32	param00032	bytes
+	36	param00036	bytes
+	40	param00040	int
+	44	param00044	bytes
+	48	param00048	float
+TaggingButes	0x76323F58
+	24	param00024	float
+	28	param00028	float
+	32	param00032	float
+	36	param00036	float
+	40	param00040	float
+	44	param00044	float
+	48	param00048	float
+	52	param00052	float
+	56	param00056	float
+	60	param00060	float
+TandemHelperClear	0xDC8B530E
+	8	param00008	bool
+Target	0x15A37307
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+	24	param00024	bytes
+	28	param00028	float
+	32	param00032	float
+	36	param00036	float
+	40	param00040	float
+	44	param00044	float
+	48	param00048	bool
+	49	param00049	bool
+	50	param00050	bool
+	51	param00051	bool
+	52	param00052	bool
+	53	param00053	bool
+	54	param00054	bool
+	55	param00055	bool
+TargetAttackRightsAcquire	0x6E20AD70
+	8	param00008	bool
+TargetAttackRightsRelease	0xB38FA60D
+	8	param00008	bool
+TargetClear	0xA85DE509
+	12	param00012	bytes
+TargetGrappleRelease	0x3DB40919
+	12	param00012	float
+	24	param00024	bool
+TargetLock	0x04645C53
+	12	param00012	bytes
+	24	param00024	bool
+TargetOverrideReset	0x62534977
+	8	param00008	bool
+	12	param00012	bytes
+TargetPlayer	0xE6CD9355
+	8	param00008	bool
+TargetSync	0x34274F54
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	bytes
+	24	param00024	bytes
+	28	param00028	float
+	32	param00032	bytes
+	36	param00036	float
+Teacher	0x7E114C13
+	8	param00008	bool
+	12	param00012	bytes
+TetherClear	0x9B97BF0B
+TetherLoco	0xD9290438
+	8	param00008	bool
+	24	param00024	bool
+	28	param00028	bytes
+	32	param00032	bytes
+	36	param00036	float
+	40	param00040	float
+	44	param00044	bool
+	45	param00045	bool
+	46	param00046	bool
+	47	param00047	bool
+	48	param00048	bytes
+	52	param00052	float
+	56	param00056	bool
+TextGood	0xAA251923
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+	24	param00024	string
+	28	param00028	bytes
+TimeCycleButes	0x9EF09E70
+	24	param00024	int
+	28	param00028	string
+	32	param00032	string
+	36	param00036	string
+	40	param00040	string
+TimePeriodButes	0xA94CD217
+	24	param00024	string
+	28	param00028	string
+	32	param00032	string
+	36	param00036	int
+	40	param00040	int
+	44	param00044	int
+	48	param00048	bytes
+	52	param00052	bytes
+Trace	0x11D68D4D
+	24	param00024	string
+	28	param00028	bool
+TrafficButes	0x929B8440
+	24	param00024	int
+	28	param00028	int
+	32	param00032	float
+	36	param00036	float
+TransferComboToSpecialTrack	0xC4AB0E55
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+TutorialCompleteActive	0xBDBC8133
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+TutorialShowMessage	0xE86B2111
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+	24	param00024	string
+	28	param00028	bool
+UpdateFirstPerson	0x50ECF30F
+	8	param00008	bool
+	12	param00012	bytes
+	24	param00024	float
+	28	param00028	bytes
+	32	param00032	bytes
+	36	param00036	float
+	40	param00040	bytes
+	44	param00044	bool
+	45	param00045	bool
+	48	param00048	float
+	52	param00052	float
+	56	param00056	float
+	60	param00060	float
+	64	param00064	bytes
+	68	param00068	float
+	72	param00072	string
+	76	param00076	string
+	80	param00080	bool
+VehicleAnimation	0x18E73367
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+	24	param00024	bytes
+	32	param00032	bytes
+	36	param00036	bytes
+	40	param00040	bytes
+	44	param00044	float
+	48	param00048	float
+	52	param00052	float
+	56	param00056	float
+	88	param00088	bytes
+	92	param00092	bool
+VehicleAnimationParametric	0x10A45E64
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+	24	param00024	bytes
+	28	param00028	string
+	36	param00036	bytes
+	40	param00040	bytes
+	44	param00044	float
+	52	param00052	float
+	56	param00056	float
+	88	param00088	bytes
+	92	param00092	float
+VehicleCamButes	0x644C3B1A
+	24	param00024	float
+	28	param00028	float
+	32	param00032	float
+	36	param00036	float
+	40	param00040	float
+	44	param00044	float
+	48	param00048	float
+	52	param00052	float
+	56	param00056	float
+	60	param00060	float
+	64	param00064	float
+	68	param00068	float
+	72	param00072	float
+	76	param00076	float
+	80	param00080	float
+	84	param00084	float
+	88	param00088	float
+	92	param00092	float
+	96	param00096	float
+	100	param00100	float
+	104	param00104	float
+	108	param00108	float
+	112	param00112	bool
+	116	param00116	float
+	120	param00120	float
+	124	param00124	float
+	128	param00128	bytes
+	132	param00132	float
+VehicleFlagForAction	0xAFE18A51
+	8	param00008	bool
+	12	param00012	bytes
+	24	param00024	int
+	28	param00028	int
+WaitForTargetLoco	0x84529615
+	8	param00008	bool
+Wander	0xE5857679
+	8	param00008	bool
+	12	param00012	bytes
+WarnTarget	0x3F29CA2F
+	8	param00008	bool
+	12	param00012	bytes
+	24	param00024	bool
+	28	param00028	float
+WeaponAnimation	0xDCE0964A
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+	24	param00024	bytes
+	28	param00028	string
+	32	param00032	int
+	36	param00036	bytes
+	40	param00040	bytes
+	44	param00044	float
+	48	param00048	float
+	52	param00052	float
+	56	param00056	float
+WeaponCollision	0x2E19FE22
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+	24	param00024	float
+	28	param00028	float
+	32	param00032	string
+	36	param00036	int
+	44	param00044	string
+	48	param00048	float
+	52	param00052	float
+	56	param00056	float
+	60	param00060	float
+	64	param00064	bytes
+	68	param00068	bytes
+	72	param00072	bytes
+	80	param00080	float
+	84	param00084	float
+	88	param00088	bool
+	92	param00092	float
+	104	param00104	string
+	120	param00120	string
+	528	param00528	string
+	532	param00532	string
+	536	param00536	bytes
+	540	param00540	bool
+	541	param00541	bool
+	542	param00542	bool
+WeaponFX	0x7AEA422B
+	8	param00008	bool
+	12	param00012	float
+	16	param00016	float
+	24	param00024	bool
+	25	param00025	bool
+	26	param00026	bool
+	27	param00027	bool
+	28	param00028	bool
+	32	param00032	string
+	36	param00036	bytes
+WeaponFire	0xFE68B408
+	8	param00008	bool
+	12	param00012	bytes
+	24	param00024	bytes
+	28	param00028	bytes
+	32	param00032	bytes
+	36	param00036	bytes
+	40	param00040	float
+	44	param00044	float
+	48	param00048	bool
+	49	param00049	bool
+	50	param00050	bool
+	52	param00052	float
+	56	param00056	bytes
+WeaponFireAmmo	0x24D2693E
+	12	param00012	bytes
+	24	param00024	string
+WeaponFireFrisbee	0x565D8532
+	12	param00012	bytes
+	24	param00024	float
+	28	param00028	bytes
+	32	param00032	bytes
+	36	param00036	float
+	40	param00040	float
+WeaponFireOffset	0xE1032529
+	12	param00012	bytes
+	24	param00024	bytes
+	28	param00028	bytes
+	32	param00032	float
+WeaponFireSpecificOrientation	0x5874B745
+	8	param00008	bool
+	12	param00012	bytes
+	56	param00056	bytes
+	76	param00076	float
+	80	param00080	float
+	84	param00084	float
+WeaponFireStartOffset	0x7F51332E
+	12	param00012	bytes
+	24	param00024	float
+	28	param00028	float
+	32	param00032	float
+WeaponImpulse	0x9977D265
+	12	param00012	bytes
+	24	param00024	bytes
+	28	param00028	float
+WeaponIncrementCharge	0x33DF4446
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+WeaponMinigameImpulse	0x904B8D72
+	12	param00012	float
+	36	param00036	float
+	40	param00040	float
+	44	param00044	float
+	48	param00048	float
+	52	param00052	float
+WeaponPlayerFireAutoTarget	0x3F1EEB77
+	12	param00012	bytes
+	16	param00016	float
+	24	param00024	bool
+WeaponRemoveCollisionProjectile	0x8FD2617B
+WeaponSetCharge	0x86561244
+	8	param00008	bool
+	12	param00012	bytes
+	24	param00024	bytes
+WeaponSetNextDamageLevel	0xFC15517E
+	12	param00012	bytes
+WeaponSpawnDamageEffect	0xA76D7858
+	12	param00012	bytes
+WeaponTargetImpulse	0x008C0C51
+	12	param00012	float
+	24	param00024	float
+	28	param00028	float
+WorldAnchorSet	0x03176232
+Wrestle	0xC8947A3F
+	8	param00008	bool
+	12	param00012	bytes
+	24	param00024	float
+	28	param00028	float
+	32	param00032	float
+	36	param00036	float
+	40	param00040	float
+	44	param00044	float
+	48	param00048	float
+	52	param00052	float
+	56	param00056	float
+	60	param00060	bool
+fxBreath	0x860A0844
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+	24	param00024	string
+	28	param00028	string
+	32	param00032	int
+	36	param00036	int
+	40	param00040	bool
+fxCeiling	0x777AC506
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+	24	param00024	string
+fxDecal	0x13924511
+	8	param00008	bool
+	12	param00012	bytes
+	16	param00016	float
+	24	param00024	string
+	32	param00032	bytes
