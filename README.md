@@ -3,7 +3,7 @@ A tool to edit Bully's ACT files.
 
 This is version 3.3.1 of Marcdred's bully-mact-tool.  
 At the moment I am learning git and plan on cleaning up this code in the future, please be patient.  
-More information @ Bully Modding Discord or marcdred@outlook.com ( Beware that I rarely check this e-mail )  
+More information @ Bully Modding Discord
 
 * Instructions for CAT_TO_MACT.py:  
 	* ".MACT" files are very similar to regular ACT files but with a few tweaks.  
