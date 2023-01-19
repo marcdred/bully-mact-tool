@@ -12,13 +12,20 @@ from itertools import chain
 import os
 import sys
 from pathlib import Path
+import time
 
+# GOALS:
+#	--	Slightly decrease param type dependency to template files.
+#	--	Add optimization to TRACKS so that files are smaller and you can have more of them without breaking the game.
+#	--	Improve error handling/debugging.
 
 ## SETTINGS ##
 bool_print_debug = False
 bool_print_tree = False
 bool_little_endian = True
-
+bool_enable_optimization = True
+# for Nemesis.cat quick optimization takes 22 sec, slow optimization takes 2 minutes (rarely worth it)
+bool_quick_optimization = True
 
 ## CLASSES ##
 @dataclass
@@ -75,8 +82,8 @@ class OffsetManager:
 		for ss in string_list:
 			if ss.string == new_ss.string:
 				repeated = True
-				for so in new_ss.var_string_offsets:
-					ss.var_string_offsets.append(so)
+				for so in new_ss.string_slot_offsets:
+					ss.string_slot_offsets.append(so)
 		if not repeated:
 			string_list.append(new_ss)
 
@@ -118,23 +125,23 @@ class CounterManager:
 @dataclass
 class SleepingString:
 	string: str
-	# var_string_offsets has to be a list because of 'FileReference'
+	# string_slot_offsets has to be a list because of 'FileReference'
 	# They sometimes reutilize the same string multiple times and we don't wanna
 	# write it again for each use
-	var_string_offsets: list[int]
+	string_slot_offsets: list[int]
 	string_offsets: list[int]
-	var_param_offsets: list[int]
+	param_slot_offsets: list[int]
 	param_offsets: list[int]
 
 
 @dataclass
 class SleepingGroup:
 	logic_node: LogicNode
-	var_group_offset: int
+	group_slot_offsets: int
 	group_offset: int
-	var_condition_offsets: list[int]
+	condition_slot_offsets: list[int]
 	condition_offsets: list[int]
-	var_param_offsets: list[int]
+	param_slot_offsets: list[int]
 	param_offsets: list[int]
 
 
@@ -634,13 +641,13 @@ def write_string_variables(file):
 	for var in string_variables:
 		my_string = var.string
 		my_string_offset = file.tell()
-		var_param_offsets = []
+		param_slot_offsets = []
 		format_write(file, 0, "I")
 		format_write(file, len(var.source_logics), "H")
 		for source in var.source_logics:
-			var_param_offsets.append(file.tell())
+			param_slot_offsets.append(file.tell())
 			format_write(file, 0, "I")
-		ss = SleepingString(my_string, [my_string_offset], [], var_param_offsets, [])
+		ss = SleepingString(my_string, [my_string_offset], [], param_slot_offsets, [])
 		offset_manager.add_sleeping_string(ss)
 
 
@@ -659,15 +666,15 @@ def gather_groups(owner, logic_tree):
 def write_group_variables(file):
 	for var in group_variables:
 		my_group_offset = file.tell()
-		var_param_offsets = []
+		param_slot_offsets = []
 		format_write(file, 0, "I")
 		format_write(file, len(var.source_logics), "H")
 		for source in var.source_logics:
-			var_param_offsets.append(file.tell())
+			param_slot_offsets.append(file.tell())
 			format_write(file, 0, "I")
 		# I'll just lazily take the last source here
 		# No group optimization whatsoever
-		sg = SleepingGroup(source, my_group_offset, None, [], [], var_param_offsets, [])
+		sg = SleepingGroup(source, my_group_offset, None, [], [], param_slot_offsets, [])
 		offset_manager.add_sleeping_group(sg)
 
 
@@ -765,7 +772,8 @@ def write_param_value_by_param_type(file, param, db_param_type):
 		file.write(hash)
 		return
 	if value_type != "unk" and value_type != db_param_type:
-		print("Warning: Database thinks param '{0}' value '{1}' is '{2}' but value type is '{3}', perhaps the templates are incorrect, value will be treated as type '{3}'.".format(param.title, param.value, db_param_type, value_type))
+		# uncomment pls
+		# print("Warning: Template thinks param '{0}' value '{1}' is '{2}' but value type is '{3}'.".format(param.title, param.value, db_param_type, value_type))
 		db_param_type = value_type
 	if db_param_type == "bytes":
 		value = value[2:]
@@ -818,7 +826,7 @@ def write_param_value_by_param_type(file, param, db_param_type):
 				if sg.logic_node == param:
 					# We'll check if enough pointer_offsets in this SG before appending
 					# so that one single repeated thing doesn't eat all the offsets
-					len1 = len(sg.var_param_offsets)
+					len1 = len(sg.param_slot_offsets)
 					len2 = len(sg.param_offsets)
 					if len1 > len2:
 						match = True
@@ -834,8 +842,85 @@ def write_param_value_by_param_type(file, param, db_param_type):
 		print("Error: Unable to handle param type '{0}' on value '{1}', writing value zero.".format(param.value_type, param.value))
 		format_write(file, 0, "I")
 
+def optimize_param_data(logic_tree):
+	def get_param_id(sleeping_logic, param):
+		param_match_db = match_param_database(sleeping_logic.logic.title, param, db_tracks)
+		if param_match_db:
+			return int(param_match_db.id)
+		else:
+			param_id = get_param_id_from_param_title(param)
+			if param_id is not None:
+				return param_id
+			else:
+				print("Error: Unable to get param id for param '{0}'.".format(sl.logic.title))
+	@dataclass
+	class ParamMatch:
+		paramA: LogicNode
+		paramB: LogicNode
+	@dataclass
+	class OptimizationMatch:
+		logicA: SleepingLogic
+		logicB: SleepingLogic
+		param_matches: list[ParamMatch]
+	# Generate new list of optimized tracks
+	# TO-DO: 
+	#	1	--	check rules of optimization in original files
+	optimized_tracks = []
+	start_time = time.time()
+	number_of_verified_tracks = 0
+	total_bytes_saved = 0
+	for i, st1 in enumerate(offset_manager.sleeping_tracks):
+		best_match = None
+		for j, st2 in enumerate(offset_manager.sleeping_tracks):
+			if i >= j:
+				# optimization can't go back afaik, only forward
+				continue
+			else:
+				# early skip if optimization check isn't worth it
+				if best_match is not None and len(best_match.param_matches) > len(st2.logic.params):
+					continue
+				# quick optimization -- skip mismatched hashes
+				hash_match = st1.logic.title == st2.logic.title
+				if bool_quick_optimization and not hash_match:
+					continue
+				param_matches = []
+				for p1 in st1.logic.params:
+					pid1 = get_param_id(st1, p1)
+					for p2 in st2.logic.params:
+						pid2 = get_param_id(st2, p2)
+						if pid1 == pid2:
+							if p1.value == p2.value:
+								# param match has been found
+								pm = ParamMatch(p1, p2)
+								param_matches.append(pm)
+				# done checking param matches with st2
+				if len(param_matches):
+					# if any param matches, store as optimization match
+					if best_match is None or len(param_matches) > len(best_match.param_matches):
+						om = OptimizationMatch(st1, st2, param_matches)
+						best_match = om
+		# done checking for optimization matches for st1
+		# update total verified tracks
+		number_of_verified_tracks += 1
+		if best_match:
+			# get total bytes saved
+			for pm in best_match.param_matches:
+				if pm.paramA.value_type == "bool":
+					total_bytes_saved += 1
+				else:
+					total_bytes_saved += 4
+			# store best match
+			optimized_tracks.append(best_match)
+			print("->->-> Track {1}/{2}, optimized {0} params.".format(len(best_match.param_matches), number_of_verified_tracks, len(offset_manager.sleeping_tracks)))
+		else:
+			print("->->-> Track {0}/{1}, no optimizable params.".format(number_of_verified_tracks, len(offset_manager.sleeping_tracks)))
+	# End of optimization
+	end_time = time.time()
+	optimization_time = end_time - start_time
+	print("->->-> Time spent optimizing tracks: {0} seconds; Bytes saved: {1}.".format(round(optimization_time, 2), total_bytes_saved))
+	return optimized_tracks
 
-def write_param_data(file, logic_tree):
+def write_param_data(file, logic_tree, optimized_matches):
 	for sl in offset_manager.sleeping_conditions+offset_manager.sleeping_group_conditions:
 		safe_pos = file.tell()
 		sl.logic_offset = safe_pos
@@ -866,8 +951,11 @@ def write_param_data(file, logic_tree):
 		file.seek(sl.logic_pointer_offset, 0)
 		format_write(f_cat, safe_pos - p_data, "I")
 		file.seek(safe_pos)
+		# Pad optimization offset
+		format_write(file, 0, "H")
 		# Write track hash
-		format_write(file, 0, "H")  # opti offset
+		# TO-DO:
+		#	1	--	add track hash to optimization
 		hashed_title = hash_cat_value(sl.logic.title)
 		param_id = 0
 		param_id |= 0x0004
@@ -875,9 +963,19 @@ def write_param_data(file, logic_tree):
 			param_id |= 0x0001
 		format_write(file, param_id, "H")
 		file.write(hashed_title)
+		# Check for optimized params
+		my_params = []
+		for om in optimized_matches:
+			if om.logicA == sl:
+				for p in sl.logic.params:
+					if p not in [pm.paramA for pm in om.param_matches]:
+						my_params.append(p)
+		if not len(my_params):
+			# No param optimization
+			my_params = sl.logic.params
 		# Write params
-		number_of_params = len(sl.logic.params)
-		for i, logic_param in enumerate(sl.logic.params):
+		number_of_params = len(my_params)
+		for i, logic_param in enumerate(my_params):
 			param_id = get_param_id_from_param_title(logic_param)
 			param_match = match_param_database(sl.logic.title, logic_param, db_tracks)
 			# Write param flags
@@ -908,26 +1006,34 @@ def write_param_data(file, logic_tree):
 				print_debug(
 					"Warning: No matching param ID: {0} in param database.".format(param_id))
 				write_param_value_by_param_type(file, logic_param, logic_param.value_type)
-
+	# fix sleeping tracks optimization offsets
+	safe_pos = file.tell()
+	for sl in offset_manager.sleeping_tracks:
+		for om in optimized_matches:
+			if om.logicB == sl:
+				file.seek(om.logicA.logic_offset)
+				format_write(file, om.logicB.logic_offset - om.logicA.logic_offset, "H")
+	# end
+	file.seek(safe_pos)
 
 def _write_strings(file, sleeping_list):
 	for s in sleeping_list:
 		safe_pos = file.tell()
 		my_offset = safe_pos - p_strings
-		# Write my_offset on var_string_offsets
+		# Write my_offset on string_slot_offsets
 		# (Multiple offsets required because of 'FileReference')
-		for vso in s.var_string_offsets:
+		for vso in s.string_slot_offsets:
 			file.seek(vso, 0)
 			format_write(file, my_offset, "I")
-		# Write param_offsets on var_param_offsets
-		len1 = len(s.var_param_offsets)
+		# Write param_offsets on param_slot_offsets
+		len1 = len(s.param_slot_offsets)
 		len2 = len(s.param_offsets)
 		if len1 != len2:
-			print("Warning: Mismatching number of var_param_offsets {0} and param_offsets {1} for {2}.".format(len1, len2, s.string))
+			print("Warning: Mismatching number of param_slot_offsets {0} and param_offsets {1} for {2}.".format(len1, len2, s.string))
 		if len1 >= len2:
 			for i, po in enumerate(s.param_offsets):
 				param_safe_pos = file.tell()
-				var_pos = s.var_param_offsets[i]
+				var_pos = s.param_slot_offsets[i]
 				file.seek(var_pos)
 				format_write(file, po - p_data, "I")
 				file.seek(param_safe_pos)
@@ -949,8 +1055,8 @@ def write_groups(file):
 	for g in offset_manager.sleeping_groups:
 		safe_pos = file.tell()
 		my_offset = safe_pos - p_groups
-		# Write my_offset on var_group_offset
-		file.seek(g.var_group_offset)
+		# Write my_offset on group_slot_offsets
+		file.seek(g.group_slot_offsets)
 		format_write(file, my_offset, "I")
 		# Write number of conditions
 		file.seek(safe_pos, 0)
@@ -959,7 +1065,7 @@ def write_groups(file):
 		# since these conditions are not listed within the node tree
 		for c in g.logic_node.children:
 			condition_pointer_offset = file.tell()
-			g.var_condition_offsets.append(condition_pointer_offset)
+			g.condition_slot_offsets.append(condition_pointer_offset)
 			format_write(file, 0, "I")
 			sl = SleepingLogic(c, condition_pointer_offset, None, None)
 			offset_manager.add_sleeping_group_condition(sl)
@@ -985,29 +1091,29 @@ def fix_group_offsets(file):
 						group.condition_offsets.append(sl.logic_offset)
 						break
 		# Write condition offsets into condition pointer offsets
-		len1 = len(group.var_condition_offsets)
+		len1 = len(group.condition_slot_offsets)
 		len2 = len(group.condition_offsets)
 		if len1 != len2:
 			print("Warning: Mismatching number of condition_pointer_offsets {0} and condition_offsets {1}.".format(len1, len2))
 		if len1 >= len2:
 			for i, po in enumerate(group.condition_offsets):
 				param_safe_pos = file.tell()
-				var_pos = group.var_condition_offsets[i]
+				var_pos = group.condition_slot_offsets[i]
 				file.seek(var_pos)
 				format_write(file, po - p_data, "I")
 				file.seek(param_safe_pos)
 		# Write param offsets into param pointer offsets
-		len1 = len(group.var_param_offsets)
+		len1 = len(group.param_slot_offsets)
 		len2 = len(group.param_offsets)
 		if len1 != len2:
 			print("Warning: Mismatching number of param_pointer_offsets {0} and param_offsets {1}.".format(len1, len2))
-			# print("VPO: ", group.var_param_offsets)
+			# print("VPO: ", group.param_slot_offsets)
 			# print("PO: ", group.param_offsets)
 			# print(group)
 		if len1 >= len2:
 			for i, po in enumerate(group.param_offsets):
 				param_safe_pos = file.tell()
-				var_pos = group.var_param_offsets[i]
+				var_pos = group.param_slot_offsets[i]
 				file.seek(var_pos)
 				format_write(file, po - p_data, "I")
 				file.seek(param_safe_pos)
@@ -1130,10 +1236,20 @@ for fmact in my_mact_files:
 	p_groups = f_cat.tell()
 	write_groups(f_cat)
 
+	## WIP OPTIMIZE TRACK PARAMS ##
+	optimized_matches = []
+	print("->-> Optimizing track parameter data.")
+	if not bool_enable_optimization:
+		print("->->-> WARNING: Optimization is disabled, this will result in bigger file sizes.")
+	else:
+		if not bool_quick_optimization:
+			print("->->-> WARNING: Slow optimization selected, this might take several minutes.")
+		optimized_matches = optimize_param_data(logic_tree)
+
 	## PARAMS DATA ##
 	print("->-> Writing parameter data.")
 	p_data = f_cat.tell()
-	write_param_data(f_cat, logic_tree)
+	write_param_data(f_cat, logic_tree, optimized_matches)
 
 	## STRINGS ##
 	print("->-> Writing string data.")
