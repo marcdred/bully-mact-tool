@@ -1,6 +1,6 @@
 # Testing/Debugging files
 OG/
 OG/*
-Nemesis.mact
-Nemesis.cat
+*.mact
+*.cat
 .gitignore
