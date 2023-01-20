@@ -15,19 +15,21 @@ from pathlib import Path
 import time
 
 # GOALS:
-#	--	Slightly decrease param type dependency to template files.
-#	--	Add optimization to TRACKS so that files are smaller and you can have more of them without breaking the game.
-#	--	Improve error handling/debugging.
+# --	Slightly decrease param type dependency to template files.
+# --	Add optimization to TRACKS so that files are smaller and you can have more of them without breaking the game.
+# --	Improve error handling/debugging.
 
 ## SETTINGS ##
 bool_print_debug = False
 bool_print_tree = False
 bool_little_endian = True
-bool_enable_optimization = True
+bool_enable_optimization = False
 # for Nemesis.cat quick optimization takes 22 sec, slow optimization takes 2 minutes (rarely worth it)
 bool_quick_optimization = True
 
 ## CLASSES ##
+
+
 @dataclass
 class ActNode:
 	keywords: list[str]
@@ -56,19 +58,6 @@ class ActNode:
 
 
 @dataclass
-class LogicStringVariable:
-	offset: int
-	string: str
-	source_logics: list[ActLogic]
-
-
-@dataclass
-class LogicGroupVariable:
-	offset: int
-	source_logics: list[ActLogic]
-
-
-@dataclass
 class OffsetManager:
 	sleeping_strings: list[SleepingString]
 	sleeping_groups: list[SleepingGroup]
@@ -77,18 +66,17 @@ class OffsetManager:
 	sleeping_group_conditions: list[SleepingLogic]
 	sleeping_tracks: list[SleepingLogic]
 
-	def _add_sleeping_string(self, new_ss, string_list):
+	def _add_sleeping_string(self, new_ss, sleeper_list):
 		repeated = False
-		for ss in string_list:
-			if ss.string == new_ss.string:
+		for old_ss in sleeper_list:
+			if old_ss.string == new_ss.string:
 				repeated = True
-				for so in new_ss.string_slot_offsets:
-					ss.string_slot_offsets.append(so)
+				for user in new_ss.string_users:
+					old_ss.string_users.append(user)
+				for offset in new_ss.string_slots:
+					old_ss.string_slots.append(offset)
 		if not repeated:
-			string_list.append(new_ss)
-
-	def add_sleeping_group(self, new_sg):
-		self.sleeping_groups.append(new_sg)
+			sleeper_list.append(new_ss)
 
 	def add_sleeping_string(self, new_ss):
 		self._add_sleeping_string(new_ss, self.sleeping_strings)
@@ -96,22 +84,39 @@ class OffsetManager:
 	def add_sleeping_reference_string(self, new_ss):
 		self._add_sleeping_string(new_ss, self.sleeping_reference_strings)
 
-	def _add_sleeping_logic(self, new_logic, logic_list):
+	def _add_sleeping_group(self, new_sg, sleeper_list):
 		repeated = False
-		for logic in logic_list:
-			if logic.logic == new_logic:
+		for old_sg in sleeper_list:
+			if old_sg.cg_param == new_sg.cg_param:
 				repeated = True
+				for user in new_sg.cg_users:
+					old_sg.cg_users.append(user)
+				for offset in new_sg.group_slots:
+					old_sg.group_slots.append(offset)
 		if not repeated:
-			logic_list.append(new_logic)
+			sleeper_list.append(new_sg)
 
-	def add_sleeping_condition(self, new_logic):
-		self._add_sleeping_logic(new_logic, self.sleeping_conditions)
-	
-	def add_sleeping_group_condition(self, new_logic):
-		self._add_sleeping_logic(new_logic, self.sleeping_group_conditions)
+	def add_sleeping_group(self, new_sg):
+		self._add_sleeping_group(new_sg, self.sleeping_groups)
 
-	def add_sleeping_track(self, new_logic):
-		self._add_sleeping_logic(new_logic, self.sleeping_tracks)
+	def _add_sleeping_logic(self, new_sl, sleeper_list):
+		repeated = False
+		for old_sl in sleeper_list:
+			if old_sl.logic == new_sl.logic:
+				repeated = True
+				for offset in new_sl.logic_slot_offsets:
+					old_sl.logic_slot_offsets.append(offset)
+		if not repeated:
+			sleeper_list.append(new_sl)
+
+	def add_sleeping_condition(self, new_sl):
+		self._add_sleeping_logic(new_sl, self.sleeping_conditions)
+
+	def add_sleeping_group_condition(self, new_sg):
+		self._add_sleeping_logic(new_sg, self.sleeping_group_conditions)
+
+	def add_sleeping_track(self, new_sl):
+		self._add_sleeping_logic(new_sl, self.sleeping_tracks)
 
 
 @dataclass
@@ -124,33 +129,57 @@ class CounterManager:
 
 @dataclass
 class SleepingString:
+	# main
 	string: str
-	# string_slot_offsets has to be a list because of 'FileReference'
-	# They sometimes reutilize the same string multiple times and we don't wanna
-	# write it again for each use
-	string_slot_offsets: list[int]
-	string_offsets: list[int]
-	param_slot_offsets: list[int]
+	string_users: list[LogicNode]
+	# used by variable table
+	string_slots: list[int] # multiple string slots required because of 'FileReference'
+	# used by params when writing param data
+	param_slots: list[int]
 	param_offsets: list[int]
 
 
 @dataclass
 class SleepingGroup:
-	logic_node: LogicNode
-	group_slot_offsets: int
-	group_offset: int
-	condition_slot_offsets: list[int]
+	# MAP:
+	# [GROUP VARIABLES]
+	# [X] LIST OF GROUP VARIABLES --> GROUP VARIABLE
+	# [GROUP VARIABLE]
+	# [X]	GROUP SLOTS --> GROUP
+	# [X]	PARAMETER SLOTS --> PARAMETER
+	# [GROUP]
+	# [X] CONDITION OFFSETS --> CONDITION
+	#
+	# CG_PARAM:
+	# LogicNode structure that contains a param with type condition group.
+	cg_param: LogicNode
+	cg_users: list[LogicNode]
+	# GROUP_SLOT_OFFSETS:
+	# List of <integer offsets> stored in <GROUP VARIABLES>
+	# that point to a group.
+	# This list is created when
+	# This list will be filled when running write_groups()
+	group_slots: list[int]
+	# CONDITION_SLOT_OFFSETS:
+	# List of <integer offsets> stored in <GROUP>
+	# that point to a condition.
+	# This list is created when running write_groups()
+	condition_slots: list[int]
 	condition_offsets: list[int]
-	param_slot_offsets: list[int]
+	# PARAM_SLOT_OFFSETS:
+	# List of <integer offsets> stored in <GROUP VARIABLES>
+	# that point to a parameter.
+	# This list is created when running write_group_variables()
+	param_slots: list[int]
 	param_offsets: list[int]
 
 
 @dataclass
 class SleepingLogic:
 	logic: ActLogic
-	logic_pointer_offset: int
+	# LOGIC SLOT <- Receives logic offsets
+	logic_slot_offsets: list[int]
 	logic_offset: int
-	param_offsets: list[int]
 
 
 @dataclass
@@ -200,6 +229,15 @@ def ndots(n):
 
 def split_string(string, pos):
 	return string[:pos], string[pos:]
+
+
+def strip_string(string):
+	# Remove quotes if any
+	if string.startswith('\"'):
+		string = string[1:-1]
+	if string.startswith('h\"'):
+		string = string[2:-1]
+	return string
 
 
 def print_debug(msg):
@@ -272,9 +310,9 @@ def get_value_type(value):
 	# Decide value type
 	if value is None:
 		return "none"
-	elif value.startswith("0x") and len(value)>4:
+	elif value.startswith("0x") and len(value) > 4:
 		return "bytes"
-	elif value.startswith("0x") and len(value)<=4:
+	elif value.startswith("0x") and len(value) <= 4:
 		return "bool"
 	elif value.upper() == "TRUE" or value.upper() == "FALSE":
 		return "bool"
@@ -471,7 +509,8 @@ def _generate_logic_tree(keywords_owner, type_owner, keyword_branch):
 			my_type = "Param"
 			my_value_type = "cg"
 		else:
-			print("Warning: Unable to identify type of '{0}'.".format(my_title))
+			print(
+				"Warning: Unable to identify type of '{0}'.".format(my_title))
 			my_type = "Node"
 	# Create ActLogic
 	my_logic = LogicNode(my_title, my_type, my_value,
@@ -522,160 +561,121 @@ def gather_logic(logic_nodes):
 	return conditions, tracks
 
 
-def add_string_variable(new_sv):
-	match = False
-	for sv in string_variables:
-		if new_sv.string == sv.string:
-			match = True
-			for sl in new_sv.source_logics:
-				sv.source_logics.append(sl)
-			break
-	if not match:
-		string_variables.append(new_sv)
-
-
-def add_group_variable(new_gv):
-	match = False
-	'''
-	for gv in group_variables:
-		pass
-		if new_gv.string == sv.string:
-			match = True
-			for sl in new_gv.source_logics:
-				sv.source_logics.append(sl)
-			break
-	'''
-	if not match:
-		group_variables.append(new_gv)
-
-
 def get_param_id_from_param_title(param):
-		# Get param id from [00000] or param00000, if possible
-		id_string = ''
-		if param.title.startswith('[') or param.title.startswith('param'):
-			for c in param.title:
-				if c.isdigit():
-					id_string += c
-		if len(id_string):
-			return int(id_string)
-		else:
-			return None
+	# Get param id from [00000] or param00000, if possible
+	id_string = ''
+	if param.title.startswith('[') or param.title.startswith('param'):
+		for c in param.title:
+			if c.isdigit():
+				id_string += c
+	if len(id_string):
+		return int(id_string)
+	else:
+		return None
 
 
 def match_param_database(logic_title, logic_param, db):
-		# Match param with DbTracks' and DbConditions' params
-		param_id = get_param_id_from_param_title(logic_param)
-		param_match = None
-		for dblogic in db:
-			if dblogic.title == logic_title:
-				# DbCondition match
-				for p in dblogic.params:
-					if param_id is None:
-						# Unable to get param id from param title
-						# Match by title instead
-						if p.title == logic_param.title:
-							# Param match
-							param_match = p
-							break
-					else:
-						# Param id acquired from title
-						# Match by raw ID
-						if int(p.id) == int(param_id):
-							# Param match
-							param_match = p
-							break
-		return param_match
-	
+	# Match param with DbTracks' and DbConditions' params
+	param_id = get_param_id_from_param_title(logic_param)
+	param_match = None
+	for dblogic in db:
+		if dblogic.title == logic_title:
+			# DbCondition match
+			for p in dblogic.params:
+				if param_id is None:
+					# Unable to get param id from param title
+					# Match by title instead
+					if p.title == logic_param.title:
+						# Param match
+						param_match = p
+						break
+				else:
+					# Param id acquired from title
+					# Match by raw ID
+					if int(p.id) == int(param_id):
+						# Param match
+						param_match = p
+						break
+	return param_match
 
-def gather_strings(owner, logic_tree):
-	my_logic = logic_tree
-	my_type = my_logic.type
-	my_value = my_logic.value
-	my_value_type = my_logic.value_type
-	if my_value_type == "string":
-		# Remove quotes
-		if my_value.startswith('\"'):
-			my_value = my_value[1:-1]
-		if my_value.startswith('h\"'):
-			my_value = my_value[2:-1]
-		# Check if any remaining string before continuing
-		if len(my_value):
-			if owner.title == "FileReference":
-				# Add to string variables
-				match = False
-				for s in reference_strings:
-					if s.string == my_value:
-						s.source_logics.append(my_logic)
-						match = True
-				if not match:
-					sv = LogicStringVariable(None, my_value, [])
-					reference_strings.append(sv)
-			else:
-				# Add to string variables
-				match = False
-				for s in string_variables:
-					if s.string == my_value:
-						s.source_logics.append(my_logic)
-						match = True
-				if not match:
-					# Warning: Only add string if db param type is 'string'
-					# Some string values such as param00024 from track Animation
-					# must always be stored as a hash, they do not work when using 'string variables'
-					# Node paths however must be kept only as 'string variables'
-					param_match = match_param_database(owner.title, my_logic, db_conditions + db_tracks)
-					if param_match:
-						# Param match, only add string variable if type string
-						if param_match.type in ("string"):
-							sv = LogicStringVariable(None, my_value, [my_logic])
-							add_string_variable(sv)
-					else:
-						# No param match
-						# This should case no problems now that hashed strings start with 'h'
-						sv = LogicStringVariable(None, my_value, [my_logic])
-						add_string_variable(sv)
-	for c in my_logic.conditions + my_logic.tracks + my_logic.params + my_logic.children:
-		gather_strings(my_logic, c)
+
+def gather_sleeper_strings():
+	for sl in offset_manager.sleeping_tracks + offset_manager.sleeping_conditions:
+		for p in sl.logic.params:
+			if p.value_type == "string":
+				my_value = strip_string(p.value)
+				# Check if any remaining string before continuing
+				if len(my_value):
+					ss = SleepingString(my_value, [sl.logic], [], [], [])
+					offset_manager.add_sleeping_string(ss)
 
 
 def write_string_variables(file):
-	for var in string_variables:
-		my_string = var.string
-		my_string_offset = file.tell()
-		param_slot_offsets = []
+	for ss in offset_manager.sleeping_strings:
+		ss.string_slots.append(file.tell())
+		# pad empty string offset
 		format_write(file, 0, "I")
-		format_write(file, len(var.source_logics), "H")
-		for source in var.source_logics:
-			param_slot_offsets.append(file.tell())
+		# write number of times this string is used as parameter
+		number_of_uses = len(ss.string_users)
+		format_write(file, number_of_uses, "H")
+		# pad (x) integers
+		for i in range(0, number_of_uses):
+			ss.param_slots.append(file.tell())
 			format_write(file, 0, "I")
-		ss = SleepingString(my_string, [my_string_offset], [], param_slot_offsets, [])
-		offset_manager.add_sleeping_string(ss)
 
 
-def gather_groups(owner, logic_tree):
-	my_logic = logic_tree
-	for c in my_logic.conditions + my_logic.tracks + my_logic.params + my_logic.children:
-		if c.type == "Param" and len(c.children):
-			# print(c.value, c.type, len(c.conditions), len(c.tracks), len(c.params), len(c.children))
-			# populated group
-			gv = LogicGroupVariable(None, [c])
-			add_group_variable(gv)
-	for c in my_logic.conditions + my_logic.tracks + my_logic.params + my_logic.children:
-		gather_groups(my_logic, c)
+def gather_sleeper_groups():
+	debug_counter = 0
+	for sl in offset_manager.sleeping_tracks + offset_manager.sleeping_conditions:
+		for p in sl.logic.params:
+			if p.value_type == "cg" and len(p.children):
+				# print(sl.logic.title)
+				sg = SleepingGroup(p, [sl.logic], [], [], [], [], [])
+				offset_manager.add_sleeping_group(sg)
+				debug_counter += 1
 
 
 def write_group_variables(file):
-	for var in group_variables:
-		my_group_offset = file.tell()
-		param_slot_offsets = []
+	for sg in offset_manager.sleeping_groups:
+		sg.group_slots.append(file.tell())
+		# pad empty condition group offset
 		format_write(file, 0, "I")
-		format_write(file, len(var.source_logics), "H")
-		for source in var.source_logics:
-			param_slot_offsets.append(file.tell())
+		# write number of times this group is used as a parameter
+		number_of_uses = len(sg.cg_users)
+		format_write(file, number_of_uses, "H")
+		# pad (x) integers
+		for i in range(0, number_of_uses):
+			sg.param_slots.append(file.tell())
 			format_write(file, 0, "I")
-		# I'll just lazily take the last source here
-		# No group optimization whatsoever
-		sg = SleepingGroup(source, my_group_offset, None, [], [], param_slot_offsets, [])
-		offset_manager.add_sleeping_group(sg)
+
+
+def set_early_sleepers(logic_tree):
+	my_logic = logic_tree
+	my_type = my_logic.type
+	# set up sleeping reference strings
+	if my_type in ('FileReference'):
+		file_name = None
+		file_path = None
+		for p in my_logic.params:
+			if p.title == 'fileName':
+				file_name = p.value[1:-1]
+			if p.title == 'path':
+				file_path = p.value[1:-1]
+		ss = SleepingString(file_name, [], [], [], [])
+		offset_manager.add_sleeping_reference_string(ss)
+		ss = SleepingString(file_path, [], [], [], [])
+		offset_manager.add_sleeping_reference_string(ss)
+	# set up sleeping condition
+	if my_type in ('Condition'):
+		sl = SleepingLogic(my_logic, [], None)
+		offset_manager.add_sleeping_condition(sl)
+	# set up sleeping tracks
+	if my_type in ('Track'):
+		sl = SleepingLogic(my_logic, [], None)
+		offset_manager.add_sleeping_track(sl)
+	# call recursion
+	for c in my_logic.conditions + my_logic.tracks + my_logic.params + my_logic.children:
+		set_early_sleepers(c)
 
 
 def write_cat_tree(file, logic_tree):
@@ -712,9 +712,9 @@ def write_cat_tree(file, logic_tree):
 				file_path = p.value[1:-1]
 		# Set up sleeping reference string
 		my_offset = file.tell()
-		ss = SleepingString(file_name, [my_offset], [], [], [])
+		ss = SleepingString(file_name, [], [my_offset], [], [])
 		offset_manager.add_sleeping_reference_string(ss)
-		ss = SleepingString(file_path, [my_offset+4], [], [], [])
+		ss = SleepingString(file_path, [], [my_offset+4], [], [])
 		offset_manager.add_sleeping_reference_string(ss)
 		# Write padding
 		format_write(file, 0, "I")
@@ -733,7 +733,7 @@ def write_cat_tree(file, logic_tree):
 		for c in my_logic.conditions:
 			# Set up sleeping condition
 			my_offset = file.tell()
-			sl = SleepingLogic(c, my_offset, None, None)
+			sl = SleepingLogic(c, [my_offset], None)
 			offset_manager.add_sleeping_condition(sl)
 			# Write padding
 			format_write(file, 0, "I")
@@ -741,9 +741,9 @@ def write_cat_tree(file, logic_tree):
 	if my_type in ('Node'):
 		format_write(file, number_of_tracks, "B")
 		for t in my_logic.tracks:
-			# Set up sleeping track
+			# update sleeping track
 			my_offset = file.tell()
-			sl = SleepingLogic(t, my_offset, None, [])
+			sl = SleepingLogic(t, [my_offset], None)
 			offset_manager.add_sleeping_track(sl)
 			# Write padding
 			format_write(file, 0, "I")
@@ -753,98 +753,76 @@ def write_cat_tree(file, logic_tree):
 	# call recursion
 	for c in my_logic.children:
 		write_cat_tree(file, c)
-	
 
-def write_param_value_by_param_type(file, param, db_param_type):
+
+def write_param_value_by_param_type(file, sleeping_logic, param, db_param_type):
 	value = param.value
 	value_type = param.value_type
-	# temporary jank fix for params that need to be stored as hash
-	# such as param00024 from Animation (t-pose otherwise)
-	if value_type == "string" and db_param_type == "bytes":
-		if value.startswith('\"'):
-			value = value[1:-1]
-		match = False
-		for ss in offset_manager.sleeping_strings:
-			if ss.string == value:
-				match = True
-				ss.param_offsets.append(file.tell())
-		hash = hash_cat_value(value)
-		file.write(hash)
-		return
-	if value_type != "unk" and value_type != db_param_type:
-		# uncomment pls
-		# print("Warning: Template thinks param '{0}' value '{1}' is '{2}' but value type is '{3}'.".format(param.title, param.value, db_param_type, value_type))
-		db_param_type = value_type
-	if db_param_type == "bytes":
+	if value_type == "bytes":
 		value = value[2:]
 		try:
 			value = bytearray.fromhex(value)
 		except:
-			print("Error: Mismatched param type '{0}' on value '{1}', expected bytes. Writing zero. (Try generating templates)".format(param.value_type, param.value))
+			print("Error: Mismatched param type '{0}' on value '{1}', expected bytes. Writing zero. (Try generating templates)".format(
+				param.value_type, param.value))
 			value = bytearray.fromhex("00000000")
 		file.write(value)
-	elif db_param_type == "int":
+	elif value_type == "int":
 		format_write(file, int(value), "i")
-	elif db_param_type == "bool":
+	elif value_type == "bool":
 		string = str(value).upper()
 		if '1' in string or "TRUE" in string:
 			format_write(file, 1, "B")
 		else:
 			format_write(file, 0, "B")
-	elif db_param_type == "float":
+	elif value_type == "float":
 		format_write(file, float(value), "f")
-	elif db_param_type == "string":
+	elif value_type == "string":
 		# Try to match with sleeping strings first
-		if value.startswith('\"'):
-			value = value[1:-1]
 		match = False
+		value = strip_string(value)
 		for ss in offset_manager.sleeping_strings:
 			if ss.string == value:
 				match = True
 				ss.param_offsets.append(file.tell())
+				break
 		if match:
 			format_write(file, 0, "I")
 		else:
 			hash = hash_cat_value(value)
 			file.write(hash)
-	elif db_param_type == "hashed_string":
+	elif value_type == "hashed_string":
 		# Remove 'h' and quotes from string
 		if value.startswith('h\"'):
 			value = value[2:-1]
 		hash = hash_cat_value(value)
 		file.write(hash)
-	elif db_param_type == "cg":
+	elif value_type == "cg":
 		# Ignore CG if no children (should have conditions -- verify later)
 		if not len(param.children):
 			format_write(file, 0, "I")
-		else:	
+		else:
 			# Match with sleeping groups
 			match = False
-			safe_pos = file.tell()
-			# Store CG offsets to be used by fix_group_offsets -- fix jank later
 			for sg in offset_manager.sleeping_groups:
-				if sg.logic_node == param:
-					# We'll check if enough pointer_offsets in this SG before appending
-					# so that one single repeated thing doesn't eat all the offsets
-					len1 = len(sg.param_slot_offsets)
-					len2 = len(sg.param_offsets)
-					if len1 > len2:
-						match = True
-						sg.param_offsets.append(safe_pos)
-						break
+				if sg.cg_param == param:
+					match = True
+					sg.param_offsets.append(file.tell())
+					break
 			if not match:
-				print("Warning: Unable to match param '{0}' to variable condition group.".format(param.title))
+				print("Error: Param '{0}' type '{1}' from '{2}' could not be matched to variable condition group.".format(
+					param.title, param.value_type, sleeping_logic.logic.title))
 			format_write(file, 0, "I")
-	elif db_param_type == "none":
-		print("Warning: Param {0} has value type none.".format(param.title))
-		format_write(file, 0, "I")
 	else:
-		print("Error: Unable to handle param type '{0}' on value '{1}', writing value zero.".format(param.value_type, param.value))
+		print("Error: Unable to handle param type '{0}' on value '{1}', writing value zero.".format(
+			param.value_type, param.value))
 		format_write(file, 0, "I")
+
 
 def optimize_param_data(logic_tree):
 	def get_param_id(sleeping_logic, param):
-		param_match_db = match_param_database(sleeping_logic.logic.title, param, db_tracks)
+		param_match_db = match_param_database(
+			sleeping_logic.logic.title, param, db_tracks)
 		if param_match_db:
 			return int(param_match_db.id)
 		else:
@@ -852,20 +830,23 @@ def optimize_param_data(logic_tree):
 			if param_id is not None:
 				return param_id
 			else:
-				print("Error: Unable to get param id for param '{0}'.".format(sl.logic.title))
+				print("Error: Unable to get param id for param '{0}'.".format(
+					sl.logic.title))
+
 	@dataclass
 	class ParamMatch:
 		paramA: LogicNode
 		paramB: LogicNode
+
 	@dataclass
 	class OptimizationMatch:
 		logicA: SleepingLogic
 		logicB: SleepingLogic
 		param_matches: list[ParamMatch]
 	# Generate new list of optimized tracks
-	# TO-DO: 
-	#	1	--	check rules of optimization in original files
-	optimized_tracks = []
+	# TO-DO:
+	# 1	--	check rules of optimization in original files
+	optimized_sleeping_tracks = []
 	start_time = time.time()
 	number_of_verified_tracks = 0
 	total_bytes_saved = 0
@@ -910,23 +891,28 @@ def optimize_param_data(logic_tree):
 				else:
 					total_bytes_saved += 4
 			# store best match
-			optimized_tracks.append(best_match)
-			print("->->-> Track {1}/{2}, optimized {0} params.".format(len(best_match.param_matches), number_of_verified_tracks, len(offset_manager.sleeping_tracks)))
+			optimized_sleeping_tracks.append(best_match)
+			print("->->-> Track {1}/{2}, optimized {0} params.".format(len(
+				best_match.param_matches), number_of_verified_tracks, len(offset_manager.sleeping_tracks)))
 		else:
-			print("->->-> Track {0}/{1}, no optimizable params.".format(number_of_verified_tracks, len(offset_manager.sleeping_tracks)))
+			print("->->-> Track {0}/{1}, no optimizable params.".format(
+				number_of_verified_tracks, len(offset_manager.sleeping_tracks)))
 	# End of optimization
 	end_time = time.time()
 	optimization_time = end_time - start_time
-	print("->->-> Time spent optimizing tracks: {0} seconds; Bytes saved: {1}.".format(round(optimization_time, 2), total_bytes_saved))
-	return optimized_tracks
+	print("->->-> Time spent optimizing tracks: {0} seconds; Bytes saved: {1}.".format(
+		round(optimization_time, 2), total_bytes_saved))
+	return optimized_sleeping_tracks
+
 
 def write_param_data(file, logic_tree, optimized_matches):
 	for sl in offset_manager.sleeping_conditions+offset_manager.sleeping_group_conditions:
 		safe_pos = file.tell()
 		sl.logic_offset = safe_pos
-		# Write pointer
-		file.seek(sl.logic_pointer_offset, 0)
-		format_write(f_cat, safe_pos - p_data, "I")
+		# Write pointers
+		for lpo in sl.logic_slot_offsets:
+			file.seek(lpo, 0)
+			format_write(f_cat, safe_pos - p_data, "I")
 		file.seek(safe_pos)
 		# Write condition hash
 		hashed_title = hash_cat_value(sl.logic.title)
@@ -935,27 +921,31 @@ def write_param_data(file, logic_tree, optimized_matches):
 		number_of_params = len(sl.logic.params)
 		for logic_param in sl.logic.params:
 			param_id = get_param_id_from_param_title(logic_param)
-			param_match = match_param_database(sl.logic.title, logic_param, db_conditions)
+			param_match = match_param_database(
+				sl.logic.title, logic_param, db_conditions)
 			if param_match:
 				# Write param value using database match's type
-				write_param_value_by_param_type(file, logic_param, param_match.type)
+				write_param_value_by_param_type(
+					file, sl, logic_param, param_match.type)
 			else:
 				# Write param value using logic param's type
 				print_debug(
 					"Warning: No matching param ID: {0} in param database.".format(param_id))
-				write_param_value_by_param_type(file, logic_param, logic_param.value_type)
+				write_param_value_by_param_type(
+					file, sl, logic_param, logic_param.value_type)
 	for sl in offset_manager.sleeping_tracks:
 		safe_pos = file.tell()
 		sl.logic_offset = safe_pos
-		# Write pointer
-		file.seek(sl.logic_pointer_offset, 0)
-		format_write(f_cat, safe_pos - p_data, "I")
+		# Write pointers
+		for lpo in sl.logic_slot_offsets:
+			file.seek(lpo, 0)
+			format_write(f_cat, safe_pos - p_data, "I")
 		file.seek(safe_pos)
 		# Pad optimization offset
 		format_write(file, 0, "H")
 		# Write track hash
 		# TO-DO:
-		#	1	--	add track hash to optimization
+		# 1	--	add track hash to optimization
 		hashed_title = hash_cat_value(sl.logic.title)
 		param_id = 0
 		param_id |= 0x0004
@@ -977,12 +967,13 @@ def write_param_data(file, logic_tree, optimized_matches):
 		number_of_params = len(my_params)
 		for i, logic_param in enumerate(my_params):
 			param_id = get_param_id_from_param_title(logic_param)
-			param_match = match_param_database(sl.logic.title, logic_param, db_tracks)
+			param_match = match_param_database(
+				sl.logic.title, logic_param, db_tracks)
 			# Write param flags
 			if param_match:
 				param_id = int(param_match.id)
 				param_id <<= 3
-				if(param_match.type != 'bool'):
+				if (param_match.type != 'bool'):
 					param_id |= 0x0004
 			else:
 				print_debug(
@@ -993,47 +984,51 @@ def write_param_data(file, logic_tree, optimized_matches):
 			if not param_id:
 				print("Bug: Unable to find ID for param, file will break.")
 				param_id = 0
-			if(i < number_of_params-1):
+			if (i < number_of_params-1):
 				param_id |= 0x0001
 			# Write param id
 			format_write(file, param_id, "H")
 			# Write param value
 			if param_match:
 				# Write param value using database match's type
-				write_param_value_by_param_type(file, logic_param, param_match.type)
+				write_param_value_by_param_type(
+					file, sl, logic_param, param_match.type)
 			else:
 				# Write param value using logic param's type
 				print_debug(
 					"Warning: No matching param ID: {0} in param database.".format(param_id))
-				write_param_value_by_param_type(file, logic_param, logic_param.value_type)
+				write_param_value_by_param_type(
+					file, sl, logic_param, logic_param.value_type)
 	# fix sleeping tracks optimization offsets
 	safe_pos = file.tell()
 	for sl in offset_manager.sleeping_tracks:
 		for om in optimized_matches:
 			if om.logicB == sl:
 				file.seek(om.logicA.logic_offset)
-				format_write(file, om.logicB.logic_offset - om.logicA.logic_offset, "H")
+				format_write(file, om.logicB.logic_offset -
+							 om.logicA.logic_offset, "H")
 	# end
 	file.seek(safe_pos)
+
 
 def _write_strings(file, sleeping_list):
 	for s in sleeping_list:
 		safe_pos = file.tell()
 		my_offset = safe_pos - p_strings
-		# Write my_offset on string_slot_offsets
 		# (Multiple offsets required because of 'FileReference')
-		for vso in s.string_slot_offsets:
-			file.seek(vso, 0)
+		for slot in s.string_slots:
+			file.seek(slot, 0)
 			format_write(file, my_offset, "I")
 		# Write param_offsets on param_slot_offsets
-		len1 = len(s.param_slot_offsets)
+		len1 = len(s.param_slots)
 		len2 = len(s.param_offsets)
 		if len1 != len2:
-			print("Warning: Mismatching number of param_slot_offsets {0} and param_offsets {1} for {2}.".format(len1, len2, s.string))
-		if len1 >= len2:
+			print("Error: STRING '{2}' has mismatching number of param_slots ({0}) and param_offsets ({1}).".format(
+				len1, len2, s.string))
+		else:
 			for i, po in enumerate(s.param_offsets):
 				param_safe_pos = file.tell()
-				var_pos = s.param_slot_offsets[i]
+				var_pos = s.param_slots[i]
 				file.seek(var_pos)
 				format_write(file, po - p_data, "I")
 				file.seek(param_safe_pos)
@@ -1056,18 +1051,19 @@ def write_groups(file):
 		safe_pos = file.tell()
 		my_offset = safe_pos - p_groups
 		# Write my_offset on group_slot_offsets
-		file.seek(g.group_slot_offsets)
-		format_write(file, my_offset, "I")
+		for offset in g.group_slots:
+			file.seek(offset)
+			format_write(file, my_offset, "I")
 		# Write number of conditions
 		file.seek(safe_pos, 0)
-		format_write(file, len(g.logic_node.children), "B")
+		format_write(file, len(g.cg_param.children), "B")
 		# Write padding for each condition offset and add extra sleeping conditions
 		# since these conditions are not listed within the node tree
-		for c in g.logic_node.children:
+		for c in g.cg_param.children:
 			condition_pointer_offset = file.tell()
-			g.condition_slot_offsets.append(condition_pointer_offset)
+			g.condition_slots.append(condition_pointer_offset)
 			format_write(file, 0, "I")
-			sl = SleepingLogic(c, condition_pointer_offset, None, None)
+			sl = SleepingLogic(c, [condition_pointer_offset], None)
 			offset_manager.add_sleeping_group_condition(sl)
 
 
@@ -1075,45 +1071,39 @@ def fix_group_offsets(file):
 	safe_pos = file.tell()
 	debug_counter = 0
 
-	# this list is a fix so that different groups with identical conditions
-	# don't all hoard the first identical condition and ignore the repeats
-	used_condition_offsets = []
-	for group in offset_manager.sleeping_groups:
+	for i, group in enumerate(offset_manager.sleeping_groups):
 		# Run through all sleeping conditions
 		# Check which ones are used in condition groups
 		# Append their offset to their corresponding groups
-		for sgc in group.logic_node.children:
+		for sgc in group.cg_param.children:
 			# sgc is a condition of this group node
 			for sl in offset_manager.sleeping_group_conditions:
 				if sgc == sl.logic:
-					if sl.logic_offset not in used_condition_offsets:
-						used_condition_offsets.append(sl.logic_offset)
-						group.condition_offsets.append(sl.logic_offset)
-						break
+					group.condition_offsets.append(sl.logic_offset)
+					break
 		# Write condition offsets into condition pointer offsets
-		len1 = len(group.condition_slot_offsets)
+		len1 = len(group.condition_slots)
 		len2 = len(group.condition_offsets)
 		if len1 != len2:
-			print("Warning: Mismatching number of condition_pointer_offsets {0} and condition_offsets {1}.".format(len1, len2))
-		if len1 >= len2:
+			print("Error: GROUP {0} has mismatching number of condition_slots ({1}) and condition_offsets ({2}).".format(
+				i, len1, len2))
+		else:
 			for i, po in enumerate(group.condition_offsets):
 				param_safe_pos = file.tell()
-				var_pos = group.condition_slot_offsets[i]
+				var_pos = group.condition_slots[i]
 				file.seek(var_pos)
 				format_write(file, po - p_data, "I")
 				file.seek(param_safe_pos)
 		# Write param offsets into param pointer offsets
-		len1 = len(group.param_slot_offsets)
+		len1 = len(group.param_slots)
 		len2 = len(group.param_offsets)
 		if len1 != len2:
-			print("Warning: Mismatching number of param_pointer_offsets {0} and param_offsets {1}.".format(len1, len2))
-			# print("VPO: ", group.param_slot_offsets)
-			# print("PO: ", group.param_offsets)
-			# print(group)
-		if len1 >= len2:
+			print("Error: GROUP {0} has mismatching number of param_slots ({1}) and param_offsets ({2}).".format(
+				i, len1, len2))
+		else:
 			for i, po in enumerate(group.param_offsets):
 				param_safe_pos = file.tell()
-				var_pos = group.param_slot_offsets[i]
+				var_pos = group.param_slots[i]
 				file.seek(var_pos)
 				format_write(file, po - p_data, "I")
 				file.seek(param_safe_pos)
@@ -1127,7 +1117,7 @@ def read_db_logics(file):
 	last_logic = None
 	for l in lines:
 		my_line = l.split()
-		if len(my_line)==0 or l[0] == '#':
+		if len(my_line) == 0 or l[0] == '#':
 			continue
 		if l[0] != "\t":
 			if last_logic is not None:
@@ -1144,8 +1134,6 @@ def read_db_logics(file):
 
 ## SETUP ##
 # path = str(Path(__file__).parent) + os.sep
-string_variables = []
-group_variables = []
 reference_strings = []
 offset_manager = OffsetManager([], [], [], [], [], [])
 counter_manager = CounterManager()
@@ -1201,9 +1189,21 @@ for fmact in my_mact_files:
 		logic_tree.print_tree()
 	logic_nodes = get_logic_nodes(logic_tree)
 
-	conditions, tracks = gather_logic(logic_nodes)
-	gather_strings(None, logic_tree)
-	gather_groups(None, logic_tree)
+	## SET SLEEPER LOGIC ##
+	set_early_sleepers(logic_tree)
+	gather_sleeper_strings()
+	gather_sleeper_groups()
+
+	## WIP OPTIMIZE TRACK PARAMS ##
+	optimized_matches = []
+	print("->-> Optimizing track parameter data.")
+	if not bool_enable_optimization:
+		print("->->-> WARNING: Optimization is disabled, this will result in bigger file sizes.")
+	else:
+		if not bool_quick_optimization:
+			print(
+				"->->-> WARNING: Slow optimization selected, this might take several minutes.")
+		optimized_matches = optimize_param_data(logic_tree)
 
 	## OUTPUT ##
 	print("-> Writing CAT file.")
@@ -1236,16 +1236,6 @@ for fmact in my_mact_files:
 	p_groups = f_cat.tell()
 	write_groups(f_cat)
 
-	## WIP OPTIMIZE TRACK PARAMS ##
-	optimized_matches = []
-	print("->-> Optimizing track parameter data.")
-	if not bool_enable_optimization:
-		print("->->-> WARNING: Optimization is disabled, this will result in bigger file sizes.")
-	else:
-		if not bool_quick_optimization:
-			print("->->-> WARNING: Slow optimization selected, this might take several minutes.")
-		optimized_matches = optimize_param_data(logic_tree)
-
 	## PARAMS DATA ##
 	print("->-> Writing parameter data.")
 	p_data = f_cat.tell()
@@ -1260,7 +1250,7 @@ for fmact in my_mact_files:
 	## FIX HEADER & OFFSETS ##
 	print("->-> Fixing offsets.")
 	file_length = f_cat.tell()
-	fix_group_offsets(f_cat) # fix var param group offsets
+	fix_group_offsets(f_cat)  # fix var param group offsets
 	# return to start to fix header
 	f_cat.seek(0, 0)
 	format_write(f_cat, file_length, "I")  # file_length
@@ -1271,9 +1261,11 @@ for fmact in my_mact_files:
 	format_write(f_cat, counter_manager.counterB, "I")  # counterB
 	format_write(f_cat, counter_manager.counterC, "I")  # counterC
 	format_write(f_cat, counter_manager.counterD, "I")  # counterD
-	format_write(f_cat, len(string_variables), "I")  # number_of_strings_vars
+	format_write(f_cat, len(offset_manager.sleeping_strings),
+				 "I")  # number_of_strings_vars
 	f_cat.seek(p_var_groups, 0)
-	format_write(f_cat, len(group_variables), "I") # number_of_groups_vars
+	format_write(f_cat, len(offset_manager.sleeping_groups),
+				 "I")  # number_of_groups_vars
 	f_cat.seek(file_length, 0)
 
 	## END ##
@@ -1288,6 +1280,10 @@ for fmact in my_mact_files:
 		f_debug = open(fn_debug, "w")
 		keyword_tree.write_tree(f_debug)
 		f_debug.close()
+
+	# CODE DEBUG
+	for g in offset_manager.sleeping_groups:
+		print(g.param_slots, g.param_offsets)
 
 
 # End #
