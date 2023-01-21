@@ -768,7 +768,7 @@ for cat_path, cat_name in my_cat_files:
 		if bool_print_debug:
 			print("{0} -> Generating MACT.".format(file.tell()))
 		
-		mact_file_name = cat_name.split('.')[0]+".mact"
+		mact_file_name = cat_name.rsplit(os.sep, 1)[-1].split('.')[0]+".mact"
 		mact = open(mact_file_name, "w")
 
 		def write_mact(file, root, level):
@@ -814,7 +814,12 @@ for cat_path, cat_name in my_cat_files:
 							# match found
 							my_hash = check_hash_logic(helper.hash)
 							if my_hash is None:
+								print(helper)
 								my_hash = pretty_bytes(helper.hash)
+								# jank
+								if helper.hash and my_hash == "NULL":
+									my_hash = hash_title(helper.hash)
+									my_hash = pretty_bytes(helper.hash)
 							if bool_write_debug:
 								file.write("\n{0}# Pos: {1}; Offset: {2}".format(
 									ntabs(level), p_data+offset, offset))

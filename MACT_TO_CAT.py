@@ -23,13 +23,12 @@ import time
 bool_print_debug = False
 bool_print_tree = False
 bool_little_endian = True
-bool_enable_optimization = False
+bool_enable_param_optimization = False
 # (slow optimization seems to never be worth it, takes 10x as long to improve 20% best case)
-bool_quick_optimization = True
+bool_quick_param_optimization = True
+
 
 ## CLASSES ##
-
-
 @dataclass
 class ActNode:
 	keywords: list[str]
@@ -66,6 +65,10 @@ class OffsetManager:
 	sleeping_group_conditions: list[SleepingLogic]
 	sleeping_tracks: list[SleepingLogic]
 
+	debug_merged_strings: int = 0
+	debug_merged_logic: int = 0
+	debug_merged_groups: int = 0
+
 	def _add_sleeping_string(self, new_ss, sleeper_list):
 		repeated = False
 		for old_ss in sleeper_list:
@@ -79,6 +82,8 @@ class OffsetManager:
 					old_ss.param_slots.append(v)
 				for v in new_ss.param_offsets:
 					old_ss.param_offsets.append(v)
+				self.debug_merged_strings += 1
+				break
 		if not repeated:
 			sleeper_list.append(new_ss)
 
@@ -105,6 +110,8 @@ class OffsetManager:
 					old_ss.param_slots.append(v)
 				for v in new_sg.param_offsets:
 					old_ss.param_offsets.append(v)
+				self.debug_merged_groups += 1
+				break
 		if not repeated:
 			sleeper_list.append(new_sg)
 
@@ -119,6 +126,8 @@ class OffsetManager:
 					repeated = True
 					for v in new_sl.logic_slots:
 						old_sl.logic_slots.append(v)
+					self.debug_merged_logic += 1
+					break
 		if not repeated:
 			sleeper_list.append(new_sl)
 
@@ -687,13 +696,13 @@ def get_early_sleepers(logic_tree):
 	# set up sleeping condition
 	elif my_type in ('Condition'):
 		sl = SleepingLogic(my_logic, [], None)
-		# offset_manager.add_sleeping_condition(sl)
-		offset_manager.sleeping_conditions.append(sl)
+		offset_manager.add_sleeping_condition(sl)
+		# offset_manager.sleeping_conditions.append(sl)
 	# set up sleeping tracks
 	elif my_type in ('Track'):
 		sl = SleepingLogic(my_logic, [], None)
-		# offset_manager.add_sleeping_track(sl)
-		offset_manager.sleeping_tracks.append(sl)
+		offset_manager.add_sleeping_track(sl)
+		# offset_manager.sleeping_tracks.append(sl)
 	# debug
 	'''
 	for c in my_logic.params:
@@ -752,36 +761,56 @@ def write_cat_tree(file, logic_tree):
 		else:
 			hashed_title = hash_cat_title(my_logic.value)
 			file.write(hashed_title)
+	# optimization jank -- since tracks and conditions get merged when converted to sleeping tracks
+	#	my_logic.tracks and my_logic.conditions aren't accurate anymore
+	# NOTE: conditions must be allowed to be repeated here
+	#	for example, multiple identical NOT nodes can be used in a bank's condition group
+	#	and that must be allowed
+	my_conditions = []
+	for c in my_logic.conditions:
+		if c in [c.logic for c in offset_manager.sleeping_conditions]:
+			my_conditions.append(c)
+	my_tracks = []
+	for t in my_logic.tracks:
+		if t in [t.logic for t in offset_manager.sleeping_tracks]:
+			my_tracks.append(t)
+	# DEBUG
+	'''
+	if my_type in ('Bank') and my_logic.value in ('GroundMount'):
+		print(len(my_logic.conditions), len(my_conditions))
+		for c in my_logic.conditions:
+			# print(c, "\n")
+			pass
+		# print("AY")
+		for c in my_conditions:
+			# print(c, "\n")
+			pass
+		pass
+	'''
 	# print conditions
 	if my_type in ('Bank', 'Node'):
-		# optimization jank -- since tracks and conditions get merged when converted to sleeping tracks
-		#	my_logic.tracks and my_logic.conditions aren't accurate anymore
-		my_conditions = []
-		for c in my_logic.conditions:
-			if c in [c.logic for c in offset_manager.sleeping_conditions]:
-				my_conditions.append(c)
 		format_write(file, len(my_conditions), "B")
 		for c in my_conditions:
 			# Set up sleeping condition
 			my_offset = file.tell()
-			sl = SleepingLogic(c, [my_offset], None)
-			offset_manager.add_sleeping_condition(sl)
+			# Update existing sleeping condition
+			for sc in offset_manager.sleeping_conditions:
+				if sc.logic == c:
+					sc.logic_slots.append(my_offset)
+					break
 			# Write padding
 			format_write(file, 0, "I")
 	# print tracks
 	if my_type in ('Node'):
-		# optimization jank -- since tracks and conditions get merged when converted to sleeping tracks
-		#	my_logic.tracks and my_logic.conditions aren't accurate anymore
-		my_tracks = []
-		for t in my_logic.tracks:
-			if t in [t.logic for t in offset_manager.sleeping_tracks]:
-				my_tracks.append(t)
 		format_write(file, len(my_tracks), "B")
 		for t in my_tracks:
 			# update sleeping track
 			my_offset = file.tell()
-			sl = SleepingLogic(t, [my_offset], None)
-			offset_manager.add_sleeping_track(sl)
+			# Update existing sleeping condition
+			for sc in offset_manager.sleeping_tracks:
+				if sc.logic == t:
+					sc.logic_slots.append(my_offset)
+					break
 			# Write padding
 			format_write(file, 0, "I")
 	# print number of children
@@ -901,7 +930,7 @@ def optimize_track_params(logic_tree):
 					continue
 				# quick optimization -- skip mismatched hashes
 				hash_match = st1.logic.title == st2.logic.title
-				if bool_quick_optimization and not hash_match:
+				if bool_quick_param_optimization and not hash_match:
 					continue
 				param_matches = []
 				for p1 in st1.logic.params:
@@ -947,7 +976,7 @@ def optimize_track_params(logic_tree):
 	# End of optimization
 	end_time = time.time()
 	optimization_time = end_time - start_time
-	print("->->-> Time spent optimizing tracks: {0} seconds; Bytes saved: {1}.".format(
+	print("->->-> Time spent optimizing track params: {0} seconds; Bytes saved: {1}.".format(
 		round(optimization_time, 2), total_bytes_saved))
 	return optimized_tracks
 
@@ -962,7 +991,7 @@ def write_param_data(file, logic_tree, optimized_tracks):
 		# Write pointers
 		for lpo in sl.logic_slots:
 			file.seek(lpo, 0)
-			format_write(f_cat, safe_pos - p_data, "I")
+			format_write(file, safe_pos - p_data, "I")
 		file.seek(safe_pos)
 		# Write condition hash
 		hashed_title = hash_cat_value(sl.logic.title)
@@ -978,7 +1007,7 @@ def write_param_data(file, logic_tree, optimized_tracks):
 			else:
 				write_param_value_by_param_type(file, sl, logic_param, None)
 	# check for optimization
-	optimization = bool_enable_optimization and len(optimized_tracks)
+	optimization = bool_enable_param_optimization and len(optimized_tracks)
 	if optimization:
 		sleeping_tracks = optimized_tracks
 	else:
@@ -996,8 +1025,8 @@ def write_param_data(file, logic_tree, optimized_tracks):
 		number_of_params = len(my_params)
 		# Write pointers
 		for lpo in sl.logic_slots:
-			file.seek(lpo, 0)
-			format_write(f_cat, safe_pos - p_data, "I")
+			file.seek(lpo)
+			format_write(file, safe_pos - p_data, "I")
 		file.seek(safe_pos)
 		# Pad optimization offset
 		format_write(file, 0, "H")
@@ -1038,7 +1067,6 @@ def write_param_data(file, logic_tree, optimized_tracks):
 				write_param_value_by_param_type(file, sl, logic_param, None)
 	# fix sleeping tracks optimization offsets
 	if optimization:
-		'''
 		safe_pos = file.tell()
 		for item in sleeping_tracks:
 			sl = item.sleeping_logic
@@ -1047,8 +1075,9 @@ def write_param_data(file, logic_tree, optimized_tracks):
 				file.seek(om.logicA.logic_offset)
 				format_write(file, om.logicB.logic_offset -
 							om.logicA.logic_offset, "H")
-		'''
-	# end
+	# end -> make sure to either save a new safe_pos
+	# or remove file.seek() otherwise last track will be corrupted
+	safe_pos = file.tell()
 	file.seek(safe_pos)
 
 
@@ -1104,8 +1133,14 @@ def write_groups(file):
 			condition_pointer_offset = file.tell()
 			g.condition_slots.append(condition_pointer_offset)
 			format_write(file, 0, "I")
-			sl = SleepingLogic(c, [condition_pointer_offset], None)
-			offset_manager.add_sleeping_group_condition(sl)
+			# sl = SleepingLogic(c, [condition_pointer_offset], None)
+			# offset_manager.add_sleeping_group_condition(sl)
+			# offset_manager.add_sleeping_condition(sl)
+			# Update existing sleeping conditions
+			for sc in offset_manager.sleeping_conditions:
+				if sc.logic == c:
+					sc.logic_slots.append(condition_pointer_offset)
+					break
 
 
 def fix_group_offsets(file):
@@ -1117,7 +1152,7 @@ def fix_group_offsets(file):
 		# Check which ones are used in condition groups
 		# Append their offset to their corresponding groups
 		for sgc in group.cg_param.children:
-			# sgc is a condition of this group node
+			# sgc is a condition of this 'cg'
 			# for sl in offset_manager.sleeping_group_conditions:
 			for sl in offset_manager.sleeping_conditions:
 				if sgc == sl.logic:
@@ -1208,6 +1243,8 @@ else:
 my_mact_files = []
 sys_argv = sys.argv[1:]
 for i, arg in enumerate(sys_argv):
+	if sys_argv[i].upper() == "--PO":
+		bool_enable_param_optimization = True
 	if sys_argv[i].endswith(".mact"):
 		my_mact_files.append(sys_argv[i])
 if not len(my_mact_files):
@@ -1237,12 +1274,12 @@ for fmact in my_mact_files:
 	## WIP OPTIMIZE TRACK PARAMS ##
 	optimized_tracks = []
 	print("->-> Optimizing track parameter data.")
-	if not bool_enable_optimization:
-		print("->->-> WARNING: Optimization is disabled, this will result in bigger file sizes.")
+	if not bool_enable_param_optimization:
+		print("->->-> WARNING: Track param optimization is disabled, this will result in bigger file sizes.")
 	else:
-		if not bool_quick_optimization:
+		if not bool_quick_param_optimization:
 			print(
-				"->->-> WARNING: Slow optimization selected, this might take several minutes.")
+				"->->-> WARNING: Slow track param optimization selected, this might take several minutes.")
 		optimized_tracks = optimize_track_params(logic_tree)
 
 	# Gather before writing
@@ -1251,7 +1288,7 @@ for fmact in my_mact_files:
 
 	## OUTPUT ##
 	print("-> Writing CAT file.")
-	fn_cat = fn_input.split('.')[0] + ".cat"
+	fn_cat = fn_input.rsplit(os.sep, 1)[-1].split('.')[0] + ".cat"
 	f_cat = open(fn_cat, "wb")
 
 	## HEADER ##
@@ -1326,13 +1363,13 @@ for fmact in my_mact_files:
 		f_debug.close()
 	
 	## DEBUG INFO ##
-	print("->-> Debug Information.")
 	debug_mismatched_strings = 0
-	debug_unused_strings = 0
 	debug_mismatched_groups = 0
+	debug_unused_strings = 0
 	debug_unused_groups = 0
 	debug_unused_conditions = 0
 	debug_unused_tracks = 0
+	print("->-> Debug Information.")
 	for i, s in enumerate(offset_manager.sleeping_strings):
 		if len(s.param_slots) != len(s.param_offsets):
 			debug_mismatched_strings += 1
@@ -1348,13 +1385,18 @@ for fmact in my_mact_files:
 	for i, s in enumerate(offset_manager.sleeping_conditions):
 		if len(s.logic_slots) == 0:
 			debug_unused_conditions += 1
+		if s.logic_offset == None or s.logic_offset == 0:
+			debug_unused_conditions += 1
 	for i, s in enumerate(offset_manager.sleeping_tracks):
 		if len(s.logic_slots) == 0:
+			debug_unused_tracks += 1
+		if s.logic_offset == None or s.logic_offset == 0:
 			debug_unused_tracks += 1
 	print("Info: {0} total strings, {1} mismatched strings and {2} unused strings.".format(len(offset_manager.sleeping_strings), debug_mismatched_strings, debug_unused_strings))
 	print("Info: {0} total groups, {1} mismatched groups and {2} unused groups.".format(len(offset_manager.sleeping_groups), debug_mismatched_groups, debug_unused_groups))
 	print("Info: {0} total conditions, {1} unused conditions.".format(len(offset_manager.sleeping_conditions), debug_unused_conditions))
 	print("Info: {0} total tracks, {1} unused tracks.".format(len(offset_manager.sleeping_tracks), debug_unused_tracks))
+	# print("Info: {0} merged strings, {1} merged groups, {2} merged logic.".format(offset_manager.debug_merged_strings, offset_manager.debug_merged_groups, offset_manager.debug_merged_logic))
 
 
 # End #

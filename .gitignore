@@ -3,4 +3,5 @@ OG/
 OG/*
 *.mact
 *.cat
+*.act
 .gitignore
