@@ -1014,5 +1014,5 @@ if bool_generate_templates:
 	'''
 
 # End #
-print("Done.")
+print("-> Done.")
 quit()
