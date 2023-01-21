@@ -13,6 +13,7 @@ More information @ Bully Modding Discord
 		* python3 CAT_TO_MACT.py --GENERATE-TEMPLATES "C:\path\to\folder\with\all\cat\files"  
 	* You can tweak these templates by changing the names and types included there and CAT_TO_MACT   
 	* will use that information whhen generating your MACT files.  
+
 * Instructions for MACT_TO_CAT.py:  
 	* You can generate CAT files by running:  
 		* python3 MACT_TO_CAT.py YourMactFile.mact  

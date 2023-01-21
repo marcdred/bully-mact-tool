@@ -1,4 +1,4 @@
-# MARCDRED'S MACT_TO_CAT.py V4.0 #
+# MARCDRED'S MACT_TO_CAT.py V4.1 #
 # marcdred@outlook.com #
 from __future__ import annotations
 from typing import TYPE_CHECKING
@@ -1075,6 +1075,7 @@ def write_param_data(file, logic_tree, optimized_tracks):
 				file.seek(om.logicA.logic_offset)
 				format_write(file, om.logicB.logic_offset -
 							om.logicA.logic_offset, "H")
+		file.seek(safe_pos)
 	# end -> make sure to either save a new safe_pos
 	# or remove file.seek() otherwise last track will be corrupted
 	safe_pos = file.tell()
