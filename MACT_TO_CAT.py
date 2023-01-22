@@ -13,6 +13,7 @@ import os
 import sys
 from pathlib import Path
 import time
+from copy import deepcopy
 
 # GOALS:
 # --	Slightly decrease param type dependency to template files.
@@ -204,9 +205,9 @@ class SleepingLogic:
 
 
 @dataclass
-class OptimizedSleepingLogic:
+class LogicOptimization:
 	sleeping_logic: SleepingLogic
-	optimization_match: OptimizationMatch
+	optimization: OptimizationMatch
 
 
 @dataclass
@@ -628,7 +629,19 @@ def match_param_database(logic_title, logic_param, db):
 
 def get_sleeper_strings():
 	for sl in offset_manager.sleeping_tracks + offset_manager.sleeping_conditions:
-		for p in sl.logic.params:
+		# get strings from optimization, if possible
+		if bool_enable_param_optimization:
+			match = False
+			for lo in logic_optimizations:
+				if sl.logic == lo.sleeping_logic.logic:
+					if lo.optimization:
+						match = True
+						my_params = lo.optimization.unique_params
+						break
+		if not bool_enable_param_optimization or not match:
+			my_params = sl.logic.params
+		# gather strings
+		for p in my_params:
 			if p.value_type == "string":
 				my_string = strip_string(p.value)
 				if len(my_string):
@@ -656,7 +669,19 @@ def get_sleeper_groups():
 	### is because groups are gathered from sleeping_tracks and sleeping_conditions
 	### and these are getting merged down when run through get_early_sleepers()
 	for sl in offset_manager.sleeping_tracks + offset_manager.sleeping_conditions:
-		for p in sl.logic.params:
+		# get groups from optimizations, if possible
+		if bool_enable_param_optimization:
+			match = False
+			for lo in logic_optimizations:
+				if sl.logic == lo.sleeping_logic.logic:
+					if lo.optimization:
+						match = True
+						my_params = lo.optimization.unique_params
+						break
+		if not bool_enable_param_optimization or not match:
+			my_params = sl.logic.params
+		# gather cg as usual
+		for p in my_params:
 			if p.value_type == "cg" and len(p.children):
 				sg = SleepingGroup(p, [p], [], [], [], [], [])
 				offset_manager.add_sleeping_group(sg)
@@ -771,24 +796,20 @@ def write_cat_tree(file, logic_tree):
 	for c in my_logic.conditions:
 		if c in [c.logic for c in offset_manager.sleeping_conditions]:
 			my_conditions.append(c)
+		else:
+			print("Warning: Unable to match tree condition {0} with sleeping conditions.".format(c.title))
 	my_tracks = []
-	if bool_enable_param_optimization:
-		for t1 in my_logic.tracks:
-			for i, t2 in enumerate(unoptimized_tracks):
-				if t1 == t2.logic:
-					my_tracks.append(offset_manager.sleeping_tracks[i].logic)
-					break
-	else:
-		for t in my_logic.tracks:
-			if t in [t.logic for t in offset_manager.sleeping_tracks]:
-				my_tracks.append(t)
+	for t in my_logic.tracks:
+		if t in [t.logic for t in offset_manager.sleeping_tracks]:
+			my_tracks.append(t)
+		else:
+			print("Warning: Unable to match tree track {0} with sleeping tracks.".format(t.title))
 	# print conditions
 	if my_type in ('Bank', 'Node'):
 		format_write(file, len(my_conditions), "B")
 		for c in my_conditions:
-			# Set up sleeping condition
-			my_offset = file.tell()
 			# Update existing sleeping condition
+			my_offset = file.tell()
 			for sc in offset_manager.sleeping_conditions:
 				if sc.logic == c:
 					sc.logic_slots.append(my_offset)
@@ -799,9 +820,8 @@ def write_cat_tree(file, logic_tree):
 	if my_type in ('Node'):
 		format_write(file, len(my_tracks), "B")
 		for t in my_tracks:
-			# update sleeping track
-			my_offset = file.tell()
 			# Update existing sleeping track
+			my_offset = file.tell()
 			for st in offset_manager.sleeping_tracks:
 				if st.logic == t:
 					st.logic_slots.append(my_offset)
@@ -902,15 +922,15 @@ def optimize_track_params(logic_tree):
 		paramB: LogicNode
 
 	@dataclass
-	class OptimizationMatch:
+	class LogicMatch:
 		logicA: SleepingLogic
 		logicB: SleepingLogic
 		param_matches: list[ParamMatch]
+		unique_params: list[LogicNode]
 	# Generate new list of optimized tracks
 	# TO-DO:
 	# 1	--	check rules of optimization in original files
-	optimized_tracks = []
-	optimization_matches = []
+	logic_optimizations = []
 	start_time = time.time()
 	number_of_verified_tracks = 0
 	total_bytes_saved = 0
@@ -942,8 +962,8 @@ def optimize_track_params(logic_tree):
 				if len(param_matches):
 					# if any param matches, store as optimization match
 					if best_match is None or len(param_matches) > len(best_match.param_matches):
-						om = OptimizationMatch(st1, st2, param_matches)
-						best_match = om
+						lm = LogicMatch(st1, st2, param_matches, [])
+						best_match = lm
 		# done checking for optimization matches for st1
 		# update total verified tracks
 		number_of_verified_tracks += 1
@@ -954,21 +974,19 @@ def optimize_track_params(logic_tree):
 					total_bytes_saved += 1
 				else:
 					total_bytes_saved += 4
-			# create new optimized sleeper from best match
+			# add unique params to logic match
 			unique_params = []
 			for p in st1.logic.params:
 				if p not in [pm.paramA for pm in best_match.param_matches]:
 					unique_params.append(p)
-			st1.logic.params = unique_params
-			osl = OptimizedSleepingLogic(st1, best_match)
-			optimized_tracks.append(st1)
-			optimization_matches.append(osl)
+			best_match.unique_params = unique_params
+			osl = LogicOptimization(st1, best_match)
+			logic_optimizations.append(osl)
 			print("->->-> Track {1}/{2}, optimized {0} params.".format(len(
 				best_match.param_matches), number_of_verified_tracks, len(offset_manager.sleeping_tracks)))
 		else:
-			osl = OptimizedSleepingLogic(st1, None)
-			optimized_tracks.append(st1)
-			optimization_matches.append(osl)
+			osl = LogicOptimization(st1, None)
+			logic_optimizations.append(osl)
 			print("->->-> Track {0}/{1}, no optimizable params.".format(
 				number_of_verified_tracks, len(offset_manager.sleeping_tracks)))
 	# End of optimization
@@ -976,7 +994,7 @@ def optimize_track_params(logic_tree):
 	optimization_time = end_time - start_time
 	print("->->-> Time spent optimizing track params: {0} seconds; Bytes saved: {1}.".format(
 		round(optimization_time, 2), total_bytes_saved))
-	return optimized_tracks, optimization_matches
+	return logic_optimizations
 
 
 def write_param_data(file, logic_tree):
@@ -1004,17 +1022,21 @@ def write_param_data(file, logic_tree):
 				write_param_value_by_param_type(file, sl, logic_param, param_match.type)
 			else:
 				write_param_value_by_param_type(file, sl, logic_param, None)
-	# check for optimization
-	optimization = bool_enable_param_optimization and len(optimized_tracks)
-	if optimization:
-		sleeping_tracks = optimized_tracks
-	else:
-		sleeping_tracks = offset_manager.sleeping_tracks
-	for sl in sleeping_tracks:
+	for sl in offset_manager.sleeping_tracks:
 		# Setup
 		safe_pos = file.tell()
 		sl.logic_offset = safe_pos
-		my_params = sl.logic.params
+		# Get params from optimizations, if possible
+		if bool_enable_param_optimization:
+			match = False
+			for lo in logic_optimizations:
+				if sl.logic == lo.sleeping_logic.logic:
+					if lo.optimization:
+						match = True
+						my_params = lo.optimization.unique_params
+						break
+		if not bool_enable_param_optimization or not match:
+			my_params = sl.logic.params
 		number_of_params = len(my_params)
 		# Write pointers
 		for lpo in sl.logic_slots:
@@ -1059,16 +1081,15 @@ def write_param_data(file, logic_tree):
 			else:
 				write_param_value_by_param_type(file, sl, logic_param, None)
 	# fix sleeping tracks optimization offsets
-	if optimization:
+	if bool_enable_param_optimization:
 		safe_pos = file.tell()
-		for sl in sleeping_tracks:
-			for om in optimization_matches:
-				if sl == om.sleeping_logic:
-					if om.optimization_match:
-						# print(sl.logic_offset, om.logicA.logic_offset, om.logicB.logic_offset)
-						file.seek(om.optimization_match.logicA.logic_offset)
-						format_write(file, om.optimization_match.logicB.logic_offset -
-									om.optimization_match.logicA.logic_offset, "H")
+		for sl in offset_manager.sleeping_tracks:
+			for lm in logic_optimizations:
+				if sl == lm.sleeping_logic:
+					if lm.optimization:
+						file.seek(lm.optimization.logicA.logic_offset)
+						format_write(file, lm.optimization.logicB.logic_offset -
+									lm.optimization.logicA.logic_offset, "H")
 		file.seek(safe_pos)
 	# end -> make sure to either save a new safe_pos
 	# or remove file.seek() otherwise last track will be corrupted
@@ -1274,13 +1295,17 @@ for fmact in my_mact_files:
 		if not bool_quick_param_optimization:
 			print(
 				"->->-> WARNING: Slow track param optimization selected, this might take several minutes.")
-		optimized_tracks = []
-		optimized_tracks, optimization_matches = optimize_track_params(logic_tree)
-		unoptimized_tracks = offset_manager.sleeping_tracks
-		offset_manager.sleeping_tracks = optimized_tracks
+		logic_optimizations = optimize_track_params(logic_tree)
 
 	# Gather before writing
 	get_sleeper_strings()
+	# NOTE: THEORY: optimization currently decreases number of groups
+	#	because in groups with identical nodes but different params
+	#	params can get optimized into looking identical,
+	#	which makes it so the groups get merged into one.
+	# NOTE: However, if params can get optimized into looking identical,
+	#	then they had no unique data to begin with.
+	#	So the groups are identical.
 	get_sleeper_groups()
 
 	## OUTPUT ##
@@ -1382,8 +1407,10 @@ for fmact in my_mact_files:
 	for i, s in enumerate(offset_manager.sleeping_conditions):
 		if len(s.logic_slots) == 0:
 			debug_unused_conditions += 1
+			# print("Warning: CONDITION {0} wasn't used inside CAT TREE!".format(s.logic.title))
 		if s.logic_offset == None or s.logic_offset == 0:
 			debug_unused_conditions += 1
+			# print("Warning: CONDITION {0} is unused!".format(s.logic.title))
 	for i, s in enumerate(offset_manager.sleeping_tracks):
 		if len(s.logic_slots) == 0:
 			debug_unused_tracks += 1
