@@ -1088,8 +1088,10 @@ def write_param_data(file, logic_tree):
 				if sl == lm.sleeping_logic:
 					if lm.optimization:
 						file.seek(lm.optimization.logicA.logic_offset)
-						format_write(file, lm.optimization.logicB.logic_offset -
-									lm.optimization.logicA.logic_offset, "H")
+						distance = lm.optimization.logicB.logic_offset - lm.optimization.logicA.logic_offset
+						if distance > 32767:
+							print("Error: Optimization distance is bigger than 32767, this will break the file.")
+						format_write(file, distance, "H")
 		file.seek(safe_pos)
 	# end -> make sure to either save a new safe_pos
 	# or remove file.seek() otherwise last track will be corrupted

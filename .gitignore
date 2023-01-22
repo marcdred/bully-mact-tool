@@ -1,6 +1,7 @@
 # Testing/Debugging files
-OG/
-OG/*
+*/*
+!DB/
+!TEMPLATES/
 *.mact
 *.cat
 *.act
