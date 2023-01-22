@@ -955,7 +955,6 @@ def optimize_track_params(logic_tree):
 				p1_ids = [get_param_id(st1, p) for p in st1.logic.params]
 				p2_ids = [get_param_id(st2, p) for p in st2.logic.params]
 				if p1_ids != p2_ids:
-					print(p1_ids, p2_ids)
 					continue
 				# Create list of param matches
 				param_matches = []
