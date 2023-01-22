@@ -1,8 +1,8 @@
 # bully-mact-tool
-A tool to edit Bully's ACT files.
-
-At the moment I am learning git and plan on cleaning up this code in the future, please be patient.  
-More information @ Bully Modding Discord
+A tool to edit Bully's CAT files.
+It converts Bully's CAT files into MACT files (a customized version of Bully's ACT files) and converts MACT files back into CAT files.
+Created by marcdred, more information @ Bully Modding Discord.
+Extra thanks to vegasfest for helping me test and debug this tool.
 
 * Instructions for CAT_TO_MACT.py:  
 	* ".MACT" files are very similar to regular ACT files but with a few tweaks.  
@@ -17,5 +17,3 @@ More information @ Bully Modding Discord
 * Instructions for MACT_TO_CAT.py:  
 	* You can generate CAT files by running:  
 		* python3 MACT_TO_CAT.py YourMactFile.mact  
-
-Extra thanks to vegasfest for helping me test and debug this tool.  

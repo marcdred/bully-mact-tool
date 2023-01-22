@@ -1,4 +1,4 @@
-# MARCDRED'S CAT_TO_MACT.py V4.1 #
+# MARCDRED'S CAT_TO_MACT.py V4.2 #
 # marcdred@outlook.com #
 from __future__ import annotations
 from typing import TYPE_CHECKING

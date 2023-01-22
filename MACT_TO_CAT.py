@@ -1,4 +1,4 @@
-# MARCDRED'S MACT_TO_CAT.py V4.1 #
+# MARCDRED'S MACT_TO_CAT.py V4.2 #
 # marcdred@outlook.com #
 from __future__ import annotations
 from typing import TYPE_CHECKING
@@ -938,18 +938,32 @@ def optimize_track_params(logic_tree):
 		best_match = None
 		for j, st2 in enumerate(offset_manager.sleeping_tracks):
 			if i >= j:
-				# optimization can't go back afaik, only forward
+				# optimization can't go back, only forward
 				continue
 			else:
-				# early skip if optimization check isn't worth it
+				# early skip if optimization isn't worth it
 				if best_match is not None and len(best_match.param_matches) > len(st2.logic.params):
 					continue
 				# quick optimization -- skip mismatched hashes
 				hash_match = st1.logic.title == st2.logic.title
 				if bool_quick_param_optimization and not hash_match:
 					continue
+				# NOTE: Must verify if optimization target has extra params IDs
+				# that optimization source doesn't have
+				# otherwise source receives GHOST PARAMS that weren't originally there
+				# In the future, test idea of replacing bad ID values with 0
+				p1_ids = [get_param_id(st1, p) for p in st1.logic.params]
+				p2_ids = [get_param_id(st2, p) for p in st2.logic.params]
+				if p1_ids != p2_ids:
+					print(p1_ids, p2_ids)
+					continue
+				# Create list of param matches
 				param_matches = []
 				for p1 in st1.logic.params:
+					if p1.value_type in ('cg'):
+						# ignore cg params -- their value is 'None'
+						# optimization only checks id & values not chilldren
+						continue
 					pid1 = get_param_id(st1, p1)
 					for p2 in st2.logic.params:
 						pid2 = get_param_id(st2, p2)
