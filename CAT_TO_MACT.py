@@ -585,6 +585,7 @@ for cat_path, cat_name in my_cat_files:
 		opti_target = 0
 		if th1.opti_offset:
 			opti_target = th1.offset + th1.opti_offset
+		# print("{0} -> {1} ({2})".format(p_data + th1.offset, p_data + opti_target, th1.opti_offset))
 		while(opti_target > 0):
 			match = False
 			for th2 in thelpers:
@@ -598,10 +599,11 @@ for cat_path, cat_name in my_cat_files:
 					# if target has opti, continue unopti
 					if th2.opti_offset:
 						opti_target = th2.offset + th2.opti_offset
+						# print("{0} -> {1} ({2})".format(p_data + th1.offset, p_data + opti_target, th2.opti_offset))
 					else:
 						opti_target = 0
 			if not match:
-				print("Bug: Unable to unoptimize track offset {0}.".format(p_data + th1.offset))
+				print("Bug: Unable to unoptimize track offset {0} -> {1} ({2}).".format(p_data + th1.offset, p_data + opti_target, th2.opti_offset))
 				break
 		# resort unoptimized params
 		def nidsort(e):
