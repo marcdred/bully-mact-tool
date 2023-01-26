@@ -18,4 +18,4 @@ Extra thanks to vegasfest for helping me test and debug this tool.
 	* CAT_TO_MACT will check for the existence of files named "TEMPLATES_CONDITIONS.txt" and "TEMPLATES_TRACKS.txt"  
 	* You can generate TEMPLATE FILES by running:  
 		* `python3 CAT_TO_MACT.py --GENERATE-TEMPLATES "C:\path\to\folder\with\all\cat\files"`  
-	* You can tweak these templates by changing the names and types and CAT_TO_MACT will use that information when generating MACT files.  
+	* You can tweak these templates by changing names and types and CAT_TO_MACT will use that information when generating MACT files.  
